@@ -71,10 +71,12 @@ int main()
 	Clock timeMoney;
 
 
-
 	Clock clock;
-	Entity peaShooter(10,10,100,"./SFML/images/peashooter.png","Peashooter",27.5,32.5);
-
+	Entity** peaShooters = new Entity*[5];
+	for (int i = 0; i < 5; i++) {
+		Entity* piss = new Entity(410, i*105 + 175, 100, "./SFML/images/peashooter.png", "Peashooter", 27.5, 32.5);
+		peaShooters[i] = piss;
+	}
 	while (window.isOpen())
 	{
 		float time = clock.getElapsedTime().asMicroseconds();
@@ -93,10 +95,9 @@ int main()
 		//Create a background
 		createBack(window);
 		createMap(window);
-
-		peaShooter.draw(window, 27.5, 32.5);
-
-
+		for (int i = 0; i < 5; i++) {
+			peaShooters[i]->draw(window, 27.5, 32.5);
+		}
 		window.setSize(sf::Vector2u(1100, 680));
 		window.display();
 	}

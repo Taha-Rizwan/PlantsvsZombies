@@ -4,7 +4,7 @@ Entity::Entity(int x, int y,int tolerance, string texturePath, string name, int 
 		texture.loadFromFile(texturePath);
 		sprite.setTexture(texture);
 		sprite.setTextureRect(IntRect(0, 0, textureX, textureY));
-		sprite.setScale(1.5,1.5);
+		sprite.setScale(2.0,2.0);
 	exists = true;
 }
 
@@ -21,13 +21,13 @@ void Entity::draw(RenderWindow& window, int textureX, int textureY) {
 	if (exists) {
 		sprite.setPosition(pos.getPos()[0], pos.getPos()[1]);
 		//For Sprite Animation
-		if (clock.getElapsedTime().asSeconds() > 0.075f) {
+		if (clock.getElapsedTime().asSeconds() > 0.1f) {
 			sprite.setTextureRect(IntRect(textureX * x, 0, textureX, textureY));
 			if (x == 7)
 				x = 0;
 			x++;
 			clock.restart();
-}
+	}
 
 		window.draw(sprite);
 	}
