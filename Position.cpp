@@ -1,14 +1,18 @@
 #include "Position.h"
 
-Position::Position(int x, int y) {
+Position::Position(float x, float y) {
 	pos[0] = x;
 	pos[1] = y;
 }
 
-int* Position::getPos() {
+float* Position::getPos() {
 	return pos;
 }
-void Position::setPos(int x, int y) {
+void Position::setPos(float x = 0, float y = 0) {
 	pos[0] = x;
 	pos[1] = y;
+}
+void Position::move(float x, float y) {
+	pos[0] += x;
+	pos[1] += y;
 }

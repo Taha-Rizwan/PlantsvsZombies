@@ -1,17 +1,12 @@
 ﻿#include "Entity.h"
+#include "Bullet.h"
 #include <ctime>
 //#include"../SFML/Images/"
 using namespace sf;
 using namespace std;
 
-
-struct coordinats {
-	int x;
-	int y;
-};
-
-
-
+int x = 0;
+int y = 1;
 //Drawing the background
 void createBack(RenderWindow& window) {
 	//Drawing the background
@@ -68,23 +63,9 @@ int main()
 		}
 	}
 
-	Clock timeMoney;
-
-
-	Clock clock;
-	Entity** peaShooters = new Entity*[5];
-	for (int i = 0; i < 5; i++) {
-		Entity* piss = new Entity(410, i*105 + 175, 100, "./SFML/images/peashooter.png", "Peashooter", 27.5, 32.5);
-		peaShooters[i] = piss;
-	}
 	while (window.isOpen())
 	{
-		float time = clock.getElapsedTime().asMicroseconds();
-		float moneyTime = timeMoney.getElapsedTime().asSeconds();
-
-		clock.restart();
-		time = time / 800;
-
+	
 		Event event;
 		while (window.pollEvent(event))
 		{
