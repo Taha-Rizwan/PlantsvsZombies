@@ -76,9 +76,7 @@ int main()
 		//Create a background
 		createBack(window);
 		createMap(window);
-		for (int i = 0; i < 5; i++) {
-			peaShooters[i]->draw(window, 27.5, 32.5);
-		}
+
 		window.setSize(sf::Vector2u(1100, 680));
 		window.display();
 	}
