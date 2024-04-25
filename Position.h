@@ -1,12 +1,7 @@
 #pragma once
 class Position {
-protected:
-	float pos[2];
-
 public:
+	float pos[2];
 	Position(float x, float y);
-
-	float* getPos();
-	void setPos(float x, float y);
-	void move(float x, float y =0);
+	void move(float x, float y=0);
 };
