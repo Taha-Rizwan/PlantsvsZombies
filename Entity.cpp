@@ -27,8 +27,8 @@ void Entity::draw(RenderWindow& window, int textureX, int textureY) {
 				x = 0;
 			x++;
 			clock.restart();
-		}
-		
+}
+
 		window.draw(sprite);
 	}
 }

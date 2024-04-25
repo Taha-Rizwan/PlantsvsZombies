@@ -1,8 +1,11 @@
 #include "Position.h"
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include<iostream>
+#include"Position.h"
 using namespace std;
 using namespace sf;
+
 class Entity {
 protected:
 	Position pos;

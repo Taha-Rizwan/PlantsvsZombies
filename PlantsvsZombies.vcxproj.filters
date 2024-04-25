@@ -19,6 +19,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Position.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.h">
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
