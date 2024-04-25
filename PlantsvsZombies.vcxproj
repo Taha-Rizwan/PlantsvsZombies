@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Entity.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>

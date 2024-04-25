@@ -1,4 +1,4 @@
-﻿#include <SFML/Graphics.hpp>
+﻿#include "Entity.h"
 #include <ctime>
 //#include"../SFML/Images/"
 using namespace sf;
@@ -73,6 +73,7 @@ int main()
 
 
 	Clock clock;
+	Entity peaShooter(10,10,100,"./SFML/images/peashooter.png","Peashooter",27.5,32.5);
 
 	while (window.isOpen())
 	{
@@ -93,10 +94,10 @@ int main()
 		createBack(window);
 		createMap(window);
 
+		peaShooter.draw(window, 27.5, 32.5);
 
 
-
-		window.setSize(sf::Vector2u(550, 340));
+		window.setSize(sf::Vector2u(1100, 680));
 		window.display();
 	}
 	return 0;
