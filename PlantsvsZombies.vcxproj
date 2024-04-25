@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Zombie.cpp" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Entity.h">
       <FileType>CppCode</FileType>
@@ -27,6 +28,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Position.h" />
