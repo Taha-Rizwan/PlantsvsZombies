@@ -19,7 +19,7 @@ void Entity::draw(RenderWindow& window, int textureX, int textureY) {
 	static int x = 0;
 
 	if (exists) {
-		sprite.setPosition(pos.getPos()[0], pos.getPos()[1]);
+		sprite.setPosition(pos.pos[0], pos.pos[1]);
 		//For Sprite Animation
 		if (clock.getElapsedTime().asSeconds() > 0.1f) {
 			sprite.setTextureRect(IntRect(textureX * x, 0, textureX, textureY));

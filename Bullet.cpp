@@ -12,15 +12,15 @@ bool Bullet::getExists() {
 }
 
 void Bullet::move() {
-		pos.move(bulletSpeed);
-		if (pos.getPos()[0] > 1075) {
+		pos.set(bulletSpeed);
+		if (pos.pos[0] > 1075) {
 			exists = false;
 		}
 }
 
 void Bullet::draw(RenderWindow& window){
 	if (exists) {
-		bulletSprite.setPosition(pos.getPos()[0], pos.getPos()[1]);
+		bulletSprite.setPosition(pos.pos[0], pos.pos[1]);
 		window.draw(bulletSprite);
 	}
 }
