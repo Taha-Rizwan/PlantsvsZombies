@@ -33,7 +33,7 @@ void Entity::draw(RenderWindow& window, int textureX, int textureY) {
 	}
 }
 
-bool Entity::getExists() {
+bool Entity::getExists() const{
 	return exists;
 }
 void Entity::toggleExists() {

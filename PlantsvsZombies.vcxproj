@@ -19,8 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DancingZombie.cpp" />
+    <ClCompile Include="FlyingZombie.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="DancingZombie.h" />
     <ClInclude Include="Entity.h">
       <FileType>CppCode</FileType>
     </ClInclude>
@@ -28,6 +31,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClInclude Include="FlyingZombie.h" />
     <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <ItemGroup>

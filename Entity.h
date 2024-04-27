@@ -1,10 +1,9 @@
 #include "Position.h"
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include<iostream>
 #include"Position.h"
-using namespace std;
 using namespace sf;
+using namespace std;
 
 class Entity {
 protected:
@@ -20,7 +19,7 @@ public:
 	Entity(int x, int y, int tolerance, string texturePath, string name, int textureX, int textureY);
 	void draw(RenderWindow& window, int textureX, int textureY);
 	void hit(int damage);
-	bool getExists();
+	bool getExists()const;
 	void toggleExists();
 	
 };
