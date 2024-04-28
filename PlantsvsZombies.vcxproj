@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="DancingZombie.cpp" />
     <ClCompile Include="FlyingZombie.cpp" />
+    <ClCompile Include="Plant.cpp" />
+    <ClCompile Include="Shooter.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="DancingZombie.h" />
@@ -32,6 +34,8 @@
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClInclude Include="FlyingZombie.h" />
+    <ClInclude Include="Plant.h" />
+    <ClInclude Include="Shooter.h" />
     <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <ItemGroup>

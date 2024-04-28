@@ -1,9 +1,8 @@
 #pragma once
+#ifndef Entity_H
 #include"Entity.h"
-#include "SFML/Graphics.hpp"
-#include "SFML/System.hpp"
 using namespace std;
-using namespace sf;
+
 
 class Zombie:public Entity{
 protected: 
@@ -18,3 +17,4 @@ public:
 	int getDamage()const;
 	virtual void move(int x, int y);
 };
+#endif
