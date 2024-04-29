@@ -25,6 +25,7 @@
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Repeater.cpp" />
     <ClCompile Include="Shooter.cpp" />
+    <ClCompile Include="Wallnut.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="DancingZombie.h" />
@@ -40,6 +41,7 @@
     <ClInclude Include="Plant.h" />
     <ClInclude Include="Repeater.h" />
     <ClInclude Include="Shooter.h" />
+    <ClInclude Include="Wallnut.h" />
     <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <ItemGroup>

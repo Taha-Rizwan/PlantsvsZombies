@@ -17,15 +17,21 @@ void Entity::hit(int damage) {
 //Draw Function for entity
 void Entity::draw(RenderWindow& window, int textureX, int textureY) {
 	static int x = 0;
-
+	static bool reverse = false;
 	if (exists) {
 		sprite.setPosition(pos.pos[0], pos.pos[1]);
 		//For Sprite Animation
-		if (clock.getElapsedTime().asSeconds() > 0.3f) {
+		if (clock.getElapsedTime().asSeconds() > 0.2f) {
 			sprite.setTextureRect(IntRect(textureX * x, 0, textureX, textureY));
-			if (x == sprites-1)
-				x = 0;
-			x++;
+			if (x >= sprites - 1) {
+				reverse = true;
+			}
+			else if (x == 0)
+				reverse = false;
+			if (reverse)
+				x--;
+			else
+				x++;
 			clock.restart();
 	}
 

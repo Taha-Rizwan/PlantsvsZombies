@@ -48,6 +48,9 @@
     <ClCompile Include="Repeater.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Wallnut.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Position.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Repeater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Wallnut.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

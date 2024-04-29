@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "Peashooter.h"
 #include "Repeater.h"
+#include "Wallnut.h"
 #include <ctime>
 //#include"../SFML/Images/"
 using namespace sf;
@@ -12,7 +13,7 @@ int y = 1;
 void createBack(RenderWindow& window) {
 	//Drawing the background
 	Image map_image;
-	map_image.loadFromFile("./SFML/Images/backwindow.jpg");
+	map_image.loadFromFile("./SFML/Images/day.png");
 	Texture map;
 	map.loadFromImage(map_image);
 	Sprite s_map;
@@ -39,7 +40,7 @@ void createMap(RenderWindow& window) {
 int main()
 {
 	//Create a window, n*n
-	RenderWindow window(VideoMode(1200, 700), "Plants Vs Zombies");
+	RenderWindow window(VideoMode(1400, 600), "Plants Vs Zombies");
 	//Game icon
 	Image icon;
 	if (!icon.loadFromFile("./SFML/Images/icon.png"))
@@ -63,9 +64,11 @@ int main()
 			FIELD_GAME_STATUS[i][j] = true;
 		}
 	}
-
-	Repeater pea(410, 175);
-	Peashooter peas(410, 175 + 110);
+	//Y-axis starting point is 75, +100 to the slot below
+	//X-axis starting point is 265, +80 to the slot on the right
+	Repeater pea(265, 75);
+	Peashooter peas(265, 275);
+	Wallnut wall(345, 75);
 	Bullet** bullets = new Bullet*[100];
 	int i = 0;
 	while (window.isOpen())
@@ -92,7 +95,7 @@ int main()
 		//Create a background
 		
 		createBack(window);
-		createMap(window);
+		//createMap(window);
 		for (int j = 0; j < i; j++) {
 			if(bullets[j]->getExists())
 				bullets[j]->draw(window);
@@ -100,6 +103,7 @@ int main()
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW
 		pea.draw(window, 27.5, 34);
 		peas.draw(window, 27.5, 32.5);
+		wall.draw(window, 27.5, 32.5);
 		window.setSize(sf::Vector2u(1100, 680));
 		window.display();
 	}
