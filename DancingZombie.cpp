@@ -4,6 +4,10 @@ DancingZombie::DancingZombie(int x, int y, int tolerance, string texturePath, st
 
 }
 
-void DancingZombie::move(int x,int y) {
-	pos.set(x,y);
+void DancingZombie::move() {
+	//Collision Logic/........
+	
+	
+	
+	pos.set(-speed,speed);
 }

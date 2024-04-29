@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DancingZombie.cpp" />
+    <ClCompile Include="DolphinRiderZombie.cpp" />
     <ClCompile Include="FlyingZombie.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="DancingZombie.h" />
+    <ClInclude Include="DolphinRiderZombie.h" />
     <ClInclude Include="Entity.h">
       <FileType>CppCode</FileType>
     </ClInclude>

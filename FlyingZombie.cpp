@@ -4,6 +4,7 @@ FlyingZombie::FlyingZombie(int x, int y, int tolerance, string texturePath, stri
 
 }
 
-void FlyingZombie::move(int x,int y) {
-	pos.set(x,y);
+void FlyingZombie::move() {
+
+	pos.set(-speed);
 }
