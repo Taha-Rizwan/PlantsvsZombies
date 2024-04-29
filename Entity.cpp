@@ -1,6 +1,6 @@
 #include "Entity.h"
 //X and Y are Spawn Positions, textureX and textureY are height and width of sprites
-Entity::Entity(int x, int y,int tolerance, string texturePath, string name, int textureX, int textureY) : pos(x, y), tolerance(tolerance), name(name) {
+Entity::Entity(int x, int y,int tolerance, string texturePath, string name, int textureX, int textureY, int sprites) : pos(x, y), tolerance(tolerance), name(name),sprites(sprites) {
 		texture.loadFromFile(texturePath);
 		sprite.setTexture(texture);
 		sprite.setTextureRect(IntRect(0, 0, textureX, textureY));
@@ -21,9 +21,9 @@ void Entity::draw(RenderWindow& window, int textureX, int textureY) {
 	if (exists) {
 		sprite.setPosition(pos.pos[0], pos.pos[1]);
 		//For Sprite Animation
-		if (clock.getElapsedTime().asSeconds() > 0.1f) {
+		if (clock.getElapsedTime().asSeconds() > 0.3f) {
 			sprite.setTextureRect(IntRect(textureX * x, 0, textureX, textureY));
-			if (x == 7)
+			if (x == sprites-1)
 				x = 0;
 			x++;
 			clock.restart();

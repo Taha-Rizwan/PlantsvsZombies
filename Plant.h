@@ -9,7 +9,7 @@ protected:
 	int cost, waitingTime;
 
 public:
-	Plant(int x, int y, int tolerance, string texturePath, string name, int textureX, int textureY,  int waitingTime, int cost);
+	Plant(int x, int y, int tolerance, string texturePath, string name, int textureX, int textureY,  int waitingTime, int cost, int sprites);
 	int getCost();
 	int getWaitingTime();
 

@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "Peashooter.h"
+#include "Repeater.h"
 #include <ctime>
 //#include"../SFML/Images/"
 using namespace sf;
@@ -63,7 +64,8 @@ int main()
 		}
 	}
 
-	Peashooter pea(410, 175);
+	Repeater pea(410, 175);
+	Peashooter peas(410, 175 + 110);
 	Bullet** bullets = new Bullet*[100];
 	int i = 0;
 	while (window.isOpen())
@@ -77,11 +79,16 @@ int main()
 		}
 		//If a bullet is shot it gets saved to the bullets array, and boom boom
 		bullets[i] = pea.shoot();
+		
 		if (bullets[i] != nullptr) {
 		
 			i++;
 		}
-		
+		bullets[i] = peas.shoot();
+		if (bullets[i] != nullptr) {
+
+			i++;
+		}
 		//Create a background
 		
 		createBack(window);
@@ -91,7 +98,8 @@ int main()
 				bullets[j]->draw(window);
 		}
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW
-		pea.draw(window, 27.5, 32.5);
+		pea.draw(window, 27.5, 34);
+		peas.draw(window, 27.5, 32.5);
 		window.setSize(sf::Vector2u(1100, 680));
 		window.display();
 	}
