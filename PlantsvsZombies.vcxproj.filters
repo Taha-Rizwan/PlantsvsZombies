@@ -42,6 +42,9 @@
     <ClCompile Include="Shooter.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Peashooter.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Position.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Shooter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Peashooter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

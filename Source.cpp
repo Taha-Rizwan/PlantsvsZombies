@@ -1,6 +1,5 @@
 ﻿#include <iostream>
-#include "Plant.h"
-#include "Shooter.h"
+#include "Peashooter.h"
 #include <ctime>
 //#include"../SFML/Images/"
 using namespace sf;
@@ -64,8 +63,7 @@ int main()
 		}
 	}
 
-	Plant plant(410, 175, 100, "./SFML/images/peashooter.png", "Peashooter", 27.5, 32.5,10,50);
-	Shooter shooter(450, 185, 3, 5, "./SFML/images/peashooterBullet.png", 10, 15);
+	Peashooter pea(410, 175);
 	Bullet** bullets = new Bullet*[100];
 	int i = 0;
 	while (window.isOpen())
@@ -78,7 +76,7 @@ int main()
 				window.close();
 		}
 		//If a bullet is shot it gets saved to the bullets array, and boom boom
-		bullets[i] = shooter.shoot();
+		bullets[i] = pea.shoot();
 		if (bullets[i] != nullptr) {
 		
 			i++;
@@ -93,7 +91,7 @@ int main()
 				bullets[j]->draw(window);
 		}
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW
-		plant.draw(window, 27.5, 32.5);
+		pea.draw(window, 27.5, 32.5);
 		window.setSize(sf::Vector2u(1100, 680));
 		window.display();
 	}
