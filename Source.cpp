@@ -2,6 +2,9 @@
 #include "Peashooter.h"
 #include "Repeater.h"
 #include "Wallnut.h"
+#include"Zombie.h"
+#include"FlyingZombie.h"
+
 #include <ctime>
 //#include"../SFML/Images/"
 using namespace sf;
@@ -64,11 +67,15 @@ int main()
 			FIELD_GAME_STATUS[i][j] = true;
 		}
 	}
+	Clock clock;
+	float time;
 	//Y-axis starting point is 75, +100 to the slot below
 	//X-axis starting point is 265, +80 to the slot on the right
 	Repeater pea(265, 75);
 	Peashooter peas(265, 275);
 	Wallnut wall(345, 75);
+	Zombie* flyingZombie = new FlyingZombie(1075,300);
+	Zombie zombie(1076,300,100,"./SFML/images/zombie.png", "Zombie", 35, 34, 10, 10, 0, false, 20, 20);
 	Bullet** bullets = new Bullet*[100];
 	int i = 0;
 	while (window.isOpen())
@@ -92,6 +99,7 @@ int main()
 
 			i++;
 		}
+		
 		//Create a background
 		
 		createBack(window);
@@ -100,7 +108,9 @@ int main()
 			if(bullets[j]->getExists())
 				bullets[j]->draw(window);
 		}
-		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW
+		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
+		zombie.draw(window,35, 34);
+		zombie.move();
 		pea.draw(window, 27.5, 34);
 		peas.draw(window, 27.5, 32.5);
 		wall.draw(window, 27.5, 32.5);

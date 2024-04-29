@@ -1,11 +1,12 @@
 #include"FlyingZombie.h"
 
-FlyingZombie::FlyingZombie(int x, int y, int tolerance, string texturePath, string name, int textureX, int textureY, int speed, int damage, int wait, bool attack, int score, int sprites) : Zombie(x, y, tolerance, texturePath, name, textureX, textureY, speed, damage, wait, attack, score,  sprites) {
+FlyingZombie::FlyingZombie(int x, int y) : Zombie(x, y,200, "./SFML/images/flyingZombie.png", "FlyingZombie", 32, 60,20 , 0.01, 0,false,0,7) {
 
 }
 
 void FlyingZombie::move() {
-
-	pos.set(-speed);
+	float time;	
+	time = Entity::clock.restart().asSeconds();
+	Entity::pos.set(-speed*time);
 
 }

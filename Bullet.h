@@ -15,7 +15,7 @@ class Bullet {
 	Position pos;
 
 public:
-	Bullet(int x, int y, float bulletSpeed, string spritePath, int textureX, int textureY);
+	Bullet(int x, int y, float bulletSpeed, string spritePath, double textureX, double textureY);
 	bool getExists();
 	void move();
 	void draw(RenderWindow& window);

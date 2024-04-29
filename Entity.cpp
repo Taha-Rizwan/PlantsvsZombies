@@ -15,7 +15,7 @@ void Entity::hit(int damage) {
 		exists = false;
 }
 //Draw Function for entity
-void Entity::draw(RenderWindow& window, int textureX, int textureY) {
+void Entity::draw(RenderWindow& window, int textureX,int textureY) {
 	static int x = 0;
 	static bool reverse = false;
 	if (exists) {

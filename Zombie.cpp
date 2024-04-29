@@ -1,7 +1,7 @@
 #include"Zombie.h"
 
 //Constructor(Members initialized using member initializer list)
-Zombie::Zombie(int x, int y, int tolerance, string texturePath, string name, int textureX, int textureY, int speed, int damage, int wait, bool attack, int score, int sprites):Entity(x,y,tolerance,texturePath,name,textureX,textureY, sprites),speed(speed),damage(damage),wait(wait),attack(attack),score(score){
+Zombie::Zombie(int x, int y, int tolerance, string texturePath, string name, double textureX, double textureY, float speed, int damage, int wait, bool attack, int score, int sprites):Entity(x,y,tolerance,texturePath,name,textureX,textureY, sprites),speed(speed),damage(damage),wait(wait),attack(attack),score(score) {
 	
 }
 
@@ -13,8 +13,12 @@ int Zombie::getSpeed()const {
 int Zombie::getDamage()const {
 	return damage;
 }
+Clock bclock;
 
 //Makes the zombie move on the board
 void Zombie::move() {
-	pos.set(-speed);
+
+	float time;
+	time = bclock.restart().asSeconds();
+	Entity::pos.set(-speed * time*1);
 }

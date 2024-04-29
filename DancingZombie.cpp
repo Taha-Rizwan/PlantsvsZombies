@@ -1,6 +1,6 @@
 #include"DancingZombie.h"
 
-DancingZombie::DancingZombie(int x, int y, int tolerance, string texturePath, string name, int textureX, int textureY, int speed, int damage, int wait, bool attack, int score, int sprites) : Zombie(x, y, tolerance, texturePath, name, textureX, textureY, speed, damage, wait, attack, score, sprites) {
+DancingZombie::DancingZombie(int x, int y) : Zombie(x, y, 200, "./SFML/images/dancingZombie.png", "DancingZombie", 27.5, 34, 2, 20, 0, false, 20,4 ) {
 
 }
 
@@ -9,5 +9,7 @@ void DancingZombie::move() {
 	
 	
 	
-	pos.set(-speed,speed);
+	float time;
+	time = Entity::clock.restart().asSeconds();
+	Entity::pos.set(-speed * time);
 }

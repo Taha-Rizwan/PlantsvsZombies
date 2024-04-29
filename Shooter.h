@@ -14,7 +14,7 @@ protected:
 	Position pos;
 
 public:
-	Shooter(int x,int y, float reloadTime, int bulletSpeed, string bulletSpritePath, int textureX, int textureY);
+	Shooter(int x,int y, float reloadTime, int bulletSpeed, string bulletSpritePath, double textureX,double textureY);
 
 	Bullet* shoot();
 

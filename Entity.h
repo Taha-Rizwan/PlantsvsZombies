@@ -1,3 +1,4 @@
+#pragma once
 #include "Position.h"
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -17,8 +18,8 @@ protected:
 	Clock clock;
 
 public:
-	Entity(int x, int y, int tolerance, string texturePath, string name, int textureX, int textureY,int sprites);
-	void draw(RenderWindow& window, int textureX, int textureY);
+	Entity(int x, int y, int tolerance, string texturePath, string name,int textureX,int textureY,int sprites);
+	void draw(RenderWindow& window, int textureX,int textureY);
 	void hit(int damage);
 	bool getExists()const;
 	void toggleExists();
