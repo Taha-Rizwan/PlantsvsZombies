@@ -36,8 +36,25 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="DolphinRiderZombie.cpp">
       <Filter>Source Files</Filter>
+=======
+    <ClCompile Include="Plant.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shooter.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Peashooter.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Repeater.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wallnut.cpp">
+      <Filter>Header Files</Filter>
+>>>>>>> b925c800e2d6770e7672dbc309b3a2a6bc2c8264
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,7 +76,23 @@
     <ClInclude Include="DancingZombie.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="DolphinRiderZombie.h">
+=======
+    <ClInclude Include="Plant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shooter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Peashooter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Repeater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Wallnut.h">
+>>>>>>> b925c800e2d6770e7672dbc309b3a2a6bc2c8264
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

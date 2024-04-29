@@ -12,11 +12,12 @@ protected:
 	int tolerance;
 	string name;
 	Sprite sprite;
+	int sprites;
 	Texture texture;
 	Clock clock;
 
 public:
-	Entity(int x, int y, int tolerance, string texturePath, string name, int textureX, int textureY);
+	Entity(int x, int y, int tolerance, string texturePath, string name, int textureX, int textureY,int sprites);
 	void draw(RenderWindow& window, int textureX, int textureY);
 	void hit(int damage);
 	bool getExists()const;
