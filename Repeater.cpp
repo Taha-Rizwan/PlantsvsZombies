@@ -15,7 +15,7 @@ Bullet* Repeater::shoot() {
 	if (shot && clock.getElapsedTime().asMilliseconds()>175) {
 		clock.restart();
 		shot = false;
-		bullet = new Bullet(Shooter::pos.pos[0],Shooter::pos.pos[1], bulletSpeed, bulletSpritePath, textureX, textureY);
+		bullet = new Bullet(Shooter::pos.pos[0],Shooter::pos.pos[1], bulletSpeed, bulletSpritePath, Shooter::textureX, Shooter::textureY);
 		return bullet;
 	}
 

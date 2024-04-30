@@ -15,13 +15,15 @@ protected:
 	Sprite sprite;
 	int sprites;
 	Texture texture;
+	double textureX;
+	double textureY;
 	Clock clock;
 	int x;
 	bool reverse;
 
 public:
 	Entity(int x, int y, int tolerance, string texturePath, string name,int textureX,int textureY,int sprites);
-	void draw(RenderWindow& window, int textureX,int textureY);
+	void draw(RenderWindow& window);
 	void hit(int damage);
 	bool getExists()const;
 	void toggleExists();

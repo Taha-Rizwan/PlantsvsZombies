@@ -1,6 +1,6 @@
 #include"DancingZombie.h"
 
-DancingZombie::DancingZombie(int x, int y) : Zombie(x, y, 200, "./SFML/images/dancingZombie.png", "DancingZombie", 27.5, 34, 2, 20, 0, false, 20,4 ) {
+DancingZombie::DancingZombie(int x, int y) : Zombie(x, y, 200, "./SFML/images/dancingZombie.png", "DancingZombie", 24, 36, 6, 20, 0, false, 20,4 ) {
 
 }
 
