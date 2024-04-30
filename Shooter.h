@@ -16,7 +16,7 @@ protected:
 public:
 	Shooter(int x,int y, double reloadTime, int bulletSpeed, string bulletSpritePath, double textureX,double textureY);
 
-	Bullet* shoot();
+	virtual Bullet* shoot();
 
 };
 

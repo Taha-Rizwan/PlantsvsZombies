@@ -12,3 +12,4 @@
 #include"Zombie.h"
 #include"DancingZombie.h"
 #include"DolphinRiderZombie.h"
+#include "SnowPea.h"

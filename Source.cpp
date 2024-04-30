@@ -66,10 +66,11 @@ int main()
 	float time;
 	//Y-axis starting point is 75, +100 to the slot below
 	//X-axis starting point is 265, +80 to the slot on the right
+
 	Repeater pea(265, 75);
 	Peashooter peas(265, 275);
 	Wallnut wall(345, 75);
-
+	SnowPea snowPea(425, 75);
 	ZombieFactory zombieFactory(4);
 
 	zombieFactory.addZombie(new FlyingZombie(1075,250));
@@ -102,7 +103,11 @@ int main()
 
 			i++;
 		}
-		
+		bullets[i] = snowPea.shoot();
+		if (bullets[i] != nullptr) {
+
+			i++;
+		}
 		//Create a background
 		
 		createBack(window);
@@ -119,6 +124,7 @@ int main()
 		pea.draw(window);
 		peas.draw(window);
 		wall.draw(window);
+		snowPea.draw(window);
 		window.setSize(Vector2u(1100, 680));
 		window.display();
 	}
