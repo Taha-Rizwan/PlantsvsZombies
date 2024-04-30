@@ -8,7 +8,7 @@ using namespace std;
 class Shooter {
 protected:
 	Bullet* bullet;
-	float reloadTime,  bulletSpeed,textureX,textureY;
+	float reloadTime,bulletSpeed,textureX,textureY;
 	string bulletSpritePath;
 	Clock clock;
 	Position pos;

@@ -1,10 +1,5 @@
 ﻿#include <iostream>
-#include "Peashooter.h"
-#include "Repeater.h"
-#include "Wallnut.h"
-#include"Zombie.h"
-#include"FlyingZombie.h"
-
+#include"headers.h"
 #include <ctime>
 //#include"../SFML/Images/"
 using namespace sf;
@@ -74,8 +69,16 @@ int main()
 	Repeater pea(265, 75);
 	Peashooter peas(265, 275);
 	Wallnut wall(345, 75);
-	Zombie* flyingZombie = new FlyingZombie(1075,300);
-	Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
+
+	ZombieFactory zombieFactory(4);
+
+	//zombieFactory.addZombie(new FlyingZombie(1075,250));
+	//zombieFactory.addZombie(new DancingZombie(1075, 200));
+	zombieFactory.addZombie(new Zombie(985, 65, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7));
+	zombieFactory.addZombie(new Zombie(1005, 90, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7));
+	//Zombie* flyingZombie = new FlyingZombie(1075,300);
+	//Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
+	
 	Bullet** bullets = new Bullet*[100];
 	int i = 0;
 	while (window.isOpen())
@@ -109,12 +112,14 @@ int main()
 				bullets[j]->draw(window);
 		}
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
-		zombie.draw(window,46, 50);
-		zombie.move();
-		pea.draw(window, 27.5, 34);
-		peas.draw(window, 27.5, 32.5);
-		wall.draw(window, 27.5, 32.5);
-		window.setSize(sf::Vector2u(1100, 680));
+		//zombie.draw(window);
+		//zombie.move();
+		zombieFactory.drawZombies(window);
+		zombieFactory.moveZombies();
+		pea.draw(window);
+		peas.draw(window);
+		wall.draw(window);
+		window.setSize(Vector2u(1100, 680));
 		window.display();
 	}
 	return 0;

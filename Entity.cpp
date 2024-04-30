@@ -1,6 +1,6 @@
 #include "Entity.h"
 //X and Y are Spawn Positions, textureX and textureY are height and width of sprites
-Entity::Entity(int x, int y,int tolerance, string texturePath, string name, int textureX, int textureY, int sprites) : pos(x, y), tolerance(tolerance), name(name),sprites(sprites),x(0),reverse(false) {
+Entity::Entity(int x, int y,int tolerance, string texturePath, string name, int textureX, int textureY, int sprites) : pos(x, y), tolerance(tolerance),textureX(textureX),textureY(textureY), name(name),sprites(sprites),x(0),reverse(false) {
 		texture.loadFromFile(texturePath);
 		sprite.setTexture(texture);
 		sprite.setTextureRect(IntRect(0, 0, textureX, textureY));
@@ -15,8 +15,7 @@ void Entity::hit(int damage) {
 		exists = false;
 }
 //Draw Function for entity
-void Entity::draw(RenderWindow& window, int textureX,int textureY) {
-
+void Entity::draw(RenderWindow& window){
 	if (exists) {
 		sprite.setPosition(pos.pos[0], pos.pos[1]);
 		//For Sprite Animation

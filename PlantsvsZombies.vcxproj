@@ -28,6 +28,7 @@
     <ClCompile Include="Shooter.cpp" />
     <ClCompile Include="Wallnut.cpp" />
     <ClCompile Include="Zombie.cpp" />
+    <ClCompile Include="ZombieFactory.cpp" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="DancingZombie.h" />
     <ClInclude Include="DolphinRiderZombie.h" />
@@ -39,12 +40,14 @@
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClInclude Include="FlyingZombie.h" />
+    <ClInclude Include="headers.h" />
     <ClInclude Include="Peashooter.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="Repeater.h" />
     <ClInclude Include="Shooter.h" />
     <ClInclude Include="Wallnut.h" />
     <ClInclude Include="Zombie.h" />
+    <ClInclude Include="ZombieFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Position.h" />
