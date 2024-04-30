@@ -72,7 +72,7 @@ int main()
 
 	ZombieFactory zombieFactory(4);
 
-	//zombieFactory.addZombie(new FlyingZombie(1075,250));
+	zombieFactory.addZombie(new FlyingZombie(1075,250));
 	//zombieFactory.addZombie(new DancingZombie(1075, 200));
 	zombieFactory.addZombie(new Zombie(985, 65, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7));
 	zombieFactory.addZombie(new Zombie(1005, 90, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7));

@@ -31,5 +31,6 @@
     <ClInclude Include="Position.h" />
     <ClInclude Include="ZombieFactory.h" />
     <ClInclude Include="headers.h" />
+    <ClInclude Include="Lawnmower.h" />
   </ItemGroup>
 </Project>

@@ -22,7 +22,7 @@ protected:
 	bool reverse;
 
 public:
-	Entity(int x, int y, int tolerance, string texturePath, string name,int textureX,int textureY,int sprites);
+	Entity(int x, int y, int tolerance, string texturePath, string name,double textureX,double textureY,int sprites);
 	void draw(RenderWindow& window);
 	void hit(int damage);
 	bool getExists()const;

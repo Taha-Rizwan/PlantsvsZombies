@@ -8,7 +8,6 @@ void DancingZombie::move() {
 	//Collision Logic/........
 	
 	
-	
 	float time;
 	time = Entity::clock.restart().asSeconds();
 	Entity::pos.set(-speed * time);

@@ -41,6 +41,7 @@
     <ClCompile Include="Source.cpp" />
     <ClInclude Include="FlyingZombie.h" />
     <ClInclude Include="headers.h" />
+    <ClInclude Include="Lawnmower.h" />
     <ClInclude Include="Peashooter.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="Repeater.h" />
