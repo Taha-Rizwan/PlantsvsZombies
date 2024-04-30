@@ -75,7 +75,7 @@ int main()
 	Peashooter peas(265, 275);
 	Wallnut wall(345, 75);
 	Zombie* flyingZombie = new FlyingZombie(1075,300);
-	Zombie zombie(1076,300,100,"./SFML/images/zombie.png", "Zombie", 35, 34, 10, 10, 0, false, 20, 20);
+	Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
 	Bullet** bullets = new Bullet*[100];
 	int i = 0;
 	while (window.isOpen())
@@ -109,7 +109,7 @@ int main()
 				bullets[j]->draw(window);
 		}
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
-		zombie.draw(window,35, 34);
+		zombie.draw(window,46, 50);
 		zombie.move();
 		pea.draw(window, 27.5, 34);
 		peas.draw(window, 27.5, 32.5);

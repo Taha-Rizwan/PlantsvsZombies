@@ -16,6 +16,8 @@ protected:
 	int sprites;
 	Texture texture;
 	Clock clock;
+	int x;
+	bool reverse;
 
 public:
 	Entity(int x, int y, int tolerance, string texturePath, string name,int textureX,int textureY,int sprites);
