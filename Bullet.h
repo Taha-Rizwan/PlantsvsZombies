@@ -13,6 +13,7 @@ class Bullet {
 	float bulletSpeed;
 	bool exists;
 	Position pos;
+	string type;
 
 public:
 	Bullet(int x, int y, float bulletSpeed, string spritePath, double textureX, double textureY);
@@ -20,6 +21,7 @@ public:
 	void move();
 	void draw(RenderWindow& window);
 	void toggleExists();
+	void setType(string t);
 };
 
 

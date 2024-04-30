@@ -5,6 +5,7 @@ Bullet::Bullet(int x, int y, float bulletSpeed, string spritePath, double textur
 	bulletSprite.setTextureRect(IntRect(0,0,textureX,textureY));
 	bulletSprite.setScale(1.5, 1.5);
 	exists = true;
+	type = "normal";
 }
 
 
@@ -29,4 +30,7 @@ void Bullet::draw(RenderWindow& window){
 }
 void Bullet::toggleExists() {
 	exists = !exists;
+}
+void Bullet::setType(string t) {
+	type = t;
 }

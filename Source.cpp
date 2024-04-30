@@ -3,6 +3,7 @@
 #include "Repeater.h"
 #include "Wallnut.h"
 #include"Zombie.h"
+#include "SnowPea.h"
 #include"FlyingZombie.h"
 
 #include <ctime>
@@ -71,9 +72,11 @@ int main()
 	float time;
 	//Y-axis starting point is 75, +100 to the slot below
 	//X-axis starting point is 265, +80 to the slot on the right
+
 	Repeater pea(265, 75);
 	Peashooter peas(265, 275);
 	Wallnut wall(345, 75);
+	SnowPea snowPea(425, 75);
 	Zombie* flyingZombie = new FlyingZombie(1075,300);
 	Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
 	Bullet** bullets = new Bullet*[100];
@@ -99,7 +102,11 @@ int main()
 
 			i++;
 		}
-		
+		bullets[i] = snowPea.shoot();
+		if (bullets[i] != nullptr) {
+
+			i++;
+		}
 		//Create a background
 		
 		createBack(window);
@@ -114,6 +121,7 @@ int main()
 		pea.draw(window, 27.5, 34);
 		peas.draw(window, 27.5, 32.5);
 		wall.draw(window, 27.5, 32.5);
+		snowPea.draw(window,30,31.5);
 		window.setSize(sf::Vector2u(1100, 680));
 		window.display();
 	}
