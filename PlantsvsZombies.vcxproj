@@ -32,6 +32,7 @@
     <ClCompile Include="Zombie.cpp" />
     <ClCompile Include="ZombieFactory.cpp" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="CherryBomb.h" />
     <ClInclude Include="DancingZombie.h" />
     <ClInclude Include="DolphinRiderZombie.h" />
     <ClInclude Include="Entity.h">
