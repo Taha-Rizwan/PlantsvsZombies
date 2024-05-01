@@ -36,6 +36,11 @@ void Entity::draw(RenderWindow& window){
 bool Entity::getExists() const{
 	return exists;
 }
+
+Sprite* Entity::getSprite() {
+	return &sprite;
+}
+
 void Entity::toggleExists() {
 	exists = !exists;
 }

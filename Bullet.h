@@ -22,6 +22,7 @@ public:
 	void draw(RenderWindow& window);
 	void toggleExists();
 	void setType(string t);
+	Sprite* getSprite();
 };
 
 
