@@ -1,6 +1,6 @@
 #include "Entity.h"
 //X and Y are Spawn Positions, textureX and textureY are height and width of sprites
-Entity::Entity(int x, int y,int tolerance, string texturePath, string name, double textureX,double textureY, int sprites) : pos(x, y), tolerance(tolerance),textureX(textureX),textureY(textureY), name(name),sprites(sprites),x(0),reverse(false) {
+Entity::Entity(int x, int y,int tolerance, string texturePath, string name, double textureX,double textureY, int sprites) : pos(x, y), tolerance(tolerance),textureX(textureX),textureY(textureY), name(name),sprites(sprites),x(0) {
 		texture.loadFromFile(texturePath);
 		sprite.setTexture(texture);
 		sprite.setTextureRect(IntRect(0, 0, textureX, textureY));
@@ -22,13 +22,9 @@ void Entity::draw(RenderWindow& window){
 		if (clock.getElapsedTime().asSeconds() > 0.2f) {
 			sprite.setTextureRect(IntRect(textureX * x, 0, textureX, textureY));
 			if (x >= sprites - 1) {
-				reverse = true;
+				x = -1;
 			}
-			else if (x == 0)
-				reverse = false;
-			if (reverse)
-				x--;
-			else
+
 				x++;
 			clock.restart();
 	}
@@ -40,6 +36,11 @@ void Entity::draw(RenderWindow& window){
 bool Entity::getExists() const{
 	return exists;
 }
+
+Sprite* Entity::getSprite() {
+	return &sprite;
+}
+
 void Entity::toggleExists() {
 	exists = !exists;
 }

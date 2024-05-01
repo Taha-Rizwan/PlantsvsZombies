@@ -34,3 +34,6 @@ void Bullet::toggleExists() {
 void Bullet::setType(string t) {
 	type = t;
 }
+Sprite* Bullet::getSprite() {
+	return &bulletSprite;
+}

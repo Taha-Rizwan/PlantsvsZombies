@@ -73,7 +73,19 @@ int main()
 	Peashooter peas(265, 275);
 	Wallnut wall(345, 75);
 	SnowPea snowPea(425, 75);
-	ZombieFactory zombieFactory(4);
+	ZombieFactory zombieFactory(3);
+
+	Plant** plants = new Plant * [4];
+
+	plants[0] = &pea;
+	plants[1] = &peas;
+	plants[2] = &wall;
+	plants[3] = &snowPea;
+
+	Shooter** shoots = new Shooter * [3];
+	shoots[0] = &pea;
+	shoots[1] = &peas;
+	shoots[2] = &snowPea;
 
 	zombieFactory.addZombie(new FlyingZombie(1075,250));
 	zombieFactory.addZombie(new DancingZombie(1075, 200));
@@ -94,22 +106,15 @@ int main()
 				window.close();
 		}
 		//If a bullet is shot it gets saved to the bullets array, and boom boom
-		bullets[i] = pea.shoot();
-		
-		if (bullets[i] != nullptr) {
-		
-			i++;
-		}
-		bullets[i] = peas.shoot();
-		if (bullets[i] != nullptr) {
 
-			i++;
+		for (int j = 0; j < 3; j++) {
+			bullets[i] = shoots[j]->shoot();
+			if (bullets[i] != nullptr) {
+				i++;
+			}
 		}
-		bullets[i] = snowPea.shoot();
-		if (bullets[i] != nullptr) {
 
-			i++;
-		}
+		
 		//Create a background
 		
 		createBack(window);
@@ -119,13 +124,14 @@ int main()
 				bullets[j]->draw(window);
 		}
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
+		//zombie.draw(window);
+		//zombie.move();
+		zombieFactory.drawZombies(window);
+		zombieFactory.moveZombies();
 		pea.draw(window);
 		peas.draw(window);
 		wall.draw(window);
 		snowPea.draw(window);
-		zombieFactory.drawZombies(window);
-		zombieFactory.moveZombies();
-		
 		window.setSize(Vector2u(1100, 680));
 		window.display();
 	}

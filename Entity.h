@@ -19,13 +19,13 @@ protected:
 	double textureY;
 	Clock clock;
 	int x;
-	bool reverse;
 
 public:
 	Entity(int x, int y, int tolerance, string texturePath, string name,double textureX,double textureY,int sprites);
-	void draw(RenderWindow& window);
+	virtual void draw(RenderWindow& window);
 	void hit(int damage);
 	bool getExists()const;
 	void toggleExists();
+	Sprite* getSprite();
 	
 };

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef Zombie_h
+#include "Plant.h"
 #include"Zombie.h"
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -21,7 +23,11 @@ public:
 	//Moves all the zombie
 	void moveZombies();
 
+	void detectCollision(Bullet** bullets, Plant** plants, int numBullets, int numPlants);
+
 	//Destructor(destroys all of the zombies)
 	~ZombieFactory();
 
 };
+
+#endif

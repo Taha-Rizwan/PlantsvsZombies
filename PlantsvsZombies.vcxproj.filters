@@ -15,6 +15,8 @@
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="ZombieFactory.cpp" />
+    <ClCompile Include="SnowBullet.cpp" />
+    <ClCompile Include="SnowPea.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -32,5 +34,8 @@
     <ClInclude Include="ZombieFactory.h" />
     <ClInclude Include="headers.h" />
     <ClInclude Include="Lawnmower.h" />
+    <ClInclude Include="SnowBullet.h" />
+    <ClInclude Include="SnowPea.h" />
+    <ClInclude Include="CherryBomb.h" />
   </ItemGroup>
 </Project>

@@ -26,6 +26,30 @@ void ZombieFactory::moveZombies() {
 	}
 }
 
+void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants, int numBullets,int numPlants) {
+	
+	for (int i = 0; i < size; i++) {
+		//Bullet Collision
+		for (int j = 0; j < numBullets; j++) {
+			if (bullets[j]->getExists()) {
+				if (bullets[j]->getSprite()->getGlobalBounds().intersects(zombies[i]->getSprite()->getGlobalBounds())) {
+					zombies[i]->hit(5);
+					bullets[j]->toggleExists();
+				}
+			}
+		}
+		//Plant Collision
+		for (int j = 0; j < numPlants; j++) {
+			if (plants[j]->getExists()) {
+				if (plants[j]->getSprite()->getGlobalBounds().intersects(zombies[i]->getSprite()->getGlobalBounds())) {
+					plants[j]->hit(zombies[i]->getDamage());
+				}
+			}
+		}
+	}
+}
+
+
 //Destructor(destroys all of the zombies)
 ZombieFactory::~ZombieFactory(){
 	for (int i = 0;i < current;i++) {
