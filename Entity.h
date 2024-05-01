@@ -22,10 +22,10 @@ protected:
 
 public:
 	Entity(int x, int y, int tolerance, string texturePath, string name,double textureX,double textureY,int sprites);
-	virtual void draw(RenderWindow& window);
-	void hit(int damage);
+	virtual void draw(RenderWindow& window,int y=0);
+	virtual bool hit(int damage);
 	bool getExists()const;
+	string getName()const;
 	void toggleExists();
 	Sprite* getSprite();
-	
 };

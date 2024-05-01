@@ -9,18 +9,24 @@ Entity::Entity(int x, int y,int tolerance, string texturePath, string name, doub
 }
 
 //Function for when entity takes damage
-void Entity::hit(int damage) {
+bool Entity::hit(int damage){
 	tolerance -= damage;
 	if (tolerance < 0)
 		exists = false;
+	return exists;
 }
+
+string Entity::getName() const{
+	return name;
+}
+
 //Draw Function for entity
-void Entity::draw(RenderWindow& window){
+void Entity::draw(RenderWindow& window,int y){
 	if (exists) {
 		sprite.setPosition(pos.pos[0], pos.pos[1]);
 		//For Sprite Animation
 		if (clock.getElapsedTime().asSeconds() > 0.2f) {
-			sprite.setTextureRect(IntRect(textureX * x, 0, textureX, textureY));
+			sprite.setTextureRect(IntRect(textureX * x, y*textureY, textureX, textureY));
 			if (x >= sprites - 1) {
 				x = -1;
 			}

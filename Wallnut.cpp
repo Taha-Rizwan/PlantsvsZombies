@@ -1,8 +1,9 @@
 #include "Wallnut.h"
 
-Wallnut::Wallnut(int x, int y) : Plant(x, y, 49, "./SFML/images/wallnut.png", "Repeater", 27, 31, 10, 50, 5) {}
+Wallnut::Wallnut(int x, int y) : Plant(x, y, 49, "./SFML/images/wallnut.png", "Repeater", 27, 31, 10, 50, 5), rolling(true) {  }
 //Rolling movement
 void Wallnut::roll() {
+	if(rolling)
 	pos.set(5,0);
 }
 

@@ -73,7 +73,7 @@ int main()
 	Peashooter peas(265, 275);
 	Wallnut wall(345, 75);
 	SnowPea snowPea(425, 75);
-	ZombieFactory zombieFactory(3);
+	ZombieFactory zombieFactory(10);
 
 	Plant** plants = new Plant * [4];
 
@@ -87,10 +87,11 @@ int main()
 	shoots[1] = &peas;
 	shoots[2] = &snowPea;
 
-	zombieFactory.addZombie(new FlyingZombie(1075,250));
-	zombieFactory.addZombie(new DancingZombie(1075, 200));
-	zombieFactory.addZombie(new Zombie(985, 65, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7));
-	zombieFactory.addZombie(new Zombie(1005, 90, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7));
+	zombieFactory.addZombie(new FlyingZombie(1075,400));
+	zombieFactory.addZombie(new Zombie(945, 85, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
+	zombieFactory.addZombie(new Zombie(1025, 275, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
+	zombieFactory.addZombie(new Zombie(1200, 85, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
+
 	//Zombie* flyingZombie = new FlyingZombie(1075,300);
 	//Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
 	
@@ -123,11 +124,13 @@ int main()
 			if(bullets[j]->getExists())
 				bullets[j]->draw(window);
 		}
+
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
 		//zombie.draw(window);
 		//zombie.move();
 		zombieFactory.drawZombies(window);
 		zombieFactory.moveZombies();
+		zombieFactory.detectCollision(bullets,plants,i,4);
 		pea.draw(window);
 		peas.draw(window);
 		wall.draw(window);

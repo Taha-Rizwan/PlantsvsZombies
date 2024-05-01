@@ -23,6 +23,7 @@ public:
 	//Moves all the zombie
 	void moveZombies();
 
+	
 	void detectCollision(Bullet** bullets, Plant** plants, int numBullets, int numPlants);
 
 	//Destructor(destroys all of the zombies)
