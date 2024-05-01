@@ -68,6 +68,9 @@ int main()
 	//X-axis starting point is 265, +80 to the slot on the right
 
 	LawnMower** mowers = new LawnMower*[5];
+	for (int i = 0;i < 5;i++) {
+		mowers[i] = new LawnMower(120,150*i);
+	}
 	
 	Repeater pea(265, 75);
 	Peashooter peas(265, 275);
@@ -99,7 +102,7 @@ int main()
 	int i = 0;
 	while (window.isOpen())
 	{
-	
+
 		Event event;
 		while (window.pollEvent(event))
 		{
@@ -115,22 +118,28 @@ int main()
 			}
 		}
 
-		
+
 		//Create a background
-		
+
 		createBack(window);
 		//createMap(window);
 		for (int j = 0; j < i; j++) {
-			if(bullets[j]->getExists())
+			if (bullets[j]->getExists())
 				bullets[j]->draw(window);
 		}
 
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
 		//zombie.draw(window);
 		//zombie.move();
+		for (int i = 0;i < 5;i++) {
+			mowers[i]->draw(window);
+			mowers[i]->moveMower();
+		}
+
+
 		zombieFactory.drawZombies(window);
 		zombieFactory.moveZombies();
-		zombieFactory.detectCollision(bullets,plants,i,4);
+		zombieFactory.detectCollision(bullets,plants,mowers,i,4,5);
 		pea.draw(window);
 		peas.draw(window);
 		wall.draw(window);

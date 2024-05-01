@@ -1,6 +1,7 @@
 #pragma once
 #ifndef Zombie_h
 #include "Plant.h"
+#include"LawnMower.h"
 #include"Zombie.h"
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -24,7 +25,7 @@ public:
 	void moveZombies();
 
 	
-	void detectCollision(Bullet** bullets, Plant** plants, int numBullets, int numPlants);
+	void detectCollision(Bullet** bullets, Plant** plants, LawnMower** mowers, int numBullets, int numPlants, int numMowers);
 
 	//Destructor(destroys all of the zombies)
 	~ZombieFactory();
