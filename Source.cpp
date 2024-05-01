@@ -67,6 +67,8 @@ int main()
 	//Y-axis starting point is 75, +100 to the slot below
 	//X-axis starting point is 265, +80 to the slot on the right
 
+	LawnMower** mowers = new LawnMower*[5];
+	
 	Repeater pea(265, 75);
 	Peashooter peas(265, 275);
 	Wallnut wall(345, 75);
@@ -74,7 +76,7 @@ int main()
 	ZombieFactory zombieFactory(4);
 
 	zombieFactory.addZombie(new FlyingZombie(1075,250));
-	//zombieFactory.addZombie(new DancingZombie(1075, 200));
+	zombieFactory.addZombie(new DancingZombie(1075, 200));
 	zombieFactory.addZombie(new Zombie(985, 65, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7));
 	zombieFactory.addZombie(new Zombie(1005, 90, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7));
 	//Zombie* flyingZombie = new FlyingZombie(1075,300);
@@ -117,14 +119,13 @@ int main()
 				bullets[j]->draw(window);
 		}
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
-		//zombie.draw(window);
-		//zombie.move();
-		zombieFactory.drawZombies(window);
-		zombieFactory.moveZombies();
 		pea.draw(window);
 		peas.draw(window);
 		wall.draw(window);
 		snowPea.draw(window);
+		zombieFactory.drawZombies(window);
+		zombieFactory.moveZombies();
+		
 		window.setSize(Vector2u(1100, 680));
 		window.display();
 	}
