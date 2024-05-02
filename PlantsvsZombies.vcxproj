@@ -22,6 +22,7 @@
     <ClCompile Include="DancingZombie.cpp" />
     <ClCompile Include="DolphinRiderZombie.cpp" />
     <ClCompile Include="FlyingZombie.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="LawnMower.cpp" />
     <ClCompile Include="Peashooter.cpp" />
     <ClCompile Include="Plant.cpp" />
@@ -45,6 +46,7 @@
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClInclude Include="FlyingZombie.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="headers.h" />
     <ClInclude Include="LawnMower.h" />
     <ClInclude Include="Peashooter.h" />
