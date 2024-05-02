@@ -5,6 +5,7 @@ FlyingZombie::FlyingZombie(int x, int y) : Zombie(x, y,200, "./SFML/images/flyin
 }
 
 void FlyingZombie::move() {
+
 	float time;	
 	time = Entity::clock.restart().asSeconds();
 	Entity::pos.set(-speed*time);

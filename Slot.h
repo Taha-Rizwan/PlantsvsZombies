@@ -11,7 +11,7 @@ public:
 	RectangleShape rectangle;
 	
 	
-	Slot(int x, int y);
+	Slot(int x=0, int y=0);
 
 	void toggleFilled();
 	void normalState();

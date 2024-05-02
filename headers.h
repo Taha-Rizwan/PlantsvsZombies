@@ -4,10 +4,10 @@
 #include"SnowBullet.h"
 #include"Entity.h"
 #include"LawnMower.h"
+#include"Shooter.h"
 #include"Plant.h"
 
 #include"CherryBomb.h"
-#include"Shooter.h"
 #include"ZombieFactory.h"
 #include"Zombie.h"
 #include"DancingZombie.h"
@@ -15,3 +15,5 @@
 #include"FlyingZombie.h"
 #include "PlantFactory.h"
 #include "Slot.h"
+#include"Slot.h"
+#include"GameState.h"
