@@ -14,14 +14,6 @@ int Zombie::getDamage()const {
 	return damage;
 }
 
-//Makes the zombie move on the board
-void Zombie::move() {
-	if (!eat) {
-		float time;
-		time = moveClock.restart().asSeconds();
-		pos.set(-speed * time * 2);
-	}
-}
 
 //Zombie eats plant
 void Zombie::eatPlant(Plant* plant) {

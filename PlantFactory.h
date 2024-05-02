@@ -22,8 +22,8 @@ public:
 	void buyPlant(int& economy);
 	Bullet** getBullets();
 	Plant** getPlants();
-	int getCurrentPlants();
-	int getCurrentBullets();
+	int getCurrentPlants()const;
+	int getCurrentBullets()const;
 	void displayOptions(RenderWindow& window,Event& event);
 	void displayPlants(RenderWindow& window);
 };

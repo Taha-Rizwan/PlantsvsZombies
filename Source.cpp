@@ -78,11 +78,10 @@ int main()
 
 	
 	
-	zombieFactory.addZombie(new FlyingZombie(1075,400));
-	zombieFactory.addZombie(new Zombie(945, 75, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
-	zombieFactory.addZombie(new Zombie(1025, 275, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
-	zombieFactory.addZombie(new Zombie(1200, 75, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
-
+	//zombieFactory.addZombie(new FlyingZombie(1075,400));
+	zombieFactory.addZombie(new SimpleZombie(945, 75));
+	zombieFactory.addZombie(new SimpleZombie(1025, 275));
+	zombieFactory.addZombie(new SimpleZombie(1200, 75));
 	Slot*** Grid = new Slot**[5];
 	PlantFactory plantFactory(Grid);
 	for (int i = 0; i < 5; i++) {

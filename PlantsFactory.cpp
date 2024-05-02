@@ -86,10 +86,10 @@ Bullet** PlantFactory::getBullets() {
 Plant** PlantFactory::getPlants() {
 	return plants;
 }
-int PlantFactory::getCurrentBullets() {
+int PlantFactory::getCurrentBullets()const{
 	return currentBullets;
 }
-int PlantFactory::getCurrentPlants() {
+int PlantFactory::getCurrentPlants()const{
 	return current;
 }
 void PlantFactory::displayPlants(RenderWindow& window) {

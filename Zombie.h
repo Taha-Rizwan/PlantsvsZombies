@@ -19,7 +19,7 @@ public:
 	Zombie(int x, int y, int tolerance, string texturePath, string name, double textureX, double textureY, float speed, int damage, int wait, bool attack, int score, int sprites);
 	int getSpeed()const;
 	int getDamage()const;
-	virtual void move();
+	virtual void move()=0;
 	void eatPlant(Plant* plant);
 	virtual ~Zombie() {}
 };
