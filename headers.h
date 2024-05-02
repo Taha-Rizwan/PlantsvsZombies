@@ -5,9 +5,7 @@
 #include"Entity.h"
 #include"LawnMower.h"
 #include"Plant.h"
-#include"Peashooter.h"
-#include"Repeater.h"
-#include"Wallnut.h"
+
 #include"CherryBomb.h"
 #include"Shooter.h"
 #include"ZombieFactory.h"
@@ -15,5 +13,5 @@
 #include"DancingZombie.h"
 #include"DolphinRiderZombie.h"
 #include"FlyingZombie.h"
-#include "SnowPea.h"
+#include "PlantFactory.h"
 #include "Slot.h"

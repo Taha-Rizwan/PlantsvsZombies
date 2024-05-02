@@ -14,7 +14,7 @@ public:
 	Slot(int x, int y);
 
 	void toggleFilled();
-
+	void normalState();
 	void draw(RenderWindow& window);
 };
 #endif

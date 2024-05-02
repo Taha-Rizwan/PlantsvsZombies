@@ -19,6 +19,7 @@
     <ClCompile Include="SnowPea.cpp" />
     <ClCompile Include="LawnMower.cpp" />
     <ClCompile Include="Slot.cpp" />
+    <ClCompile Include="PlantsFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -40,5 +41,6 @@
     <ClInclude Include="SnowPea.h" />
     <ClInclude Include="CherryBomb.h" />
     <ClInclude Include="Slot.h" />
+    <ClInclude Include="PlantFactory.h" />
   </ItemGroup>
 </Project>

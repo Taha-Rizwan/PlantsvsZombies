@@ -25,6 +25,7 @@
     <ClCompile Include="LawnMower.cpp" />
     <ClCompile Include="Peashooter.cpp" />
     <ClCompile Include="Plant.cpp" />
+    <ClCompile Include="PlantsFactory.cpp" />
     <ClCompile Include="Repeater.cpp" />
     <ClCompile Include="Shooter.cpp" />
     <ClCompile Include="Slot.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="LawnMower.h" />
     <ClInclude Include="Peashooter.h" />
     <ClInclude Include="Plant.h" />
+    <ClInclude Include="PlantFactory.h" />
     <ClInclude Include="Repeater.h" />
     <ClInclude Include="Shooter.h" />
     <ClInclude Include="Slot.h" />

@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include"headers.h"
 #include <ctime>
+
 //#include"../SFML/Images/"
 using namespace sf;
 using namespace std;
@@ -72,23 +73,9 @@ int main()
 		mowers[i] = new LawnMower(120,55+100*i);
 	}
 	
-	Repeater pea(265, 75);
-	Peashooter peas(265, 275);
-	Wallnut wall(345, 75);
-	SnowPea snowPea(425, 75);
+
 	ZombieFactory zombieFactory(10);
 
-	Plant** plants = new Plant * [4];
-
-	plants[0] = &pea;
-	plants[1] = &peas;
-	plants[2] = &wall;
-	plants[3] = &snowPea;
-
-	Shooter** shoots = new Shooter * [3];
-	shoots[0] = &pea;
-	shoots[1] = &peas;
-	shoots[2] = &snowPea;
 	
 	
 	zombieFactory.addZombie(new FlyingZombie(1075,400));
@@ -97,7 +84,7 @@ int main()
 	zombieFactory.addZombie(new Zombie(1200, 75, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
 
 	Slot*** Grid = new Slot**[5];
-
+	PlantFactory plantFactory(Grid);
 	for (int i = 0; i < 5; i++) {
 		Grid[i] = new Slot * [9];
 		for (int j = 0; j < 9; j++) {
@@ -109,8 +96,8 @@ int main()
 	//Zombie* flyingZombie = new FlyingZombie(1075,300);
 	//Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
 	
-	Bullet** bullets = new Bullet*[100];
-	int i = 0;
+
+
 	while (window.isOpen())
 	{
 
@@ -119,25 +106,16 @@ int main()
 		{
 			if (event.type == Event::Closed)
 				window.close();
+			
 		}
 		//If a bullet is shot it gets saved to the bullets array, and boom boom
-
-		for (int j = 0; j < 3; j++) {
-			bullets[i] = shoots[j]->shoot();
-			if (bullets[i] != nullptr) {
-				i++;
-			}
-		}
 
 
 		//Create a background
 
 		createBack(window);
 		//createMap(window);
-		for (int j = 0; j < i; j++) {
-			if (bullets[j]->getExists())
-				bullets[j]->draw(window);
-		}
+	
 
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
 		//zombie.draw(window);
@@ -150,17 +128,12 @@ int main()
 
 		zombieFactory.drawZombies(window);
 		zombieFactory.moveZombies();
-		zombieFactory.detectCollision(bullets,plants,mowers,i,4,5);
-		pea.draw(window);
-		peas.draw(window);
-		wall.draw(window);
-		snowPea.draw(window);
+		zombieFactory.detectCollision(plantFactory.getBullets(), plantFactory.getPlants(), mowers, plantFactory.getCurrentBullets(), plantFactory.getCurrentPlants(), 5);
 
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 9; j++) {
-				Grid[i][j]->draw(window);
-			}
-		}
+
+		
+		plantFactory.displayOptions(window,event);
+		plantFactory.displayPlants(window);
 		window.setSize(Vector2u(1100, 680));
 		window.display();
 	}
