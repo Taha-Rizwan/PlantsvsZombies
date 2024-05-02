@@ -4,7 +4,7 @@ Entity::Entity(int x, int y,int tolerance, string texturePath, string name, doub
 		texture.loadFromFile(texturePath);
 		sprite.setTexture(texture);
 		sprite.setTextureRect(IntRect(0, 0, textureX, textureY));
-		sprite.setScale(2.0,2.0);
+		//sprite.setScale(2.0,2.0);
 		exists = true;
 }
 

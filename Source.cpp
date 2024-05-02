@@ -69,7 +69,7 @@ int main()
 
 	LawnMower** mowers = new LawnMower*[5];
 	for (int i = 0;i < 5;i++) {
-		mowers[i] = new LawnMower(120,150*i);
+		mowers[i] = new LawnMower(120,55+100*i);
 	}
 	
 	Repeater pea(265, 75);
@@ -91,9 +91,9 @@ int main()
 	shoots[2] = &snowPea;
 
 	zombieFactory.addZombie(new FlyingZombie(1075,400));
-	zombieFactory.addZombie(new Zombie(945, 85, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
+	zombieFactory.addZombie(new Zombie(945, 75, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
 	zombieFactory.addZombie(new Zombie(1025, 275, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
-	zombieFactory.addZombie(new Zombie(1200, 85, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
+	zombieFactory.addZombie(new Zombie(1200, 75, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
 
 	//Zombie* flyingZombie = new FlyingZombie(1075,300);
 	//Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
