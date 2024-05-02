@@ -16,3 +16,4 @@
 #include"DolphinRiderZombie.h"
 #include"FlyingZombie.h"
 #include "SnowPea.h"
+#include "Slot.h"

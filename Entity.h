@@ -2,7 +2,6 @@
 #include "Position.h"
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include"Position.h"
 using namespace sf;
 using namespace std;
 

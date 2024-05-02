@@ -89,11 +89,22 @@ int main()
 	shoots[0] = &pea;
 	shoots[1] = &peas;
 	shoots[2] = &snowPea;
-
+	
+	
 	zombieFactory.addZombie(new FlyingZombie(1075,400));
 	zombieFactory.addZombie(new Zombie(945, 75, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
 	zombieFactory.addZombie(new Zombie(1025, 275, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
 	zombieFactory.addZombie(new Zombie(1200, 75, 100, "./SFML/images/zombie.png", "Zombie", 46, 50, 10, 2, 0, false, 20, 7));
+
+	Slot*** Grid = new Slot**[5];
+
+	for (int i = 0; i < 5; i++) {
+		Grid[i] = new Slot * [9];
+		for (int j = 0; j < 9; j++) {
+			Grid[i][j] = new Slot((250 + j*80), (75 + i*100));
+			
+		}
+	}
 
 	//Zombie* flyingZombie = new FlyingZombie(1075,300);
 	//Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
@@ -144,6 +155,12 @@ int main()
 		peas.draw(window);
 		wall.draw(window);
 		snowPea.draw(window);
+
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 9; j++) {
+				Grid[i][j]->draw(window);
+			}
+		}
 		window.setSize(Vector2u(1100, 680));
 		window.display();
 	}
