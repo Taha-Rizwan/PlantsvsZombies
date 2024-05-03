@@ -4,9 +4,10 @@ PlantFactory::PlantFactory(Slot***grid,int size):size(45),current(0),currentShoo
 	plants = new Plant * [size];
 	shooters = new Shooter * [size];
 	bullets = new Bullet * [100];
-	cardTexture.loadFromFile("./SFML/images/img1.png");
+	cardTexture.loadFromFile("./SFML/images/peashooterCard.png");
 	card.setTexture(cardTexture);
-	card.setTextureRect(IntRect(0, 0, 106, 70));
+	card.setTextureRect(IntRect(0, 0, 530, 340));
+	card.setScale(0.45, 0.3);
 	card.setPosition(20, 20);
 }
 
@@ -40,10 +41,11 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 
 	}
 	else if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		Vector2f delta(event.mouseMove.x*1.2, event.mouseMove.y);
+		
 		if (selected) {
+			Vector2f delta(event.mouseMove.x * 1.2, event.mouseMove.y);
 			card.setPosition(delta - initPos);
-			card.setScale(1.3,1);
+			card.setScale(0.55, 0.35);
 
 			for (int i = 0; i < 5; i++) {
 				for (int j = 0; j < 9; j++) {
@@ -52,7 +54,7 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 						row = i;
 						col = j;
 						found = true;
-						mouse = card.getPosition();
+						mouse = delta;
 					}
 					else {
 						grid[i][j]->normalState();
@@ -66,7 +68,7 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 	else if (event.type == Event::MouseButtonReleased) {
 		selected = false;
 		card.setPosition(20, 20);
-		card.setScale(1, 1);
+		card.setScale(0.45, 0.3);
 		bool wasOn = false;
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 9; j++) {
