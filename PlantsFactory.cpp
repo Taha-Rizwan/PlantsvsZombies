@@ -8,7 +8,7 @@ PlantFactory::PlantFactory(Slot***grid,int size):size(45),current(0),currentShoo
 	cardTexture.loadFromFile("./SFML/images/peashooterCard.png");
 	card.setTexture(cardTexture);
 	card.setTextureRect(IntRect(0, 0, 530, 340));
-	card.setScale(0.45, 0.3);
+	card.setScale(0.3, 0.25);
 	card.setPosition(20, 20);
 }
 
@@ -32,8 +32,8 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 	if (event.type == Event::MouseButtonPressed) {
 		if (isClicked(card, mouse)) {
 			initPos = mouse;
-			//card.setPosition(mouse);
-			
+			card.setPosition(mouse);
+			card.setColor(Color(255, 255, 255, 128));
 			selected = true;
 		}
 
@@ -46,7 +46,7 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 		if (selected) {
 			Vector2f delta(event.mouseMove.x * 1.2, event.mouseMove.y);
 			card.setPosition(delta - initPos);
-			card.setScale(0.55, 0.35);
+			card.setScale(0.18, 0.30);
 
 			for (int i = 0; i < 5; i++) {
 				for (int j = 0; j < 9; j++) {
@@ -69,7 +69,8 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 	else if (event.type == Event::MouseButtonReleased) {
 		selected = false;
 		card.setPosition(20, 20);
-		card.setScale(0.45, 0.3);
+		card.setScale(0.3, 0.2);
+		card.setColor(Color(255, 255, 255, 255));
 		bool wasOn = false;
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 9; j++) {

@@ -15,7 +15,7 @@ public:
 	void displayCard(RenderWindow& window) {
 
 	}
-	Sprite& getSprite();
+	Sprite* getCardSprite();
 	virtual ~Plant() {}
 };
 

@@ -69,11 +69,11 @@ int main()
 	//X-axis starting point is 265, +80 to the slot on the right
 	
 	LawnMower** mowers = new LawnMower*[5];
-	/*
+	
 	for (int i = 0;i < 5;i++) {
 		mowers[i] = new LawnMower(120,55+100*i);
 	}
-	*/
+	
 
 	Sun mySun;
 
@@ -123,16 +123,16 @@ int main()
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
 		//zombie.draw(window);
 		//zombie.move();
-		/*
+		
 		for (int i = 0;i < 5;i++) {
 			mowers[i]->draw(window);
 			mowers[i]->moveMower();
 		}
-		*/
+		
 
 		zombieFactory.drawZombies(window);
 		zombieFactory.moveZombies();
-		zombieFactory.detectCollision(plantFactory.getBullets(), plantFactory.getPlants(), mowers, plantFactory.getCurrentBullets(), plantFactory.getCurrentPlants(), 0);
+		zombieFactory.detectCollision(plantFactory.getBullets(), plantFactory.getPlants(), mowers, plantFactory.getCurrentBullets(), plantFactory.getCurrentPlants(), 5);
 
 		mySun.draw(window);
 		mySun.collectSun(event);
