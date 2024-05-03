@@ -1,5 +1,6 @@
 #include "PlantFactory.h"
-
+#include<iostream>
+using namespace std;
 PlantFactory::PlantFactory(Slot***grid,int size):size(45),current(0),currentShooters(0),currentBullets(0), grid(grid) {
 	plants = new Plant * [size];
 	shooters = new Shooter * [size];

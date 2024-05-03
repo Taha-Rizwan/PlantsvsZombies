@@ -17,3 +17,4 @@
 #include"FootballZombie.h"
 #include"Slot.h"
 #include"GameState.h"
+#include"Sun.h"
