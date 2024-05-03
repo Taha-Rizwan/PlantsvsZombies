@@ -24,14 +24,13 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 	static bool found;
 	static int row;
 	static int col;
-	static bool selected;
+	static bool selected = false;
 	window.draw(card);
-
 	Vector2f mouse(event.mouseButton.x, event.mouseButton.y);
 	if (event.type == Event::MouseButtonPressed) {
 		if (isClicked(card, mouse)) {
 			initPos = mouse;
-			card.setPosition(mouse);
+			//card.setPosition(mouse);
 			card.setScale(0.78, 1.46);
 			selected = true;
 		}
@@ -41,7 +40,7 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 
 	}
 	else if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		sf::Vector2f delta = sf::Vector2f(event.mouseMove.x, event.mouseMove.y);
+		Vector2f delta(event.mouseMove.x, event.mouseMove.y);
 		if (selected) {
 			card.setPosition(event.mouseMove.x+70,event.mouseMove.y-60);
 			card.setScale(0.78,1.46);
@@ -65,6 +64,7 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 		}
 	}
 	else if (event.type == Event::MouseButtonReleased) {
+		selected = false;
 		card.setPosition(20, 20);
 		card.setScale(1, 1);
 		bool wasOn = false;
