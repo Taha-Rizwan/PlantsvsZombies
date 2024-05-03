@@ -18,47 +18,55 @@ bool PlantFactory::isClicked(Sprite& sprite, Vector2f& mousePos) {
 	return sprite.getGlobalBounds().contains(mousePos);
 }
 
+
 void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 
 	static bool found;
 	static int row;
 	static int col;
+	static bool selected;
 	window.draw(card);
+
 	Vector2f mouse(event.mouseButton.x, event.mouseButton.y);
 	if (event.type == Event::MouseButtonPressed) {
 		if (isClicked(card, mouse)) {
 			initPos = mouse;
-			
+			card.setPosition(mouse);
+			card.setScale(0.78, 1.46);
+			selected = true;
 		}
-	
+
 
 
 
 	}
 	else if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		sf::Vector2f delta = sf::Vector2f(event.mouseMove.x, event.mouseMove.y)  ;
-		card.setPosition(delta);
+		sf::Vector2f delta = sf::Vector2f(event.mouseMove.x, event.mouseMove.y);
+		if (selected) {
+			card.setPosition(event.mouseMove.x+70,event.mouseMove.y-60);
+			card.setScale(0.78,1.46);
 
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 9; j++) {
-				if (grid[i][j]->rectangle.getGlobalBounds().contains(delta) && !grid[i][j]->filled) {
-					grid[i][j]->rectangle.setFillColor(Color(0, 255, 0, 128));
-					row = i;
-					col = j;
-					found = true;
-					mouse = delta;
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 9; j++) {
+					if (grid[i][j]->rectangle.getGlobalBounds().contains(card.getPosition()) && !grid[i][j]->filled) {
+						grid[i][j]->rectangle.setFillColor(Color(0, 255, 0, 128));
+						row = i;
+						col = j;
+						found = true;
+						mouse = card.getPosition();
+					}
+					else {
+						grid[i][j]->normalState();
+					}
+					grid[i][j]->draw(window);
 				}
-				else {
-					grid[i][j]->normalState();
-				}
-				grid[i][j]->draw(window);
 			}
+
 		}
-
-
 	}
 	else if (event.type == Event::MouseButtonReleased) {
 		card.setPosition(20, 20);
+		card.setScale(1, 1);
 		bool wasOn = false;
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -78,6 +86,7 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 	}
 
 }
+
 
 Bullet** PlantFactory::getBullets() {
 	return bullets;
