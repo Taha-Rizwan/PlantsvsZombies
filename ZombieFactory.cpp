@@ -14,7 +14,7 @@ void ZombieFactory::addZombie(Zombie* newZombie) {
 }
 
 //Draws all of the Zombies stored
-void ZombieFactory::drawZombies(RenderWindow& window) {
+void ZombieFactory::drawZombies(sf::RenderWindow& window) {
 	for (int i = 0;i < current;i++) {
 		zombies[i]->draw(window,zombies[i]->startY);
 	}
@@ -52,7 +52,7 @@ void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower**
 			if (mowers[j]->getExists()){
 				if (mowers[j]->getSprite()->getGlobalBounds().intersects(zombies[i]->getSprite()->getGlobalBounds())){
 					mowers[j]->setMove();
-					zombies[i]->toggleExists();
+					zombies[i]->hit(mowers[j]->getDamage());
 				}
 			}
 		}

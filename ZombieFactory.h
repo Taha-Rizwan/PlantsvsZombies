@@ -1,12 +1,9 @@
 #pragma once
 #ifndef Zombie_h
-#include "Plant.h"
+#include "Plant.h"1
 #include"LawnMower.h"
 #include"Zombie.h"
-#include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-using namespace std;
-using namespace sf;
 class ZombieFactory {
 	Zombie** zombies;
 	int size, current;
@@ -19,7 +16,7 @@ public:
 	void addZombie(Zombie* newZombie);
 
 	//Draws all of the Zombies stored
-	void drawZombies(RenderWindow& window);
+	void drawZombies(sf::RenderWindow& window);
 
 	//Moves all the zombie
 	void moveZombies();

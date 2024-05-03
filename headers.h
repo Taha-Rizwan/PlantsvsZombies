@@ -1,4 +1,5 @@
-#pragma once
+#ifndef HEADERS_H
+#define HEADERS_H
 #include"Position.h"
 #include"Bullet.h"
 #include"SnowBullet.h"
@@ -18,3 +19,5 @@
 #include"Slot.h"
 #include"GameState.h"
 #include"Sun.h"
+
+#endif

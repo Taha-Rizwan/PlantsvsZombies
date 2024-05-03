@@ -1,19 +1,17 @@
 #include"Sun.h"
-#include<iostream>
-using namespace std;
 
 Sun::Sun(int x, int y) :pos(x,y), sunProduced(50), collected(false),textureX(71),textureY(71),sprites(22) {
 	sunTexture.loadFromFile("./SFML/Images/sun.png");
 	sunSprite.setTexture(sunTexture);
-	sunSprite.setTextureRect(IntRect(0, 0, textureX, textureY));
+	sunSprite.setTextureRect(sf::IntRect(0, 0, textureX, textureY));
 	sunSprite.setPosition(pos.pos[0], pos.pos[1]);
 }
 
-void Sun::draw(RenderWindow& window) {
+void Sun::draw(sf::RenderWindow& window) {
 	static int x = 0;
 	sunSprite.setPosition(pos.pos[0], pos.pos[1]);
 	if (sClock.getElapsedTime().asSeconds() > 0.2f) {
-		sunSprite.setTextureRect(IntRect(x * textureX, 0, textureX, textureY));
+		sunSprite.setTextureRect(sf::IntRect(x * textureX, 0, textureX, textureY));
 		if (x >= sprites - 1) {
 			x = -1;
 		}
@@ -37,17 +35,16 @@ void Sun::move() {
 
 
 
-bool Sun::isClicked(Vector2f& mousePos) {
+bool Sun::isClicked(sf::Vector2f& mousePos) {
 	return sunSprite.getGlobalBounds().contains(mousePos);
 }
 
-void Sun::collectSun(Event& event) {
-	Vector2f mousePos(event.mouseButton.x, event.mouseButton.y);
-	if (event.type == Event::MouseButtonPressed) {
+void Sun::collectSun(sf::Event& event) {
+	sf::Vector2f mousePos(event.mouseButton.x, event.mouseButton.y);
+	if (event.type == sf::Event::MouseButtonPressed) {
 		if (isClicked(mousePos)) {
 			collected = true;
-			cout << "Collected\n";
-			sunSprite.setColor(Color(255, 255, 255, 128));
+			sunSprite.setColor(sf::Color(255, 255, 255, 128));
 		}
 	}
 }

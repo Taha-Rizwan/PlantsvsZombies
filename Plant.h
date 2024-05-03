@@ -1,21 +1,20 @@
-#pragma once
 #ifndef Entity_H
+#define Entity_H
 #include"Entity.h"
-using namespace std;
 
 class Plant:public Entity {
 protected:
 	int cost, waitingTime;
-	Sprite cardSprite;
-	Texture cardTexture;
+	sf::Sprite cardSprite;
+	sf::Texture cardTexture;
 public:
-	Plant(int x, int y, int tolerance, string texturePath, string name, double textureX, double textureY,int waitingTime, int cost, int sprites);
+	Plant(int x, int y, int tolerance, std::string texturePath, std::string name, double textureX, double textureY,int waitingTime, int cost, int sprites);
 	int getCost();
 	int getWaitingTime();
-	void displayCard(RenderWindow& window) {
+	void displayCard(sf::RenderWindow& window) {
 
 	}
-	Sprite* getCardSprite();
+	sf::Sprite* getCardSprite();
 	virtual ~Plant() {}
 };
 

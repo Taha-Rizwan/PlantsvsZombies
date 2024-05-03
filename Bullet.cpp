@@ -1,8 +1,8 @@
 #include "Bullet.h"
-Bullet::Bullet(int x, int y, float bulletSpeed, string spritePath, double textureX, double textureY): pos(x,y),bulletSpeed(bulletSpeed) {
+Bullet::Bullet(int x, int y, float bulletSpeed, std::string spritePath, double textureX, double textureY): pos(x,y),bulletSpeed(bulletSpeed) {
 	bulletTexture.loadFromFile(spritePath);
 	bulletSprite.setTexture(bulletTexture);
-	bulletSprite.setTextureRect(IntRect(0,0,textureX,textureY));
+	bulletSprite.setTextureRect(sf::IntRect(0,0,textureX,textureY));
 	bulletSprite.setScale(1.5, 1.5);
 	exists = true;
 	type = "normal";
@@ -21,7 +21,7 @@ void Bullet::move() {
 
 }
 
-void Bullet::draw(RenderWindow& window){
+void Bullet::draw(sf::RenderWindow& window){
 	if (exists) {
 		bulletSprite.setPosition(pos.pos[0], pos.pos[1]);
 		window.draw(bulletSprite);
@@ -31,9 +31,9 @@ void Bullet::draw(RenderWindow& window){
 void Bullet::toggleExists() {
 	exists = !exists;
 }
-void Bullet::setType(string t) {
+void Bullet::setType(std::string t) {
 	type = t;
 }
-Sprite* Bullet::getSprite() {
+sf::Sprite* Bullet::getSprite() {
 	return &bulletSprite;
 }

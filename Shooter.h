@@ -2,19 +2,18 @@
 #ifndef Bullet_h
 #include"Bullet.h"
 #include "SFML/System.hpp"
-using namespace sf;
-using namespace std;
+
 
 class Shooter {
 protected:
 	Bullet* bullet;
 	double reloadTime,bulletSpeed,textureX,textureY;
-	string bulletSpritePath;
-	Clock clock;
+	std::string bulletSpritePath;
+	sf::Clock sClock;
 	Position pos;
-
+	bool canShot;
 public:
-	Shooter(int x,int y, double reloadTime, int bulletSpeed, string bulletSpritePath, double textureX,double textureY);
+	Shooter(int x,int y, double reloadTime, int bulletSpeed, std::string bulletSpritePath, double textureX,double textureY);
 
 	virtual Bullet* shoot();
 

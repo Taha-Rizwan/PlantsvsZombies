@@ -6,7 +6,7 @@ class Wallnut :public Plant {
 public:
 	Wallnut(int x, int y);
 	void roll();
-	void draw(RenderWindow& window);
+	void draw(sf::RenderWindow& window);
 	bool hit(int damage);
 };
 #endif

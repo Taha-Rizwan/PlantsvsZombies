@@ -2,27 +2,25 @@
 #ifndef Position_h
 #include "Position.h"
 #include "SFML/Graphics.hpp"
-#include "SFML/System.hpp"
-using namespace std;
-using namespace sf;
+
 class Bullet {
 
-	Clock clock;
-	Sprite bulletSprite;
-	Texture bulletTexture;
+	sf::Clock clock;
+	sf::Sprite bulletSprite;
+	sf::Texture bulletTexture;
 	float bulletSpeed;
 	bool exists;
 	Position pos;
-	string type;
+	std::string type;
 
 public:
-	Bullet(int x, int y, float bulletSpeed, string spritePath, double textureX, double textureY);
+	Bullet(int x, int y, float bulletSpeed, std::string spritePath, double textureX, double textureY);
 	bool getExists();
 	void move();
-	void draw(RenderWindow& window);
+	void draw(sf::RenderWindow& window);
 	void toggleExists();
-	void setType(string t);
-	Sprite* getSprite();
+	void setType(std::string t);
+	sf::Sprite* getSprite();
 };
 
 

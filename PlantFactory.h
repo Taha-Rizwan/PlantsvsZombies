@@ -1,4 +1,3 @@
-#pragma once
 #ifndef Slot_h
 #include "Slot.h"
 #include "SnowPea.h"
@@ -12,20 +11,20 @@ protected:
 	Shooter** shooters;
 	Slot*** grid;
 	Bullet** bullets;
-	Sprite card;
-	Texture cardTexture;
-	Vector2f initPos;
+	sf::Sprite card;
+	sf::Texture cardTexture;
+	sf::Vector2f initPos;
 public:
 	PlantFactory(Slot***grid,int size=45);
-	bool isClicked(RectangleShape& rectangle, Vector2f& mousePos);
-	bool isClicked(Sprite& sprite, Vector2f& mousePos);
+	bool isClicked(sf::RectangleShape& rectangle, sf::Vector2f& mousePos);
+	bool isClicked(sf::Sprite& sprite, sf::Vector2f& mousePos);
 	void buyPlant(int& economy);
 	Bullet** getBullets();
 	Plant** getPlants();
 	int getCurrentPlants()const;
 	int getCurrentBullets()const;
-	void displayOptions(RenderWindow& window,Event& event);
-	void displayPlants(RenderWindow& window);
+	void displayOptions(sf::RenderWindow& window,sf::Event& event);
+	void displayPlants(sf::RenderWindow& window);
 };
 
 #endif

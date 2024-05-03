@@ -7,8 +7,10 @@ class LawnMower: public Entity {
 public:
 	LawnMower(int x, int y);
 	void moveMower();
-	Sprite* getSprite(){
+	void draw(sf::RenderWindow& window);
+	sf::Sprite* getSprite(){
 		return &sprite;
 	}
+	int getDamage()const;
 	void setMove();
 };

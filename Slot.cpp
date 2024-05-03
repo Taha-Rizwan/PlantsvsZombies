@@ -2,10 +2,10 @@
 
 Slot::Slot(int x, int y):pos(x,y) {
 	filled = false;
-	rectangle.setSize(Vector2f(80, 100));
+	rectangle.setSize(sf::Vector2f(80, 100));
 	rectangle.setFillColor(sf::Color(255, 255, 0, 128));
 	rectangle.setPosition(x, y);
-	rectangle.setOutlineColor(Color::Yellow);
+	rectangle.setOutlineColor(sf::Color::White);
 	rectangle.setOutlineThickness(1);
 }
 
@@ -17,14 +17,14 @@ void Slot::toggleFilled() {
 void Slot::normalState() {
 	if (filled) {
 		rectangle.setFillColor(sf::Color(255, 0, 0, 128));
-		rectangle.setOutlineColor(Color::Red);
+		//rectangle.setOutlineColor(sf::Color::Red);
 	}
 	else {
 		rectangle.setFillColor(sf::Color(255, 255, 0, 128));
-		rectangle.setOutlineColor(Color::Yellow);
+		rectangle.setOutlineColor(sf::Color::White);
 	}
 }
 
-void Slot::draw(RenderWindow& window) {
+void Slot::draw(sf::RenderWindow& window) {
 	window.draw(rectangle);
 }

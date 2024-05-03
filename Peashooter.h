@@ -1,4 +1,3 @@
-#pragma once
 #ifndef Plant_h
 #include "Plant.h"
 #include"Shooter.h"

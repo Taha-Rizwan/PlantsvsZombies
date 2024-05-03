@@ -1,30 +1,27 @@
 #pragma once
 #include "Position.h"
-#include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-using namespace sf;
-using namespace std;
-
+#include<SFML/Window.hpp>
 class Entity {
 protected:
 	Position pos;
 	bool exists;
 	int tolerance;
-	string name;
-	Sprite sprite;
+	std::string name;
+	sf::Sprite sprite;
 	int sprites;
-	Texture texture;
+	sf::Texture texture;
 	double textureX;
 	double textureY;
-	Clock clock;
+	sf::Clock clock;
 	int x;
 
 public:
-	Entity(int x, int y, int tolerance, string texturePath, string name,double textureX,double textureY,int sprites);
-	virtual void draw(RenderWindow& window,int y=0);
+	Entity(int x, int y, int tolerance, std::string texturePath, std::string name,double textureX,double textureY,int sprites);
+	virtual void draw(sf::RenderWindow& window,int y=0);
 	virtual bool hit(int damage);
 	bool getExists()const;
-	string getName()const;
+	std::string getName()const;
 	void toggleExists();
-	Sprite* getSprite();
+	sf::Sprite* getSprite();
 };

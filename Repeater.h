@@ -6,7 +6,7 @@
 class Repeater : public Plant, public Shooter {
 protected:
 	bool shot;
-	Clock clock;
+	sf::Clock clock;
 public:
 	Repeater(int x, int y);
 	Bullet* shoot();

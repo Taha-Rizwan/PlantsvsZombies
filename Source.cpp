@@ -64,16 +64,15 @@ int main()
 		}
 	}
 	Clock clock;
-	float time;
+	Time timePerFrame = seconds(1.f / 60.f); // 60 FPS
 	//Y-axis starting point is 75, +100 to the slot below
 	//X-axis starting point is 265, +80 to the slot on the right
 	
 	LawnMower** mowers = new LawnMower*[5];
-	
+
 	for (int i = 0;i < 5;i++) {
-		mowers[i] = new LawnMower(120,55+100*i);
+		mowers[i] = new LawnMower(200,105+95*i);
 	}
-	
 
 	Sun mySun;
 
@@ -86,6 +85,16 @@ int main()
 	zombieFactory.addZombie(new SimpleZombie(945, 75));
 	zombieFactory.addZombie(new SimpleZombie(1025, 275));
 	zombieFactory.addZombie(new SimpleZombie(1200, 75));
+	zombieFactory.addZombie(new SimpleZombie(945, 75));
+	zombieFactory.addZombie(new SimpleZombie(1025, 275));
+	zombieFactory.addZombie(new SimpleZombie(1200, 75));
+	zombieFactory.addZombie(new SimpleZombie(945, 75));
+	zombieFactory.addZombie(new SimpleZombie(1025, 275));
+	zombieFactory.addZombie(new SimpleZombie(1200, 75));
+	zombieFactory.addZombie(new SimpleZombie(945, 75));
+	zombieFactory.addZombie(new SimpleZombie(1025, 275));
+	zombieFactory.addZombie(new SimpleZombie(1200, 75));
+
 	Slot*** Grid = new Slot**[5];
 	PlantFactory plantFactory(Grid);
 	for (int i = 0; i < 5; i++) {
@@ -112,6 +121,8 @@ int main()
 			
 		}
 		//If a bullet is shot it gets saved to the bullets array, and boom boom
+
+		Time deltaTime = clock.restart();
 
 
 		//Create a background
@@ -142,6 +153,11 @@ int main()
 		plantFactory.displayPlants(window);
 		window.setSize(Vector2u(1100, 680));
 		window.display();
+	
+		Time sleepTime = timePerFrame - deltaTime;
+		if (sleepTime > Time::Zero)
+			sleep(sleepTime);
+		
 	}
 	return 0;
 }

@@ -14,14 +14,14 @@ bool Wallnut::hit(int damage) {
 	return Entity::hit(damage);
 }
 
-void Wallnut::draw(RenderWindow& window) {
+void Wallnut::draw(sf::RenderWindow& window) {
 	if (exists) {
 		sprite.setPosition(pos.pos[0], pos.pos[1]);
 		//For Sprite Animation
 		if (clock.getElapsedTime().asSeconds() > 0.2f) {
 			
 			if (tolerance > 50) {
-				sprite.setTextureRect(IntRect(textureX * x, 0, textureX, textureY));
+				sprite.setTextureRect(sf::IntRect(textureX * x, 0, textureX, textureY));
 			}
 			else {
 				//Rolling has 8 sprites
@@ -30,11 +30,11 @@ void Wallnut::draw(RenderWindow& window) {
 				roll();
 				//Some sprites have a different size
 				if(x<4)
-					sprite.setTextureRect(IntRect((textureX+x-1) * x, textureY * 3, (textureX+x-1), textureY));
+					sprite.setTextureRect(sf::IntRect((textureX+x-1) * x, textureY * 3, (textureX+x-1), textureY));
 				else if(x==4)
-					sprite.setTextureRect(IntRect((textureX + x-2) * x, textureY * 3, (textureX + x-4), textureY));
+					sprite.setTextureRect(sf::IntRect((textureX + x-2) * x, textureY * 3, (textureX + x-4), textureY));
 				else
-					sprite.setTextureRect(IntRect((textureX+2 ) * x, textureY * 3, (textureX+2  ), textureY));
+					sprite.setTextureRect(sf::IntRect((textureX+2 ) * x, textureY * 3, (textureX+2  ), textureY));
 			}
 			if (x >= sprites - 1) {
 				x = -1;
