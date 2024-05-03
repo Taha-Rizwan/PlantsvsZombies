@@ -31,7 +31,7 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 		if (isClicked(card, mouse)) {
 			initPos = mouse;
 			//card.setPosition(mouse);
-			card.setScale(0.78, 1.46);
+			
 			selected = true;
 		}
 
@@ -40,14 +40,14 @@ void PlantFactory::displayOptions(RenderWindow& window, Event& event) {
 
 	}
 	else if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		Vector2f delta(event.mouseMove.x, event.mouseMove.y);
+		Vector2f delta(event.mouseMove.x*1.2, event.mouseMove.y);
 		if (selected) {
-			card.setPosition(event.mouseMove.x+70,event.mouseMove.y-60);
-			card.setScale(0.78,1.46);
+			card.setPosition(delta - initPos);
+			card.setScale(1.3,1);
 
 			for (int i = 0; i < 5; i++) {
 				for (int j = 0; j < 9; j++) {
-					if (grid[i][j]->rectangle.getGlobalBounds().contains(card.getPosition()) && !grid[i][j]->filled) {
+					if (grid[i][j]->rectangle.getGlobalBounds().contains(delta) && !grid[i][j]->filled) {
 						grid[i][j]->rectangle.setFillColor(Color(0, 255, 0, 128));
 						row = i;
 						col = j;
