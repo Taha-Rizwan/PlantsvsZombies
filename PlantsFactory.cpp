@@ -68,7 +68,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 	static int option = 0;
 	
 	sf::Sprite *card;
-	sf::Vector2f mouse(event.mouseButton.x, event.mouseButton.y);
+	sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 	//Drawing each plant card
 	for ( int i = 0; i < currentOptions; i++) {
 		card = options[i]->getCardSprite();
@@ -96,7 +96,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 		if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			card = options[option]->getCardSprite();
 			if (selected) {
-				sf::Vector2f delta(event.mouseMove.x +20, event.mouseMove.y);
+				sf::Vector2f delta = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 				card->setPosition(delta);
 				card->setScale(0.18, 0.30);
 		
