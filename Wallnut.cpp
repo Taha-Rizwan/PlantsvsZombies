@@ -14,7 +14,7 @@ bool Wallnut::hit(int damage) {
 	return Entity::hit(damage);
 }
 
-void Wallnut::draw(sf::RenderWindow& window) {
+void Wallnut::draw(sf::RenderWindow& window, int y) {
 	if (exists) {
 		sprite.setPosition(pos.pos[0], pos.pos[1]);
 		//For Sprite Animation

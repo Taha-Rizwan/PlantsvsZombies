@@ -20,6 +20,11 @@
     <ClCompile Include="LawnMower.cpp" />
     <ClCompile Include="Slot.cpp" />
     <ClCompile Include="PlantsFactory.cpp" />
+    <ClCompile Include="FootballZombie.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="SimpleZombie.cpp" />
+    <ClCompile Include="Sun.cpp" />
+    <ClCompile Include="CherryBomb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -42,5 +47,9 @@
     <ClInclude Include="CherryBomb.h" />
     <ClInclude Include="Slot.h" />
     <ClInclude Include="PlantFactory.h" />
+    <ClInclude Include="FootballZombie.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="SimpleZombie.h" />
+    <ClInclude Include="Sun.h" />
   </ItemGroup>
 </Project>

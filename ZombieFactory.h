@@ -23,7 +23,7 @@ public:
 
 	
 	void detectCollision(Bullet** bullets, Plant** plants, LawnMower** mowers, int numBullets, int numPlants, int numMowers);
-
+	void detectExplosion(Position pos, sf::RenderWindow& window, bool* boom);
 	//Destructor(destroys all of the zombies)
 	~ZombieFactory();
 

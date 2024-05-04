@@ -95,6 +95,8 @@ int main()
 	zombieFactory.addZombie(new SimpleZombie(1025, 275));
 	zombieFactory.addZombie(new SimpleZombie(1200, 75));
 
+	bool boom =false;
+
 	Slot*** Grid = new Slot**[5];
 	PlantFactory plantFactory(Grid);
 	for (int i = 0; i < 5; i++) {
@@ -139,11 +141,16 @@ int main()
 			mowers[i]->draw(window);
 			mowers[i]->moveMower();
 		}
-		
 
 		zombieFactory.drawZombies(window);
 		zombieFactory.moveZombies();
 		zombieFactory.detectCollision(plantFactory.getBullets(), plantFactory.getPlants(), mowers, plantFactory.getCurrentBullets(), plantFactory.getCurrentPlants(), 5);
+
+		if (plantFactory.isExplode()) {
+			boom = true;
+		}
+			zombieFactory.detectExplosion(plantFactory.getExplosion(),window,&boom);
+
 
 		mySun.draw(window);
 		mySun.collectSun(event);

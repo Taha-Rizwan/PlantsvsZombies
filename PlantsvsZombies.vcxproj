@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CherryBomb.cpp" />
     <ClCompile Include="DancingZombie.cpp" />
     <ClCompile Include="DolphinRiderZombie.cpp" />
     <ClCompile Include="FlyingZombie.cpp" />
