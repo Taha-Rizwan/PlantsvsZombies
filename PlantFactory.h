@@ -6,14 +6,14 @@
 #include"Wallnut.h"
 class PlantFactory {
 protected:
-	int size, current, currentShooters,currentBullets;
+	int size, current, currentShooters,currentBullets, currentOptions;
 	Plant** plants;
 	Shooter** shooters;
 	Slot*** grid;
 	Bullet** bullets;
-	sf::Sprite card;
-	sf::Texture cardTexture;
 	sf::Vector2f initPos;
+	Plant** options;
+	Shooter** shooterOption;
 public:
 	PlantFactory(Slot***grid,int size=45);
 	bool isClicked(sf::RectangleShape& rectangle, sf::Vector2f& mousePos);
@@ -25,6 +25,7 @@ public:
 	int getCurrentBullets()const;
 	void displayOptions(sf::RenderWindow& window,sf::Event& event);
 	void displayPlants(sf::RenderWindow& window);
+	void refreshOptions(int i);
 };
 
 #endif
