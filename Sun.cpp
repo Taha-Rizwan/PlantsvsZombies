@@ -8,8 +8,8 @@ Sun::Sun(int x, int y) :pos(x,y), sunProduced(50), collected(false),textureX(71)
 }
 
 void Sun::draw(sf::RenderWindow& window) {
-	static int x = 0;
-	if (!collected) {
+	if (collected == false) {
+		static int x = 0;
 		sunSprite.setPosition(pos.pos[0], pos.pos[1]);
 		if (sClock.getElapsedTime().asSeconds() > 0.2f) {
 			sunSprite.setTextureRect(sf::IntRect(x * textureX, 0, textureX, textureY));
@@ -26,19 +26,14 @@ void Sun::draw(sf::RenderWindow& window) {
 
 void Sun::move() {
 	if (collected == false) {
-		if (pos.pos[1] <= 50) {
+		if (pos.pos[1] <= 100) {
 			pos.set(0, 10);
 		}
 	}
 	else if(collected==true) {
-		pos.set(-10, -10);	
+		pos.pos[0]=200;
+		pos.pos[1] = -10;
 	}
-}
-
-
-
-bool Sun::isClicked(sf::Vector2f& mousePos) {
-	return sunSprite.getGlobalBounds().contains(mousePos);
 }
 
 void Sun::collectSun(sf::Event& event) {
@@ -46,7 +41,32 @@ void Sun::collectSun(sf::Event& event) {
 	if (event.type == sf::Event::MouseButtonPressed) {
 		if (isClicked(mousePos)) {
 			collected = true;
-			sunSprite.setColor(sf::Color(255, 255, 255, 128));
+			sClock.restart();
 		}
 	}
+}
+
+bool Sun::isClicked(sf::Vector2f& mousePos) {
+	return sunSprite.getGlobalBounds().contains(mousePos);
+}
+
+void Sun::appear() {
+	if (collected) {
+		sf::Time elapsed = sClock.getElapsedTime();
+		if (elapsed.asSeconds() >= 10.0f) {
+			collected = false;
+		}
+	}
+}
+
+bool Sun::isCollected()const {
+	return collected;
+}
+
+int Sun::getSunProduced()const {
+	return sunProduced;
+}
+
+sf::Sprite Sun::getSprite()const {
+	return sunSprite; 
 }
