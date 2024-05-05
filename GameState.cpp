@@ -9,14 +9,14 @@ GameState::GameState() :rows(5), columns(9),lives(5),score(0),economy(100), zomb
 	ecoBarTexture.loadFromFile("./SFML/images/ecobar.png");
 	ecoBar.setTexture(ecoBarTexture);
 	ecoBar.setTextureRect(sf::IntRect(0, 0, 677, 243));
-	ecoBar.setColor(sf::Color(255, 255, 255, 192));
+	ecoBar.setColor(sf::Color(255, 255, 255, 128));
 	ecoBar.setScale(0.3, 0.3);
 	ecoBar.setPosition(1175,5);
 	ecoFont.loadFromFile("./SFML/Fonts/serio.ttf");
 	ecoText.setPosition(1230, 7.5);
 	ecoText.setFont(ecoFont);
 	ecoText.setCharacterSize(55);
-
+	ecoText.setFillColor(sf::Color::Black);
 	ecoText.setString(std::to_string(economy));
 }
 
@@ -72,7 +72,7 @@ void GameState::gameplay(sf::RenderWindow& window, sf::Event& event) {
 	}
 	zombieFactory.detectExplosion(plantFactory.getExplosion(), window, &boom);
 	plantFactory.displayOptions(window, event);
-	plantFactory.displayPlants(window);
+	plantFactory.displayPlants(window,event);
 	
 	displayEconomy(window);
 	sun.draw(window);

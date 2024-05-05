@@ -25,6 +25,7 @@
     <ClCompile Include="SimpleZombie.cpp" />
     <ClCompile Include="Sun.cpp" />
     <ClCompile Include="CherryBomb.cpp" />
+    <ClCompile Include="Sunflower.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -51,6 +52,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="SimpleZombie.h" />
     <ClInclude Include="Sun.h" />
+    <ClInclude Include="Sunflower.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Menu.h" />

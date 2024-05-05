@@ -13,6 +13,7 @@ void Sun::draw(sf::RenderWindow& window) {
 		sunSprite.setPosition(pos.pos[0], pos.pos[1]);
 		if (sClock.getElapsedTime().asSeconds() > 0.2f) {
 			sunSprite.setTextureRect(sf::IntRect(x * textureX, 0, textureX, textureY));
+			sunSprite.setTextureRect(sf::IntRect(x * textureX, 0, textureX, textureY));
 			if (x >= sprites - 1) {
 				x = -1;
 			}
@@ -27,12 +28,12 @@ void Sun::draw(sf::RenderWindow& window) {
 void Sun::move() {
 	if (collected == false) {
 		if (pos.pos[1] <= 100) {
-			pos.set(0, 10);
+			pos.set(0, 5);
 		}
 	}
 	else if(collected==true) {
 		
-		pos.pos[0]= 200 + ((rand() % 5) * 80);
+		pos.pos[0]= 200 + ((rand() % 9) * 80);
 		pos.pos[1] = -10;
 	}
 }

@@ -6,9 +6,11 @@
 #include"Repeater.h"
 #include"Wallnut.h"
 #include "CherryBomb.h"
+#include"Sunflower.h"
+
 class PlantFactory {
 protected:
-	int size, current, currentShooters,currentBullets, currentOptions;
+	int size, current, currentShooters, currentBullets, currentSunflowers, currentSuns, currentOptions;
 	Plant** plants;
 	Shooter** shooters;
 	Slot*** grid;
@@ -17,6 +19,8 @@ protected:
 	Plant** options;
 	Shooter** shooterOption;
 	CherryBomb* cherryBomb;
+	Sunflower** sunflowers;
+	Sun** suns;
 	Position explosion;
 	int* economy;
 public:
@@ -29,8 +33,9 @@ public:
 	int getCurrentPlants()const;
 	int getCurrentBullets()const;
 	void displayOptions(sf::RenderWindow& window,sf::Event& event);
-	void displayPlants(sf::RenderWindow& window);
+	void displayPlants(sf::RenderWindow& window,sf::Event& event);
 	void refreshOptions(int i);
+	void produceSun();
 	Position getExplosion();
 };
 

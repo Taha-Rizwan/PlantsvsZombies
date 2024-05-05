@@ -36,6 +36,7 @@
     <ClCompile Include="SnowBullet.cpp" />
     <ClCompile Include="SnowPea.cpp" />
     <ClCompile Include="Sun.cpp" />
+    <ClCompile Include="Sunflower.cpp" />
     <ClCompile Include="Wallnut.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClCompile Include="ZombieFactory.cpp" />
@@ -65,6 +66,7 @@
     <ClInclude Include="SnowBullet.h" />
     <ClInclude Include="SnowPea.h" />
     <ClInclude Include="Sun.h" />
+    <ClInclude Include="Sunflower.h" />
     <ClInclude Include="Wallnut.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="ZombieFactory.h" />

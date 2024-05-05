@@ -1,5 +1,6 @@
 #include "PlantFactory.h"
-PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentShooters(0),currentBullets(0), grid(grid), currentOptions(5),explosion(0,0),economy(economy){
+#include<iostream>
+PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentShooters(0),currentBullets(0),currentSunflowers(0),currentSuns(0), grid(grid), currentOptions(6),explosion(0,0),economy(economy){
 	grid = new Slot * *[5];
 	for (int i = 0; i < 5; i++) {
 		grid[i] = new Slot * [9];
@@ -10,6 +11,8 @@ PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentSh
 	plants = new Plant * [size];
 	shooters = new Shooter * [size];
 	bullets = new Bullet * [100];
+	sunflowers = new Sunflower * [size];
+	suns = new Sun * [size];
 
 	Peashooter* pea = new Peashooter(0, 0);
 
@@ -21,6 +24,8 @@ PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentSh
 	
 	CherryBomb* cherry = new CherryBomb(0, 0);
 	
+	Sunflower* sunflower = new Sunflower(0, 0);
+
 	cherryBomb = cherry;
 	options = new Plant * [currentOptions];
 	options[0] = pea;
@@ -28,6 +33,7 @@ PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentSh
 	options[2] = snowPea;
 	options[3] = wallnut;
 	options[4] = cherry;
+	options[5] = sunflower;
 	shooterOption = new Shooter * [3];
 	shooterOption[0] = pea;
 	shooterOption[1] = repeater;
@@ -71,6 +77,10 @@ void PlantFactory::refreshOptions(int i) {
 		options[4] = cherry;
 		
 				
+	}
+	else if (i == 5) {
+		Sunflower* sunflower = new Sunflower(0, 0);
+		options[5] = sunflower;
 	}
 	for (int i = 0; i < currentOptions; i++)
 		options[i]->getCardSprite()->setPosition(i * 150, 0);
@@ -160,6 +170,9 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 				if (option < 3) {
 					shooters[currentShooters++] = shooterOption[option];
 				}
+				else if (option == 5) {
+					sunflowers[currentSunflowers++] = (Sunflower *)options[option];
+				}
 				*economy -= options[option]->getCost();
 				options[option]->spawn(grid[row][col]->pos.pos[0], grid[row][col]->pos.pos[1]);
 				refreshOptions(option);
@@ -197,10 +210,9 @@ bool PlantFactory::isExplode() {
 	return false;
 }
 
-void PlantFactory::displayPlants(sf::RenderWindow& window) {
+void PlantFactory::displayPlants(sf::RenderWindow& window,sf::Event& event) {
 
 	for (int i = 0; i < current; i++) {
-		
 		plants[i]->draw(window);
 	}
 	for (int j = 0; j < currentShooters; j++) {
@@ -210,10 +222,22 @@ void PlantFactory::displayPlants(sf::RenderWindow& window) {
 		}
 	}
 
-	
-
 	for (int j = 0; j < currentBullets; j++) {
 		if (bullets[j]->getExists())
 			bullets[j]->draw(window);
 	}
+
+	for (int j = 0; j < currentSunflowers; j++) {
+		suns[currentSuns] = sunflowers[j]->produce();
+		if (suns[currentSuns] != nullptr)
+			currentSuns++;
+	}
+
+	for (int j = 0; j < currentSuns; j++) {
+		suns[j]->draw(window);
+		if (suns[j]->collectSun(event, window)) {
+			*economy += 50;
+		}
+	}
+
 }

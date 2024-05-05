@@ -9,6 +9,7 @@
 #include"PlantFactory.h"
 #include"Plant.h"
 #include"CherryBomb.h"
+#include"Sunflower.h"
 #include"ZombieFactory.h"
 #include"Zombie.h"
 #include"SimpleZombie.h"
