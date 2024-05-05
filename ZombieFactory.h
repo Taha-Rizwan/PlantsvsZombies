@@ -3,6 +3,7 @@
 #include "Plant.h"1
 #include"LawnMower.h"
 #include"Zombie.h"
+#include "SimpleZombie.h"
 #include <SFML/Graphics.hpp>
 class ZombieFactory {
 	Zombie** zombies;

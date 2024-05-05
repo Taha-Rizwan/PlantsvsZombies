@@ -1,5 +1,12 @@
 #include "PlantFactory.h"
-PlantFactory::PlantFactory(Slot***grid,int size):size(45),current(0),currentShooters(0),currentBullets(0), grid(grid), currentOptions(5),explosion(0,0){
+PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentShooters(0),currentBullets(0), grid(grid), currentOptions(5),explosion(0,0),economy(economy){
+	grid = new Slot * *[5];
+	for (int i = 0; i < 5; i++) {
+		grid[i] = new Slot * [9];
+		for (int j = 0; j < 9; j++) {
+			grid[i][j] = new Slot((250 + j * 80), (75 + i * 100));
+		}
+	}
 	plants = new Plant * [size];
 	shooters = new Shooter * [size];
 	bullets = new Bullet * [100];
@@ -85,13 +92,13 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 	for ( int i = 0; i < currentOptions; i++) {
 		card = options[i]->getCardSprite();
 		window.draw(*card);
-		if (!options[i]->getAvailable()) {
+		if (!options[i]->getAvailable() || *economy<=options[i]->getCost()) {
 			card->setColor(sf::Color(255, 255, 255, 128));
 		}
 		else {
 			card->setColor(sf::Color(255, 255, 255, 255));
 		}
-		if (event.type == sf::Event::MouseButtonPressed && options[i]->getAvailable()) {
+		if (event.type == sf::Event::MouseButtonPressed && options[i]->getAvailable() && *economy >= options[i]->getCost()) {
 			if (isClicked(*card, mouse)) {
 				initPos = mouse;
 				card->setPosition(mouse);
@@ -125,6 +132,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 							grid[i][j]->normalState();
 						}
 						grid[i][j]->draw(window);
+						grid[i][j]->checkFilled();
 					}
 				}
 
@@ -147,10 +155,12 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 			}
 			if (found && wasOn) {
 				grid[row][col]->toggleFilled();
+				grid[row][col]->plant = options[option];
 				plants[current++] = options[option];
 				if (option < 3) {
 					shooters[currentShooters++] = shooterOption[option];
 				}
+				*economy -= options[option]->getCost();
 				options[option]->spawn(grid[row][col]->pos.pos[0], grid[row][col]->pos.pos[1]);
 				refreshOptions(option);
 				found = false;

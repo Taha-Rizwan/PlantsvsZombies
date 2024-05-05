@@ -18,12 +18,11 @@ protected:
 	Shooter** shooterOption;
 	CherryBomb* cherryBomb;
 	Position explosion;
-	
+	int* economy;
 public:
-	PlantFactory(Slot***grid,int size=45);
+	PlantFactory(int* economy,int size=45);
 	bool isClicked(sf::RectangleShape& rectangle, sf::Vector2f& mousePos);
 	bool isClicked(sf::Sprite& sprite, sf::Vector2f& mousePos);
-	void buyPlant(int& economy);
 	Bullet** getBullets();
 	bool isExplode();
 	Plant** getPlants();

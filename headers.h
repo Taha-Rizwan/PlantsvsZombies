@@ -20,4 +20,5 @@
 #include"GameState.h"
 #include"Sun.h"
 #include"Menu.h"
+#include "GameState.h"
 #endif

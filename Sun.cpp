@@ -9,16 +9,18 @@ Sun::Sun(int x, int y) :pos(x,y), sunProduced(50), collected(false),textureX(71)
 
 void Sun::draw(sf::RenderWindow& window) {
 	static int x = 0;
-	sunSprite.setPosition(pos.pos[0], pos.pos[1]);
-	if (sClock.getElapsedTime().asSeconds() > 0.2f) {
-		sunSprite.setTextureRect(sf::IntRect(x * textureX, 0, textureX, textureY));
-		if (x >= sprites - 1) {
-			x = -1;
+	if (!collected) {
+		sunSprite.setPosition(pos.pos[0], pos.pos[1]);
+		if (sClock.getElapsedTime().asSeconds() > 0.2f) {
+			sunSprite.setTextureRect(sf::IntRect(x * textureX, 0, textureX, textureY));
+			if (x >= sprites - 1) {
+				x = -1;
+			}
+			x++;
+			sClock.restart();
 		}
-		x++;
-		sClock.restart();
+		window.draw(sunSprite);
 	}
-	window.draw(sunSprite);
 }
 
 

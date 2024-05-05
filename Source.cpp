@@ -194,57 +194,59 @@ int main()
 
 	//If a bullet is shot it gets saved to the bullets array, and boom boom
 
-	LawnMower** mowers = new LawnMower*[5];
+	//LawnMower** mowers = new LawnMower*[5];
 
-	for (int i = 0;i < 5;i++) {
-		mowers[i] = new LawnMower(200,105+95*i);
-	}
+	//for (int i = 0;i < 5;i++) {
+	//	mowers[i] = new LawnMower(200,105+95*i);
+	//}
 
 	Sun mySun;
 
 
-	ZombieFactory zombieFactory(10);
+	//ZombieFactory zombieFactory(10);
+	//int eco = 1000000;
+	//
+	//
+	////zombieFactory.addZombie(new FlyingZombie(1075,400));
+	//zombieFactory.addZombie(new SimpleZombie(945, 75));
+	//zombieFactory.addZombie(new SimpleZombie(1025, 275));
+	//zombieFactory.addZombie(new SimpleZombie(1200, 75));
+	//zombieFactory.addZombie(new SimpleZombie(945, 75));
+	//zombieFactory.addZombie(new SimpleZombie(1025, 275));
+	//zombieFactory.addZombie(new SimpleZombie(1200, 75));
+	//zombieFactory.addZombie(new SimpleZombie(945, 75));
+	//zombieFactory.addZombie(new SimpleZombie(1025, 275));
+	//zombieFactory.addZombie(new SimpleZombie(1200, 75));
+	//zombieFactory.addZombie(new SimpleZombie(945, 75));
+	//zombieFactory.addZombie(new SimpleZombie(1025, 275));
+	//zombieFactory.addZombie(new SimpleZombie(1200, 75));
 
-	
-	
-	//zombieFactory.addZombie(new FlyingZombie(1075,400));
-	zombieFactory.addZombie(new SimpleZombie(945, 75));
-	zombieFactory.addZombie(new SimpleZombie(1025, 275));
-	zombieFactory.addZombie(new SimpleZombie(1200, 75));
-	zombieFactory.addZombie(new SimpleZombie(945, 75));
-	zombieFactory.addZombie(new SimpleZombie(1025, 275));
-	zombieFactory.addZombie(new SimpleZombie(1200, 75));
-	zombieFactory.addZombie(new SimpleZombie(945, 75));
-	zombieFactory.addZombie(new SimpleZombie(1025, 275));
-	zombieFactory.addZombie(new SimpleZombie(1200, 75));
-	zombieFactory.addZombie(new SimpleZombie(945, 75));
-	zombieFactory.addZombie(new SimpleZombie(1025, 275));
-	zombieFactory.addZombie(new SimpleZombie(1200, 75));
+	//bool boom =false;
 
-	bool boom =false;
-
-	Slot*** Grid = new Slot**[5];
-	PlantFactory plantFactory(Grid);
-	for (int i = 0; i < 5; i++) {
-		Grid[i] = new Slot * [9];
-		for (int j = 0; j < 9; j++) {
-			Grid[i][j] = new Slot((250 + j*80), (75 + i*100));
-			
-		}
-	}
+	//Slot*** Grid = new Slot**[5];
+	//PlantFactory plantFactory(Grid,&eco);
+	//for (int i = 0; i < 5; i++) {
+	//	Grid[i] = new Slot * [9];
+	//	for (int j = 0; j < 9; j++) {
+	//		Grid[i][j] = new Slot((250 + j*80), (75 + i*100));
+	//		
+	//	}
+	//}
 
 	//Ignore
 	//Zombie* flyingZombie = new FlyingZombie(1075,300);
 	//Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
 	
 	
-	static bool startGame = false;
+	static bool startGame = true;
 	static bool showMenu = false;//bool for showing menu
 	static bool showModes = false;//bool for showing modes in menu
 
 	Clock clock;
 	Time timePerFrame = seconds(1.f / 60.f); // 60 FPS
 
+	GameState gameState;
+	
 
 	while (window.isOpen())
 	{
@@ -260,6 +262,7 @@ int main()
 				if (menuTexts.startText.getGlobalBounds().contains(mouse)&&!showModes) {
 					showMenu = false;
 					showModes = false;
+					gameState.startRound();
 				}
 				else if (menuTexts.modeText.getGlobalBounds().contains(mouse)&&!showModes) {
 					showModes = true;
@@ -364,25 +367,19 @@ int main()
 				//Create a background
 				createBack(window);
 				//createMap(window);
-
+				gameState.gameplay(window, event);
 
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
 		//zombie.draw(window);
 		//zombie.move();
-		
-		for (int i = 0;i < 5;i++) {
-			mowers[i]->draw(window);
-			mowers[i]->moveMower();
-		}
 
-		zombieFactory.drawZombies(window);
-		zombieFactory.moveZombies();
-		zombieFactory.detectCollision(plantFactory.getBullets(), plantFactory.getPlants(), mowers, plantFactory.getCurrentBullets(), plantFactory.getCurrentPlants(), 5);
+
+				//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
 				//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
 				//zombie.draw(window);
 				//zombie.move();
 
-				for (int i = 0; i < 5; i++) {
+			/*	for (int i = 0; i < 5; i++) {
 					mowers[i]->draw(window);
 					mowers[i]->moveMower();
 				}
@@ -397,13 +394,13 @@ int main()
 				}
 				zombieFactory.detectExplosion(plantFactory.getExplosion(), window, &boom);
 				mySun.draw(window);
-		mySun.collectSun(event);
-		mySun.move();
+				mySun.collectSun(event);
+				mySun.move();
 
 				plantFactory.displayOptions(window, event);
 				plantFactory.displayPlants(window);
 
-				
+				*/	
 			}
 		window.setSize(Vector2u(1100, 680));
 		window.display();
