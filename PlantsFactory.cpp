@@ -138,8 +138,9 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 				
 				
 				plants[current++] = options[option];
-				if(option<3)
+				if (option < 3) {
 					shooters[currentShooters++] = shooterOption[option];
+				}
 				options[option]->spawn(grid[row][col]->pos.pos[0], grid[row][col]->pos.pos[1]);
 				refreshOptions(option);
 				found = false;

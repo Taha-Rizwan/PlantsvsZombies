@@ -1,3 +1,4 @@
+#pragma once
 #ifndef Slot_h
 #include "Slot.h"
 #include "SnowPea.h"

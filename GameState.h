@@ -1,6 +1,8 @@
 #ifndef GAME_STATE_H
 #define GAME_STATE_H
 #include"ZombieFactory.h"
+#include"PlantFactory.h"
+#include"Lawnmower.h"
 #include"Slot.h"
 #include"Bullet.h"
 
@@ -14,6 +16,7 @@ class GameState {
 	//PlantFactory currentPlants;
 	ZombieFactory currentZombies;
 	Bullet* currentBullets;
+	LawnMower* mowers;
 public:
 	GameState();
 	int getEconomy()const;

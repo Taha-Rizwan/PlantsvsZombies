@@ -19,5 +19,5 @@
 #include"Slot.h"
 #include"GameState.h"
 #include"Sun.h"
-
+#include"Menu.h"
 #endif

@@ -1,7 +1,7 @@
 #include"GameState.h"
 
 //GameState Constructor
-GameState::GameState() :rows(5), columns(9),lives(4),score(0),economy(0),currentZombies(10) {
+GameState::GameState() :rows(5), columns(9),lives(5),score(0),economy(0),currentZombies(10) {
 	grid = new Slot **[rows];
 	for (int i = 0;i < rows;i++) {
 		grid[i] = new Slot*[columns];
@@ -9,7 +9,6 @@ GameState::GameState() :rows(5), columns(9),lives(4),score(0),economy(0),current
 			grid[i][j] = new Slot((250 + j * 80), (75 + i * 100));
 		}
 	}
-	
 }
 
 //Getter for economy
