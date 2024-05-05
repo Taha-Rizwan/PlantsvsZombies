@@ -15,6 +15,7 @@ sf::Sprite* Plant::getCardSprite() {
 void Plant::spawn(int x, int y) {
 	pos.pos[0] = x;
 	pos.pos[1] = y;
+	Entity::clock.restart();
 	toggleExists();
 }
 

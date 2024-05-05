@@ -1,5 +1,5 @@
 #include "PlantFactory.h"
-PlantFactory::PlantFactory(Slot***grid,int size):size(45),current(0),currentShooters(0),currentBullets(0), grid(grid), currentOptions(4){
+PlantFactory::PlantFactory(Slot***grid,int size):size(45),current(0),currentShooters(0),currentBullets(0), grid(grid), currentOptions(5),explosion(0,0){
 	plants = new Plant * [size];
 	shooters = new Shooter * [size];
 	bullets = new Bullet * [100];
@@ -11,12 +11,16 @@ PlantFactory::PlantFactory(Slot***grid,int size):size(45),current(0),currentShoo
 	SnowPea* snowPea = new SnowPea(0, 0);
 
 	Wallnut* wallnut = new Wallnut(0, 0);
-
+	
+	CherryBomb* cherry = new CherryBomb(0, 0);
+	
+	cherryBomb = cherry;
 	options = new Plant * [currentOptions];
 	options[0] = pea;
 	options[1] = repeater;
 	options[2] = snowPea;
 	options[3] = wallnut;
+	options[4] = cherry;
 	shooterOption = new Shooter * [3];
 	shooterOption[0] = pea;
 	shooterOption[1] = repeater;
@@ -51,7 +55,15 @@ void PlantFactory::refreshOptions(int i) {
 		shooterOption[2] = snowPea;
 	}
 	else if (i == 3) {
+
 		options[3] = new Wallnut(0, 0);
+	}
+	else if (i == 4) {
+		CherryBomb* cherry = new CherryBomb(0, 0);
+
+		options[4] = cherry;
+		
+				
 	}
 	for (int i = 0; i < currentOptions; i++)
 		options[i]->getCardSprite()->setPosition(i * 150, 0);
@@ -135,8 +147,6 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 			}
 			if (found && wasOn) {
 				grid[row][col]->toggleFilled();
-				
-				
 				plants[current++] = options[option];
 				if (option < 3) {
 					shooters[currentShooters++] = shooterOption[option];
@@ -165,6 +175,18 @@ int PlantFactory::getCurrentBullets()const{
 int PlantFactory::getCurrentPlants()const{
 	return current;
 }
+Position PlantFactory::getExplosion(){
+	return explosion;
+}
+bool PlantFactory::isExplode() {
+	if (cherryBomb->getExists()) {
+			explosion = cherryBomb->getPos();
+			cherryBomb = (CherryBomb*)options[4];
+			return true;
+	}
+	return false;
+}
+
 void PlantFactory::displayPlants(sf::RenderWindow& window) {
 
 	for (int i = 0; i < current; i++) {
@@ -177,6 +199,8 @@ void PlantFactory::displayPlants(sf::RenderWindow& window) {
 			currentBullets++;
 		}
 	}
+
+	
 
 	for (int j = 0; j < currentBullets; j++) {
 		if (bullets[j]->getExists())
