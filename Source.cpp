@@ -397,9 +397,9 @@ int main()
 				}
 				zombieFactory.detectExplosion(plantFactory.getExplosion(), window, &boom);
 				mySun.draw(window);
-		mySun.collectSun(event);
-		mySun.move();
-
+				mySun.move();
+				mySun.collectSun(event);
+				mySun.appear();
 				plantFactory.displayOptions(window, event);
 				plantFactory.displayPlants(window);
 

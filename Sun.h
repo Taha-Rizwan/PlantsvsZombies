@@ -12,14 +12,15 @@ class Sun {
 	int sprites;
 	sf::Clock sClock;
 public:
-	Sun(int x = 200, int y = 0);
+	Sun(int x = 200, int y = -10);
 	void draw(sf::RenderWindow& window);
 	void move();
 	void collectSun(sf::Event& event);
 	bool isClicked(sf::Vector2f& mousePos);
-	sf::Sprite* getSprite(){
-		return &sunSprite;
-	}
+	void appear();
+	bool isCollected()const;
+	int getSunProduced()const;
+	sf::Sprite getSprite()const;
 };
 
 
