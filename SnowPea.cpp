@@ -1,6 +1,6 @@
 #include "SnowPea.h"
 
-SnowPea::SnowPea(int x, int y): Plant(x, y, 100, "./SFML/images/c/snowpea.png", "SnowPea", 71, 71, 10, 50, 8,"./SFML/images/snowpeaCard.png"), Shooter(&(Plant::pos),3, 20, "./SFML/images/snowBullet.png", 15, 10) {
+SnowPea::SnowPea(int x, int y): Plant(x, y, 100, "./SFML/images/c/snowpea.png", "SnowPea", 71, 71, 10, 175, 8,"./SFML/images/snowpeaCard.png"), Shooter(&(Plant::pos),3, 20, "./SFML/images/snowBullet.png", 15, 10) {
 
 }
 Bullet* SnowPea::shoot() {

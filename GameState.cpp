@@ -73,10 +73,13 @@ void GameState::gameplay(sf::RenderWindow& window, sf::Event& event) {
 	zombieFactory.detectExplosion(plantFactory.getExplosion(), window, &boom);
 	plantFactory.displayOptions(window, event);
 	plantFactory.displayPlants(window);
-	suns.draw(window);
+	
 	displayEconomy(window);
-	suns.move();
-	suns.collectSun(event);
+	sun.draw(window);
+	sun.move();
+	sun.appear();
+	if (sun.collectSun(event, window))
+		economy += 50;
 }
 
 //Destructors

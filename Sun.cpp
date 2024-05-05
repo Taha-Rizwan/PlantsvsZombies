@@ -31,19 +31,22 @@ void Sun::move() {
 		}
 	}
 	else if(collected==true) {
-		pos.pos[0]=200;
+		
+		pos.pos[0]= 200 + ((rand() % 5) * 80);
 		pos.pos[1] = -10;
 	}
 }
 
-void Sun::collectSun(sf::Event& event) {
-	sf::Vector2f mousePos(event.mouseButton.x, event.mouseButton.y);
-	if (event.type == sf::Event::MouseButtonPressed) {
+bool Sun::collectSun(sf::Event& event, sf::RenderWindow& window) {
+	sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+	if (event.type == sf::Event::MouseButtonPressed && !collected) {
 		if (isClicked(mousePos)) {
 			collected = true;
 			sClock.restart();
+			return true;
 		}
 	}
+	return false;
 }
 
 bool Sun::isClicked(sf::Vector2f& mousePos) {
@@ -53,7 +56,7 @@ bool Sun::isClicked(sf::Vector2f& mousePos) {
 void Sun::appear() {
 	if (collected) {
 		sf::Time elapsed = sClock.getElapsedTime();
-		if (elapsed.asSeconds() >= 10.0f) {
+		if (elapsed.asSeconds() >= 5.0f) {
 			collected = false;
 		}
 	}

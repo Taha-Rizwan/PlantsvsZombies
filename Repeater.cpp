@@ -1,6 +1,6 @@
 #include "Repeater.h"
 
-Repeater::Repeater(int x, int y) : Plant(x, y, 100, "./SFML/images/c/repeater.png", "Repeater", 71, 71, 10, 50, 13,"./SFML/images/repeaterCard.png"), Shooter(&(Plant::pos),2.9, 20, "./SFML/images/peashooterBullet.png", 10, 15) {
+Repeater::Repeater(int x, int y) : Plant(x, y, 100, "./SFML/images/c/repeater.png", "Repeater", 71, 71, 10, 200, 13,"./SFML/images/repeaterCard.png"), Shooter(&(Plant::pos),2.9, 20, "./SFML/images/peashooterBullet.png", 10, 15) {
 	shot = false;
 }
 //Function to burst shoot

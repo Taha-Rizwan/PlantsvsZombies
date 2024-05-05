@@ -15,7 +15,7 @@ class GameState {
 	int economy;
 	PlantFactory plantFactory;
 	ZombieFactory zombieFactory;
-	Sun suns;
+	Sun sun;
 	sf::Sprite ecoBar;
 	sf::Texture ecoBarTexture;
 	Bullet* currentBullets;

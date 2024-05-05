@@ -15,7 +15,7 @@ public:
 	Sun(int x = 200, int y = -10);
 	void draw(sf::RenderWindow& window);
 	void move();
-	void collectSun(sf::Event& event);
+	bool collectSun(sf::Event& event,  sf::RenderWindow& window);
 	bool isClicked(sf::Vector2f& mousePos);
 	void appear();
 	bool isCollected()const;

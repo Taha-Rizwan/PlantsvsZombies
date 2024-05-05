@@ -135,6 +135,7 @@ void createMap(RenderWindow& window) {
 
 int main()
 {
+	srand(time(0));
 	//Create a window, n*n
 	RenderWindow window(VideoMode(1400, 600), "Plants Vs Zombies");
 	//Game icon
@@ -200,7 +201,6 @@ int main()
 	//	mowers[i] = new LawnMower(200,105+95*i);
 	//}
 
-	Sun mySun;
 
 
 	//ZombieFactory zombieFactory(10);
@@ -238,7 +238,7 @@ int main()
 	//Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
 	
 	
-	static bool startGame = true;
+	static bool startGame = false;
 	static bool showMenu = false;//bool for showing menu
 	static bool showModes = false;//bool for showing modes in menu
 

@@ -92,7 +92,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 	for ( int i = 0; i < currentOptions; i++) {
 		card = options[i]->getCardSprite();
 		window.draw(*card);
-		if (!options[i]->getAvailable() || *economy<=options[i]->getCost()) {
+		if (!options[i]->getAvailable() || *economy<options[i]->getCost()) {
 			card->setColor(sf::Color(255, 255, 255, 128));
 		}
 		else {
@@ -112,7 +112,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 	}		
 
 		//Drag and Drop implementation if a plant card is selected
-		if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+		if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left) && selected) {
 			card = options[option]->getCardSprite();
 			if (selected) {
 				sf::Vector2f delta = window.mapPixelToCoords(sf::Mouse::getPosition(window));
