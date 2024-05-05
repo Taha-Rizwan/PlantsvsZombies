@@ -30,12 +30,14 @@ void ZombieFactory::moveZombies() {
 void ZombieFactory::detectExplosion(Position pos, sf::RenderWindow& window, bool* boom) {
 
 	static sf::Clock clock;
+	if (!*boom)
+		clock.restart();
 	if (*boom) {
 		sf::Vector2f mid(pos.pos[0] - 80, pos.pos[1] - 100);
 		sf::RectangleShape rect;
 		rect.setSize(sf::Vector2f(80 * 3, 100 * 3));
 		rect.setPosition(mid);
-		if (clock.getElapsedTime().asSeconds() >= 5) {
+		if (clock.getElapsedTime().asSeconds() >= 2) {
 			for (int i = 0; i < current; i++) {
 				if (zombies[i]->getSprite()->getGlobalBounds().intersects(rect.getGlobalBounds())) {
 					zombies[i]->hit(250);
