@@ -1,13 +1,11 @@
 #include"DancingZombie.h"
 
-DancingZombie::DancingZombie(int x, int y) : Zombie(x, y, 200, "./SFML/images/dancingZombie.png", "DancingZombie", 24, 36, 6, 20, 0, false, 20,4 ) {
-
+DancingZombie::DancingZombie(int x, int y) : Zombie(x, y, 200, "./SFML/images/dancingZombie2.png", "DancingZombie", 59.4,77.2, 15,0, 0, false, 20,10) {
+	sprite.setScale(2, 2);
+	startY = 3;
 }
 
 void DancingZombie::move() {
-	//Collision Logic/........
-	
-	
 	float time = moveClock.restart().asSeconds();
 	Entity::pos.set(-speed * time);
 }

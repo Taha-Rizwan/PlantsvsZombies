@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="DancingZombie.cpp" />
-    <ClCompile Include="DolphinRiderZombie.cpp" />
     <ClCompile Include="FlyingZombie.cpp" />
     <ClCompile Include="Peashooter.cpp" />
     <ClCompile Include="Plant.cpp" />
@@ -30,7 +29,6 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="DancingZombie.h" />
-    <ClInclude Include="DolphinRiderZombie.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FlyingZombie.h" />
     <ClInclude Include="Peashooter.h" />

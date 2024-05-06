@@ -137,7 +137,7 @@ int main()
 {
 	srand(time(0));
 	//Create a window, n*n
-	RenderWindow window(VideoMode(1400, 600), "Plants Vs Zombies");
+	RenderWindow window(VideoMode(1400, 600), "Plants Vs Zombies"); //was (1400,600)
 	//Game icon
 	Image icon;
 	if (!icon.loadFromFile("./SFML/Images/icon.png"))
@@ -402,7 +402,7 @@ int main()
 
 				*/	
 			}
-		window.setSize(Vector2u(1100, 680));
+		window.setSize(Vector2u(1100,680)); //was(1100,680)
 		window.display();
 	}
 	return 0;

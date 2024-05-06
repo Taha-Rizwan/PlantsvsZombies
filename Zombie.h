@@ -18,6 +18,7 @@ public:
 	int getSpeed()const;
 	int getDamage()const;
 	virtual void move()=0;
-	void eatPlant(Plant* plant);
+	void spawn(int x, int y);
+	virtual void eatPlant(Plant* plant);
 	virtual ~Zombie() {}
 };

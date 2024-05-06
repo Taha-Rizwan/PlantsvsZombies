@@ -60,12 +60,15 @@ void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower**
 					bullets[j]->toggleExists();
 				}
 			}
+
 		}
 		//Plant Collision
 		for (int j = 0; j < numPlants; j++) {
 			if (plants[j]->getExists()) {
-				if (plants[j]->getSprite()->getGlobalBounds().intersects(zombies[i]->getSprite()->getGlobalBounds())) {
-					zombies[i]->eatPlant(plants[j]);
+				if (plants[j]->getSprite()->getGlobalBounds().intersects(zombies[i]->getSprite()->getGlobalBounds())){
+					if (zombies[i]->getDamage() != 0) {
+						zombies[i]->eatPlant(plants[j]);
+					}
 				}
 			}
 		}

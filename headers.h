@@ -14,7 +14,6 @@
 #include"Zombie.h"
 #include"SimpleZombie.h"
 #include"DancingZombie.h"
-#include"DolphinRiderZombie.h"
 #include"FlyingZombie.h"
 #include"FootballZombie.h"
 #include"Slot.h"

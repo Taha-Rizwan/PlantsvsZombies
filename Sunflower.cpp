@@ -10,6 +10,8 @@ bool Sunflower::getProduceSun()const {
 
 Sun* Sunflower::produce() {
 	sun = nullptr;
+	if (!exists)
+		sClock.restart();
 	if (produceSun){
 		if (sClock.getElapsedTime().asSeconds() >= waitTime){
 			sClock.restart();

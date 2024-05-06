@@ -40,15 +40,9 @@ void GameState::startRound() {
 	zombieFactory.addZombie(new SimpleZombie(945, 75));
 	zombieFactory.addZombie(new SimpleZombie(1025, 275));
 	zombieFactory.addZombie(new SimpleZombie(1200, 75));
-	zombieFactory.addZombie(new SimpleZombie(945, 75));
-	zombieFactory.addZombie(new SimpleZombie(1025, 275));
-	zombieFactory.addZombie(new SimpleZombie(1200, 75));
-	zombieFactory.addZombie(new SimpleZombie(945, 75));
-	zombieFactory.addZombie(new SimpleZombie(1025, 275));
-	zombieFactory.addZombie(new SimpleZombie(1200, 75));
-	zombieFactory.addZombie(new SimpleZombie(945, 75));
-	
-
+	zombieFactory.addZombie(new FootballZombie(945, 250));
+	zombieFactory.addZombie(new FlyingZombie(920, 350));
+	zombieFactory.addZombie(new DancingZombie(1000, 100));
 }
 
 void GameState::displayEconomy(sf::RenderWindow& window) {

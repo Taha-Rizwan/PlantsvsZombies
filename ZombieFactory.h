@@ -4,7 +4,11 @@
 #include"LawnMower.h"
 #include"Zombie.h"
 #include "SimpleZombie.h"
+#include"FootballZombie.h"
+#include"DancingZombie.h"
+#include"FlyingZombie.h"
 #include <SFML/Graphics.hpp>
+
 class ZombieFactory {
 	Zombie** zombies;
 	int size, current;

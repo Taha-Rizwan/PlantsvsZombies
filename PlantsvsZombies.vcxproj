@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="CherryBomb.cpp" />
     <ClCompile Include="DancingZombie.cpp" />
-    <ClCompile Include="DolphinRiderZombie.cpp" />
     <ClCompile Include="FlyingZombie.cpp" />
     <ClCompile Include="FootballZombie.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -43,7 +42,6 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CherryBomb.h" />
     <ClInclude Include="DancingZombie.h" />
-    <ClInclude Include="DolphinRiderZombie.h" />
     <ClInclude Include="Entity.h">
       <FileType>CppCode</FileType>
     </ClInclude>

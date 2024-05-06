@@ -14,12 +14,18 @@ int Zombie::getDamage()const {
 	return damage;
 }
 
+void Zombie::spawn(int x, int y) {
+	pos.pos[0] = x;
+	pos.pos[1] = y;
+	Entity::clock.restart();
+	toggleExists();
+}
 
 //Zombie eats plant
 void Zombie::eatPlant(Plant* plant) {
-	if (exists && plant->getExists()) {
+	if (exists && plant->getExists()){
 		eat = true;
-		startY = 3;
+		//startY = 3;
 		plant->hit(damage);
 		if (!(plant->getExists())) {
 			eat = false;
