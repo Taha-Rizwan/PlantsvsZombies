@@ -51,6 +51,7 @@
     <ClCompile Include="Source.cpp" />
     <ClInclude Include="FlyingZombie.h" />
     <ClInclude Include="FootballZombie.h" />
+    <ClInclude Include="FumeShroom.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="headers.h" />
     <ClInclude Include="LawnMower.h" />

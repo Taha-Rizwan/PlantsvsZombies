@@ -20,6 +20,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	void toggleExists();
 	void setType(std::string t);
+	std::string getType();
 	sf::Sprite* getSprite();
 };
 

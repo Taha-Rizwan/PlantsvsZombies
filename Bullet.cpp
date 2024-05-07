@@ -34,6 +34,9 @@ void Bullet::toggleExists() {
 void Bullet::setType(std::string t) {
 	type = t;
 }
+std::string Bullet::getType() {
+	return type;
+}
 sf::Sprite* Bullet::getSprite() {
 	return &bulletSprite;
 }

@@ -51,6 +51,7 @@
     <ClInclude Include="SimpleZombie.h" />
     <ClInclude Include="Sun.h" />
     <ClInclude Include="Sunflower.h" />
+    <ClInclude Include="FumeShroom.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Menu.h" />

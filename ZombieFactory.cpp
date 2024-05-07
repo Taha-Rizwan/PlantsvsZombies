@@ -1,5 +1,5 @@
 #include"ZombieFactory.h"
-
+#include <iostream>
 //Constructor for ZombieFactory(takes the number of zombies as size)
 ZombieFactory::ZombieFactory(int size):size(size),current(0),zombies(new Zombie*[size]) {
 }
@@ -24,6 +24,9 @@ void ZombieFactory::drawZombies(sf::RenderWindow& window) {
 void ZombieFactory::moveZombies() {
 	for (int i = 0;i < current;i++) {
 		zombies[i]->move();
+		if (zombies[i]->getFreeze()) {
+			zombies[i]->checkFrozen();
+		}
 	}
 }
 
@@ -54,10 +57,16 @@ void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower**
 	for (int i = 0; i < current; i++) {
 		//Bullet Collision
 		for (int j = 0; j < numBullets; j++) {
-			if (bullets[j]->getExists()) {
+			if (bullets[j]->getExists() && zombies[i]->getExists()) {
 				if (bullets[j]->getSprite()->getGlobalBounds().intersects(zombies[i]->getSprite()->getGlobalBounds())) {
 					zombies[i]->hit(5);
 					bullets[j]->toggleExists();
+					//Snow Bullet
+					if (bullets[j]->getType() == "freeze" && !zombies[i]->getFreeze())
+					{
+						zombies[i]->toggleFreeze();
+						std::cout << "Frozen" << std::endl;
+					}
 				}
 			}
 

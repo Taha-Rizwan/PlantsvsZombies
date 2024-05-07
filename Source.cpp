@@ -170,7 +170,7 @@ int main()
 	Text hardText(menuTexts.startText);
 	hardText.setString("HARD");
 	hardText.setPosition(670, 200);
-
+	
 
 	///////////////////////////////////////
 
