@@ -1,7 +1,7 @@
 #include"Zombie.h"
-
+#include <iostream>
 //Constructor(Members initialized using member initializer list)
-Zombie::Zombie(int x, int y, int tolerance, std::string texturePath, std::string name, double textureX, double textureY, float speed, int damage, int wait, bool attack, int score, int sprites):Entity(x,y,tolerance,texturePath,name,textureX,textureY, sprites),speed(speed),damage(damage),wait(wait),attack(attack),score(score),startY(0),eat(false) {
+Zombie::Zombie(int x, int y, int tolerance, std::string texturePath, std::string name, double textureX, double textureY, float speed, int damage, int wait, bool attack, int score, int sprites):Entity(x,y,tolerance,texturePath,name,textureX,textureY, sprites),speed(speed),damage(damage),wait(wait),attack(attack),score(score),startY(0),eat(false),freeze(false) {
 	sprite.setScale(2, 2);
 }
 
@@ -19,6 +19,25 @@ void Zombie::spawn(int x, int y) {
 	pos.pos[1] = y;
 	Entity::clock.restart();
 	toggleExists();
+}
+void Zombie::toggleFreeze() {
+	freeze = !freeze;
+	if (freeze) {
+		speed /= 2;
+		freezeClock.restart();
+		}
+}
+void Zombie::checkFrozen() {
+	if (freeze && freezeClock.getElapsedTime().asSeconds() >= 2) {
+		std::cout << "Unfrozen" << std::endl;
+		toggleFreeze();
+		speed *= 2;
+	}
+		
+}
+
+bool Zombie::getFreeze() {
+	return freeze;
 }
 
 //Zombie eats plant

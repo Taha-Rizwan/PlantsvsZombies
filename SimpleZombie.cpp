@@ -6,7 +6,8 @@ SimpleZombie::SimpleZombie(int x, int y) : Zombie(x, y, 30, "./SFML/images/zombi
 void SimpleZombie::move() {
 	if (!eat) {
 		float time = moveClock.restart().asSeconds();
-		pos.set(-speed * time * 2);
+		
+			pos.set(-speed * time * 2);
 	}
 }
 

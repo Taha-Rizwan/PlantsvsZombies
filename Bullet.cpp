@@ -1,5 +1,5 @@
 #include "Bullet.h"
-Bullet::Bullet(int x, int y, float bulletSpeed, std::string spritePath, double textureX, double textureY): pos(x,y),bulletSpeed(bulletSpeed) {
+Bullet::Bullet(int x, int y, float bulletSpeed, std::string spritePath, double textureX, double textureY): pos(x,y),bulletSpeed(bulletSpeed),textureX(textureX),textureY(textureY) {
 	bulletTexture.loadFromFile(spritePath);
 	bulletSprite.setTexture(bulletTexture);
 	bulletSprite.setTextureRect(sf::IntRect(0,0,textureX,textureY));
@@ -33,6 +33,9 @@ void Bullet::toggleExists() {
 }
 void Bullet::setType(std::string t) {
 	type = t;
+}
+std::string Bullet::getType() {
+	return type;
 }
 sf::Sprite* Bullet::getSprite() {
 	return &bulletSprite;

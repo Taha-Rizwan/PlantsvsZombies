@@ -12,7 +12,7 @@ Sun* Sunflower::produce() {
 	sun = nullptr;
 	if (!exists)
 		sClock.restart();
-	if (produceSun){
+	if (produceSun && exists){
 		if (sClock.getElapsedTime().asSeconds() >= waitTime){
 			sClock.restart();
 			sun = new Sun(pos.pos[0]+20, pos.pos[1]-25);

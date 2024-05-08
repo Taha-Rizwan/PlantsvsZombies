@@ -1,6 +1,6 @@
 #include "PlantFactory.h"
 #include<iostream>
-PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentShooters(0),currentBullets(0),currentSunflowers(0),currentSuns(0), grid(grid), currentOptions(6),explosion(0,0),economy(economy){
+PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentShooters(0),currentBullets(0),currentSunflowers(0),currentSuns(0), grid(grid), currentOptions(7),explosion(0,0),economy(economy){
 	grid = new Slot * *[5];
 	for (int i = 0; i < 5; i++) {
 		grid[i] = new Slot * [9];
@@ -27,7 +27,7 @@ PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentSh
 	CherryBomb* cherry = new CherryBomb(0, 0);
 	
 	Sunflower* sunflower = new Sunflower(0, 0);
-
+	FumeShroom* fume = new FumeShroom(0, 0);
 	cherryBomb = cherry;
 	options = new Plant * [currentOptions];
 	options[0] = pea;
@@ -36,10 +36,12 @@ PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentSh
 	options[3] = wallnut;
 	options[4] = cherry;
 	options[5] = sunflower;
-	shooterOption = new Shooter * [3];
+	options[6] = fume;
+	shooterOption = new Shooter * [4];
 	shooterOption[0] = pea;
 	shooterOption[1] = repeater;
 	shooterOption[2] = snowPea;
+	shooterOption[3] = fume;
 	for (int i = 0; i < currentOptions; i++)
 		options[i]->getCardSprite()->setPosition(i * 150, 0);
 }
@@ -83,6 +85,11 @@ void PlantFactory::refreshOptions(int i) {
 	else if (i == 5) {
 		Sunflower* sunflower = new Sunflower(0, 0);
 		options[5] = sunflower;
+	}
+	else if (i == 6) {
+		FumeShroom* fume = new FumeShroom(0, 0);
+		options[6] = fume;
+		shooterOption[3] = fume;
 	}
 	for (int i = 0; i < currentOptions; i++)
 		options[i]->getCardSprite()->setPosition(i * 150, 0);
@@ -170,7 +177,10 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 				grid[row][col]->plant = options[option];
 				plants[current++] = options[option];
 				if (option < 3) {
-					shooters[currentShooters++] = shooterOption[option];
+					
+				}
+				if (option == 6) {
+					shooters[currentShooters++] = shooterOption[3];
 				}
 				else if (option == 5) {
 					sunflowers[currentSunflowers++] = (Sunflower *)options[option];
