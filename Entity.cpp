@@ -1,6 +1,6 @@
 #include "Entity.h"
 //X and Y are Spawn Positions, textureX and textureY are height and width of sprites
-Entity::Entity(int x, int y,int tolerance, std::string texturePath, std::string name, double textureX,double textureY, int sprites) : pos(x, y), tolerance(tolerance),textureX(textureX),textureY(textureY), name(name),sprites(sprites),x(0) {
+Entity::Entity(int x, int y,double tolerance, std::string texturePath, std::string name, double textureX,double textureY, int sprites) : pos(x, y), tolerance(tolerance),textureX(textureX),textureY(textureY), name(name),sprites(sprites),x(0) {
 		texture.loadFromFile(texturePath);
 		sprite.setTexture(texture);
 		sprite.setTextureRect(sf::IntRect(0, 0, textureX, textureY));
@@ -9,7 +9,7 @@ Entity::Entity(int x, int y,int tolerance, std::string texturePath, std::string 
 }
 
 //Function for when entity takes damage
-bool Entity::hit(int damage) {
+bool Entity::hit(double damage) {
 
 	tolerance -= damage;
 	if (tolerance < 0)

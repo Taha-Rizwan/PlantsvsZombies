@@ -6,7 +6,7 @@ class Entity {
 protected:
 	Position pos;
 	bool exists;
-	int tolerance;
+	double tolerance;
 	std::string name;
 	sf::Sprite sprite;
 	int sprites;
@@ -17,9 +17,9 @@ protected:
 	int x;
 
 public:
-	Entity(int x, int y, int tolerance, std::string texturePath, std::string name,double textureX,double textureY,int sprites);
+	Entity(int x, int y, double tolerance, std::string texturePath, std::string name,double textureX,double textureY,int sprites);
 	virtual void draw(sf::RenderWindow& window,int y=0);
-	virtual bool hit(int damage);
+	virtual bool hit(double damage);
 	bool getExists()const;
 	std::string getName()const;
 	void toggleExists();

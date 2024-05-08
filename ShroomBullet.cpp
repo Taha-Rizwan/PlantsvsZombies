@@ -1,7 +1,7 @@
 #include "ShroomBullet.h"
 
 ShroomBullet::ShroomBullet(int x, int y, int range): Bullet(x, y, 5, "./SFML/images/fumeBullets.png", 167, 51),x(0),range(range*10) {
-	setType("Fume");
+	setType("fume");
 	bulletSprite.setScale(0.7, 0.7);
 }
 

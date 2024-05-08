@@ -59,8 +59,17 @@ void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower**
 		for (int j = 0; j < numBullets; j++) {
 			if (bullets[j]->getExists() && zombies[i]->getExists()) {
 				if (bullets[j]->getSprite()->getGlobalBounds().intersects(zombies[i]->getSprite()->getGlobalBounds())) {
-					zombies[i]->hit(5);
-					bullets[j]->toggleExists();
+					
+					
+					if (bullets[j]->getType() != "fume") {
+						bullets[j]->toggleExists();
+						zombies[i]->hit(5);
+					}
+					else {
+						zombies[i]->hit(0.25);
+						
+					}
+						
 					//Snow Bullet
 					if (bullets[j]->getType() == "freeze" && !zombies[i]->getFreeze())
 					{
