@@ -177,7 +177,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 				grid[row][col]->plant = options[option];
 				plants[current++] = options[option];
 				if (option < 3) {
-					
+					shooters[currentShooters++] = shooterOption[option];
 				}
 				if (option == 6) {
 					shooters[currentShooters++] = shooterOption[3];

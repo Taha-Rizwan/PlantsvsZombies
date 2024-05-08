@@ -8,6 +8,7 @@
 #include "CherryBomb.h"
 #include"Sunflower.h"
 #include "FumeShroom.h"
+#include"Vector.h"
 class PlantFactory {
 protected:
 	int size, current, currentShooters, currentBullets, currentSunflowers, currentSuns, currentOptions;
