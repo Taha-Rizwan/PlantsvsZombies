@@ -7,14 +7,14 @@
 #include"Wallnut.h"
 #include "CherryBomb.h"
 #include"Sunflower.h"
-
+#include"Vector.h"
 class PlantFactory {
 protected:
 	int size, current, currentShooters, currentBullets, currentSunflowers, currentSuns, currentOptions;
 	Plant** plants;
 	Shooter** shooters;
 	Slot*** grid;
-	Bullet** bullets;
+	Vector<Bullet>bullets;
 	sf::Vector2f initPos;
 	Plant** options;
 	Shooter** shooterOption;
@@ -31,7 +31,7 @@ public:
 	bool isExplode();
 	Plant** getPlants();
 	int getCurrentPlants()const;
-	int getCurrentBullets()const;
+	int getCurrentBullets();
 	void displayOptions(sf::RenderWindow& window,sf::Event& event);
 	void displayPlants(sf::RenderWindow& window,sf::Event& event);
 	void refreshOptions(int i);

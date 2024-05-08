@@ -10,7 +10,9 @@ PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentSh
 	}
 	plants = new Plant * [size];
 	shooters = new Shooter * [size];
-	bullets = new Bullet * [100];
+
+	
+	
 	sunflowers = new Sunflower * [size];
 	suns = new Sun * [size];
 
@@ -186,14 +188,14 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 
 
 Bullet** PlantFactory::getBullets() {
-	return bullets;
+	return bullets.getPtr();
 }
 
 Plant** PlantFactory::getPlants() {
 	return plants;
 }
-int PlantFactory::getCurrentBullets()const{
-	return currentBullets;
+int PlantFactory::getCurrentBullets(){
+	return bullets.getCurrent();
 }
 int PlantFactory::getCurrentPlants()const{
 	return current;
@@ -216,15 +218,12 @@ void PlantFactory::displayPlants(sf::RenderWindow& window,sf::Event& event) {
 		plants[i]->draw(window);
 	}
 	for (int j = 0; j < currentShooters; j++) {
-		bullets[currentBullets] = shooters[j]->shoot();
-		if (bullets[currentBullets] != nullptr) {
-			currentBullets++;
-		}
+		bullets.add(shooters[j]->shoot());
 	}
 
-	for (int j = 0; j < currentBullets; j++) {
-		if (bullets[j]->getExists())
-			bullets[j]->draw(window);
+	for (int j = 0; j <	bullets.getCurrent(); j++) {
+		if (bullets.getPtr()[j]->getExists());
+			bullets.getPtr()[j]->draw(window);
 	}
 
 	for (int j = 0; j < currentSunflowers; j++) {

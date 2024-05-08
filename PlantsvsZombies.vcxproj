@@ -65,6 +65,7 @@
     <ClInclude Include="SnowPea.h" />
     <ClInclude Include="Sun.h" />
     <ClInclude Include="Sunflower.h" />
+    <ClInclude Include="Vector.h" />
     <ClInclude Include="Wallnut.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="ZombieFactory.h" />
