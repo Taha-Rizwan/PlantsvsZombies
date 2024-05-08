@@ -7,7 +7,7 @@
 #include"Wallnut.h"
 #include "CherryBomb.h"
 #include"Sunflower.h"
-
+#include "FumeShroom.h"
 class PlantFactory {
 protected:
 	int size, current, currentShooters, currentBullets, currentSunflowers, currentSuns, currentOptions;

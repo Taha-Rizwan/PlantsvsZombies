@@ -238,7 +238,7 @@ int main()
 	//Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
 	
 	
-	static bool startGame = false;
+	static bool startGame = true;
 	static bool showMenu = false;//bool for showing menu
 	static bool showModes = false;//bool for showing modes in menu
 

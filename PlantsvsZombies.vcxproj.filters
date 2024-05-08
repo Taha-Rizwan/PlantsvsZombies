@@ -25,6 +25,8 @@
     <ClCompile Include="Sun.cpp" />
     <ClCompile Include="CherryBomb.cpp" />
     <ClCompile Include="Sunflower.cpp" />
+    <ClCompile Include="ShroomBullet.cpp" />
+    <ClCompile Include="FumeShroom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -52,6 +54,7 @@
     <ClInclude Include="Sun.h" />
     <ClInclude Include="Sunflower.h" />
     <ClInclude Include="FumeShroom.h" />
+    <ClInclude Include="ShroomBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Menu.h" />

@@ -4,7 +4,8 @@
 #include "Shooter.h"
 class FumeShroom: public Plant,public Shooter {
 public:
-	FumeShroom
+	FumeShroom(int x, int y);
+	Bullet* shoot();
 };
 
 #endif
