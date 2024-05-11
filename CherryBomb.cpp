@@ -1,6 +1,6 @@
 #include "CherryBomb.h"
 
-CherryBomb::CherryBomb(int x, int y) : Plant(x, y, 49, "./SFML/images/CherryBomb.png", "Cherry Bomb", 112, 81, 5, 175, 1, "./SFML/images/cherrybombCard.png") {
+CherryBomb::CherryBomb(int x, int y) : Plant(x, y, 500, "./SFML/images/CherryBomb.png", "Cherry Bomb", 112, 81, 5, 175, 1, "./SFML/images/cherrybombCard.png") {
 	sprite.setScale(0.5, 0.5);
 	sprite.setColor(sf::Color(255, 255, 255, 128));
 	explodeTime = 4;

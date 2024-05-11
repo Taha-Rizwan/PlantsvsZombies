@@ -74,6 +74,7 @@ void PlantFactory::refreshOptions(int i) {
 		CherryBomb* cherry = new CherryBomb(0, 0);
 
 		options[3] = cherry;
+		cherryBomb = cherry;
 		
 	}
 	else if (i == 4) {
@@ -195,7 +196,8 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event,int
 				}
 				*economy -= options[option]->getCost();
 				options[option]->spawn(grid[row][col]->pos.pos[0], grid[row][col]->pos.pos[1]);
-				refreshOptions(option);
+				if(option!=3)
+					refreshOptions(option);
 				found = false;
 			}
 		}
@@ -224,7 +226,7 @@ Position PlantFactory::getExplosion(){
 bool PlantFactory::isExplode() {
 	if (cherryBomb->getExists()) {
 			explosion = cherryBomb->getPos();
-			cherryBomb = (CherryBomb*)options[4];
+			refreshOptions(3);
 			return true;
 	}
 	return false;

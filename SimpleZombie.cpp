@@ -13,7 +13,7 @@ void SimpleZombie::move() {
 
 void SimpleZombie::eatPlant(Plant* plant) {
 	Zombie::eatPlant(plant);
-	if (eat == true) {
+	if (eat == true && exists) {
 		startY = 3;
 	}
 }

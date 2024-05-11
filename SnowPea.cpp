@@ -6,7 +6,7 @@ SnowPea::SnowPea(int x, int y): Plant(x, y, 100, "./SFML/images/c/snowpea.png", 
 Bullet* SnowPea::shoot() {
 	Bullet*	bullet = nullptr;
 
-	if (Shooter::sClock.getElapsedTime().asSeconds() >= reloadTime) {
+	if (Shooter::sClock.getElapsedTime().asSeconds() >= reloadTime && exists) {
 		Shooter::sClock.restart();
 		bullet = new SnowBullet(Shooter::pos->pos[0], Shooter::pos->pos[1],3);
 

@@ -51,6 +51,7 @@ void FootballZombie::move() {
 
 
 void FootballZombie::eatPlant(Plant* plant) {
-	Zombie::eatPlant(plant);
+	if(exists)
+		Zombie::eatPlant(plant);
 	
 }

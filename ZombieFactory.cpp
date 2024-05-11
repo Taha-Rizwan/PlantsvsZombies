@@ -66,10 +66,11 @@ void ZombieFactory::detectExplosion(Position pos, sf::RenderWindow& window, bool
 		sf::RectangleShape rect;
 		rect.setSize(sf::Vector2f(80 * 3, 100 * 3));
 		rect.setPosition(mid);
+
 		if (clock.getElapsedTime().asSeconds() >= 2) {
 			for (int i = 0; i < current; i++) {
-				if (zombies[i]->getSprite()->getGlobalBounds().intersects(rect.getGlobalBounds())) {
-					zombies[i]->hit(250);
+				if (zombies[i]->getSprite()->getGlobalBounds().intersects(rect.getGlobalBounds()) && zombies[i]->getExists()) {
+					zombies[i]->toggleExists();
 				}
 			}
 			clock.restart();

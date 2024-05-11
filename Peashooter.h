@@ -7,6 +7,7 @@ class Peashooter : public Plant, public Shooter {
 
 public:
 	Peashooter(int x, int y);
+	Bullet* shoot();
 };
 
 #endif
