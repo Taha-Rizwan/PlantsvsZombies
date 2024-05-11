@@ -26,6 +26,7 @@
     <ClCompile Include="FumeShroom.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="LawnMower.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="Peashooter.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="PlantsFactory.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="headers.h" />
     <ClInclude Include="LawnMower.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="Peashooter.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantFactory.h" />

@@ -36,6 +36,13 @@ void Zombie::checkFrozen() {
 		
 }
 
+bool Zombie::getWait() {
+	if (waitClock.getElapsedTime().asSeconds() >= wait)
+		return false;
+	moveClock.restart();
+	return true;
+}
+
 bool Zombie::getFreeze() {
 	return freeze;
 }

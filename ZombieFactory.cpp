@@ -20,6 +20,17 @@ void ZombieFactory::drawZombies(sf::RenderWindow& window) {
 	}
 }
 
+bool ZombieFactory::allDead() {
+	int j = 0;
+	for (int i = 0; i < size; i++) {
+		if (!zombies[i]->getExists())
+			j++;
+	}
+	if (j == size)
+		return true;
+	return false;
+}
+
 //Moves all the zombies
 void ZombieFactory::moveZombies() {
 	for (int i = 0;i < current;i++) {
@@ -102,6 +113,14 @@ void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower**
 	}
 }
 
+
+Zombie** ZombieFactory::getZombies() {
+	return zombies;
+}
+
+int ZombieFactory::getCurrentZombies() {
+	return current;
+}
 
 //Destructor(destroys all of the zombies)
 ZombieFactory::~ZombieFactory(){

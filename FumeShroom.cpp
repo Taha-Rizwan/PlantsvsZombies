@@ -1,6 +1,6 @@
 #include "FumeShroom.h"
 #include "ShroomBullet.h"
-FumeShroom::FumeShroom(int x, int y) : Plant(x, y, 100, "./SFML/images/fumeshroom.png", "SnowPea", 33, 31, 10, 75, 4, "./SFML/images/fumeshroomCard.png"), Shooter(&(Plant::pos), 3, 20, "./SFML/images/fumeBullets.png", 15, 10) {
+FumeShroom::FumeShroom(int x, int y) : Plant((x-100), (y), 100, "./SFML/images/fumeshroom.png", "SnowPea", 118, 52, 10, 75, 4, "./SFML/images/fumeshroomCard.png"), Shooter(&(Plant::pos), 3, 20, "./SFML/images/fumeBullets.png", 15, 10) {
 	sprite.setScale(1.5, 1.5);
 }
 Bullet* FumeShroom::shoot() {

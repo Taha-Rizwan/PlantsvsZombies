@@ -13,6 +13,7 @@ class GameState {
 	int score;
 	int lives;
 	int economy;
+	int plantOptions;
 	PlantFactory plantFactory;
 	ZombieFactory zombieFactory;
 	Sun sun;
@@ -24,11 +25,12 @@ class GameState {
 	sf::Text ecoText;
 public:
 
-	GameState();
+	GameState(int plantOption, int zombies);
 	int getEconomy()const;
 	void updateEconomy(int amount);
 	void spawnSun();
-	void startRound();
+	void startRound(int* numOfZombies, int zombieOptions);
+	bool endRound();
 	void gameplay(sf::RenderWindow& window, sf::Event& event);
 	void displayEconomy(sf::RenderWindow& window);
 	~GameState();

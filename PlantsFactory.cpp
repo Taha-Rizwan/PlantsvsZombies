@@ -31,11 +31,11 @@ PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentSh
 	cherryBomb = cherry;
 	options = new Plant * [currentOptions];
 	options[0] = pea;
-	options[1] = repeater;
-	options[2] = snowPea;
-	options[3] = wallnut;
-	options[4] = cherry;
-	options[5] = sunflower;
+	options[1] = sunflower;
+	options[2] = wallnut;
+	options[3] = cherry;
+	options[4] = repeater;
+	options[5] = snowPea;
 	options[6] = fume;
 	shooterOption = new Shooter * [4];
 	shooterOption[0] = pea;
@@ -62,29 +62,31 @@ void PlantFactory::refreshOptions(int i) {
 		shooterOption[0] = pea;
 	}
 	else if (i == 1) {
-		Repeater* repeater = new Repeater(0, 0);
-		options[1] = repeater;
-		shooterOption[1] = repeater;
+		Sunflower* sunflower = new Sunflower(0, 0);
+		options[1] = sunflower;
+		
 	}
 	else if (i == 2) {
-		SnowPea* snowPea = new SnowPea(0, 0);
-		options[2] = snowPea;
-		shooterOption[2] = snowPea;
+		options[2] = new Wallnut(0, 0);
+	
 	}
 	else if (i == 3) {
-
-		options[3] = new Wallnut(0, 0);
-	}
-	else if (i == 4) {
 		CherryBomb* cherry = new CherryBomb(0, 0);
 
-		options[4] = cherry;
+		options[3] = cherry;
 		
+	}
+	else if (i == 4) {
+		
+		Repeater* repeater = new Repeater(0, 0);
+		options[4] = repeater;
+		shooterOption[1] = repeater;
 				
 	}
 	else if (i == 5) {
-		Sunflower* sunflower = new Sunflower(0, 0);
-		options[5] = sunflower;
+		SnowPea* snowPea = new SnowPea(0, 0);
+		options[5] = snowPea;
+		shooterOption[2] = snowPea;
 	}
 	else if (i == 6) {
 		FumeShroom* fume = new FumeShroom(0, 0);
@@ -97,7 +99,7 @@ void PlantFactory::refreshOptions(int i) {
 
 
 
-void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
+void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event,int plantOptions) {
 
 	static bool found;
 	static int row;
@@ -108,7 +110,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 	sf::Sprite *card;
 	sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 	//Drawing each plant card
-	for ( int i = 0; i < currentOptions; i++) {
+	for ( int i = 0; i < plantOptions; i++) {
 		card = options[i]->getCardSprite();
 		window.draw(*card);
 		if (!options[i]->getAvailable() || *economy<options[i]->getCost()) {
@@ -176,13 +178,17 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event) {
 				grid[row][col]->toggleFilled();
 				grid[row][col]->plant = options[option];
 				plants[current++] = options[option];
-				if (option < 3) {
-					shooters[currentShooters++] = shooterOption[option];
+				if (option == 0) {
+					shooters[currentShooters++] = shooterOption[0];
+				} else if (option == 4) {
+					shooters[currentShooters++] = shooterOption[1];
+				}else if (option == 5) {
+					shooters[currentShooters++] = shooterOption[2];
 				}
-				if (option == 6) {
+				else if (option == 6) {
 					shooters[currentShooters++] = shooterOption[3];
 				}
-				else if (option == 5) {
+				else if (option == 1) {
 					sunflowers[currentSunflowers++] = (Sunflower *)options[option];
 				}
 				*economy -= options[option]->getCost();
@@ -228,6 +234,8 @@ void PlantFactory::displayPlants(sf::RenderWindow& window,sf::Event& event) {
 		plants[i]->draw(window);
 	}
 	for (int j = 0; j < currentShooters; j++) {
+	
+
 		bullets.add(shooters[j]->shoot());
 	}
 
