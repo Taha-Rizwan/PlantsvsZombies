@@ -1,6 +1,6 @@
 #include "PlantFactory.h"
 #include<iostream>
-PlantFactory::PlantFactory(int * economy,int size):size(45),current(0),currentShooters(0),currentBullets(0),currentSunflowers(0),currentSuns(0), grid(grid), currentOptions(7),explosion(0,0),economy(economy){
+PlantFactory::PlantFactory(int * economy,int size, bool limited):size(45),current(0),currentShooters(0),currentBullets(0),currentSunflowers(0),currentSuns(0),limited(limited), grid(grid), currentOptions(7),explosion(0,0),economy(economy){
 	grid = new Slot * *[5];
 	for (int i = 0; i < 5; i++) {
 		grid[i] = new Slot * [9];
@@ -106,7 +106,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event,int
 	static int col;
 	static bool selected = false;
 	static int option = 0;
-	
+	static int rows = 9;
 	sf::Sprite *card;
 	sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 	//Drawing each plant card
@@ -132,6 +132,8 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event,int
 
 	}		
 
+	if (limited)
+		rows = 3;
 		//Drag and Drop implementation if a plant card is selected
 		if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left) && selected) {
 			card = options[option]->getCardSprite();
@@ -141,7 +143,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event,int
 				card->setScale(0.18, 0.30);
 		
 				for (int i = 0; i < 5; i++) {
-					for (int j = 0; j < 9; j++) {
+					for (int j = 0; j < rows; j++) {
 						if (grid[i][j]->rectangle.getGlobalBounds().contains(delta) && !grid[i][j]->filled) {
 							grid[i][j]->rectangle.setFillColor(sf::Color(0, 255, 0, 128));
 							row = i;

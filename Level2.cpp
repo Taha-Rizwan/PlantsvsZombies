@@ -1,13 +1,13 @@
-#include "Level1.h"
+#include "Level2.h"
 #include "iostream"
-Level1::Level1() : Level(1, 10, 3, 1, "Beginner's Garden","Wallnut Unlocked","Limited Plant Selection","Slow Zombie Waves") {
+Level2::Level2() : Level(2, 20, 4, 4, "Zombie Outskirts","Cherry Bomb Unlocked","Faster Zombie Waves","Limited Resources") {
 
 }
 
-void Level1::createBack(sf::RenderWindow& window) {
+void Level2::createBack(sf::RenderWindow& window) {
 	//Drawing the background
 	sf::Image map_image;
-	map_image.loadFromFile("./SFML/Images/day.png");
+	map_image.loadFromFile("./SFML/Images/dayFast.png");
 	sf::Texture map;
 	map.loadFromImage(map_image);
 	sf::Sprite s_map;
@@ -20,9 +20,7 @@ void Level1::createBack(sf::RenderWindow& window) {
 	window.draw(s_map);
 }
 
-void Level1::displayChallenges(sf::RenderWindow& window, sf::Event event) {
-
-
+void Level2::displayChallenges(sf::RenderWindow& window, sf::Event event) {
 
 	for (int i = 0; i < 2; i++) {
 		window.draw(challengesText[i]);
@@ -34,22 +32,25 @@ void Level1::displayChallenges(sf::RenderWindow& window, sf::Event event) {
 		if (button.getGlobalBounds().contains(mouse)) {
 			roundStart = true;
 			int* numZombies = new int[numOfZombies];
-			numZombies[0] = numOfZombies;
-		
+			numZombies[0] = 10;
+			numZombies[1] = 5;
+			numZombies[2] = 3;
+			numZombies[3] = 2;
+
 			gameState.startRound(numZombies, numOfZombies);
 		}
 	}
 
 }
-void Level1::displayLevel(sf::RenderWindow& window, sf::Event event) {
+void Level2::displayLevel(sf::RenderWindow& window, sf::Event event) {
 	createBack(window);
 	if (!roundStart)
-		displayChallenges(window,event);
+		displayChallenges(window, event);
 	if (roundStart && !gameState.endRound()) {
 		gameState.gameplay(window, event);
-		
+
 	}
 	else if (roundStart && gameState.endRound())
 		displayRewards(window, event);
-	
+
 }

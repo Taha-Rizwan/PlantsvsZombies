@@ -1,7 +1,7 @@
 #include"GameState.h"
 
 //GameState Constructor
-GameState::GameState(int plantOptions, int zombies) :plantOptions(plantOptions),rows(5), columns(9),lives(3),score(0),economy(100), zombieFactory(zombies),plantFactory(&economy),currentBullets(0),mowers(new LawnMower*[5]) {
+GameState::GameState(int plantOptions, int zombies,bool limited) :plantOptions(plantOptions),rows(5), columns(9),lives(3),score(0),economy(0), zombieFactory(zombies),plantFactory(&economy, 45, limited),currentBullets(0),mowers(new LawnMower*[5]) {
 	
 	for (int i = 0; i < 5; i++) {
 		mowers[i] = new LawnMower(200, 105 + 95 * i);
@@ -51,13 +51,13 @@ void GameState::startRound(int* numOfZombies, int zombieOptions) {
 	for (int i = 0; i < zombieOptions; i++) {
 		for (int j = 0; j < numOfZombies[i]; j++) {
 			if (i == 0) {
-				zombieFactory.addZombie(new DancingZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 10 + j * 2));
+				zombieFactory.addZombie(new SimpleZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 5 + j * 2));
 			}
 			else if (i == 1){
 					zombieFactory.addZombie(new FootballZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 8 + j * 2));
 			}
 			else if (i == 2) {
-				zombieFactory.addZombie(new SimpleZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 5 + j * 2));
+				zombieFactory.addZombie(new DancingZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 10 + j * 2));
 			}
 			else if (i == 3) {
 				zombieFactory.addZombie(new FlyingZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 12 + j * 2));

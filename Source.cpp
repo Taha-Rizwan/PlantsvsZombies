@@ -148,14 +148,12 @@ int main()
 	Text hardText(menuTexts.startText);
 	hardText.setString("HARD");
 	hardText.setPosition(670, 200);
-	
-	string* rewards = new string[1];
-	rewards[0] = "WallNut Unlocked";
-	string* challenges = new string[2];
-	challenges[0] = "Defeat All The Zombies";
-	challenges[1] = "Only Peashooter and Sunflower Allowed";
-
-	Level1 level1(1,20,3,4,1,2,rewards,challenges,"Day");
+	string* rewards, * challenges;
+	rewards = new std::string[1];
+	rewards[0] = "Unlocked Wallnut!";
+	challenges = new std::string[2];
+	challenges[0] = "Limited Plant Selection";
+	challenges[1] = "Slow Zombie Waves";
 
 	///////////////////////////////////////
 
@@ -172,6 +170,12 @@ int main()
 			FIELD_GAME_STATUS[i][j] = true;
 		}
 	}
+	Level** levels= new Level * [4];
+	levels[0] = new Level1();
+	levels[1] = new Level2();
+	levels[2] = new Level3();
+	levels[3] = new Level4();
+	int currentLevel = 0;
 	
 	//Y-axis starting point is 75, +100 to the slot below
 	//X-axis starting point is 265, +80 to the slot on the right
@@ -347,7 +351,10 @@ int main()
 			else {
 				
 				Time deltaTime = clock.restart();
-				level1.displayLevel(window,event);
+				levels[currentLevel]->displayLevel(window,event);
+				if (levels[currentLevel]->levelOver() && currentLevel<3)
+					currentLevel++;
+			
 				//Create a background
 				//createBack(window);
 				//createMap(window);

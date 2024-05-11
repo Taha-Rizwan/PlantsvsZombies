@@ -25,8 +25,9 @@ protected:
 	Sun** suns;
 	Position explosion;
 	int* economy;
+	bool limited;
 public:
-	PlantFactory(int* economy,int size=45);
+	PlantFactory(int* economy,int size=45, bool limited=false);
 	bool isClicked(sf::RectangleShape& rectangle, sf::Vector2f& mousePos);
 	bool isClicked(sf::Sprite& sprite, sf::Vector2f& mousePos);
 	Bullet** getBullets();

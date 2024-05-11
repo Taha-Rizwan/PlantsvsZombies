@@ -26,7 +26,7 @@ bool ZombieFactory::allDead() {
 		if (!zombies[i]->getExists())
 			j++;
 	}
-	if (j == size)
+	if (j == current)
 		return true;
 	return false;
 }

@@ -25,7 +25,7 @@ class GameState {
 	sf::Text ecoText;
 public:
 
-	GameState(int plantOption, int zombies);
+	GameState(int plantOption, int zombies, bool limited = false);
 	int getEconomy()const;
 	void updateEconomy(int amount);
 	void spawnSun();
