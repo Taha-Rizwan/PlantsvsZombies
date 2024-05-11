@@ -13,7 +13,7 @@ void Level3::createBack(sf::RenderWindow& window) {
 	sf::Sprite s_map;
 	s_map.setTexture(map);
 	s_map.setPosition(0, 0);
-	if (!roundStart || (roundStart && gameState.endRound()))
+	if (!roundStart || (roundStart && gameState.endLevel()))
 		s_map.setColor(sf::Color(255, 255, 255, 128));
 	else
 		s_map.setColor(sf::Color(255, 255, 255, 255));
@@ -33,13 +33,11 @@ void Level3::displayChallenges(sf::RenderWindow& window, sf::Event event) {
 		sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 		if (button.getGlobalBounds().contains(mouse)) {
 			roundStart = true;
-			int* numZombies = new int[numOfZombies];
-			numZombies[0] = 12;
-			numZombies[1] = 8;
-			numZombies[2] = 3;
-			numZombies[3] = 2;
+			int* numZombies = new int[2];
+			numZombies[0] = 3;
+			numZombies[1] = 2;
 
-			gameState.startRound(numZombies, numOfZombies);
+			gameState.startRound(numZombies, 2);
 		}
 	}
 
@@ -48,10 +46,30 @@ void Level3::displayLevel(sf::RenderWindow& window, sf::Event event) {
 	createBack(window);
 	if (!roundStart)
 		displayChallenges(window, event);
-	if (roundStart && !gameState.endRound()) {
+	if (roundStart && !gameState.endLevel()) {
 		gameState.gameplay(window, event);
+		if (gameState.endRound()) {
+			waves++;
+			if (waves == 1) {
+				int* numZombies = new int[3];
+				numZombies[0] = 5;
+				numZombies[1] = 3;
+				numZombies[2] = 2;
+				gameState.startRound(numZombies, 3);
+			}
+			else if (waves == 2) {
+				int* numZombies = new int[4];
+				numZombies[0] = 3;
+				numZombies[1] = 2;
+				numZombies[2] = 3;
+				numZombies[3] = 2;
+				gameState.startRound(numZombies, 4);
 
+			}
+			waveClock.restart();
+		}
+		displayWave(window);
 	}
-	else if (roundStart && gameState.endRound())
+	else if (roundStart && gameState.endLevel())
 		displayRewards(window, event);
 }

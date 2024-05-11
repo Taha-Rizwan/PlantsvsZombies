@@ -1,7 +1,7 @@
 #include"ZombieFactory.h"
 #include <iostream>
 //Constructor for ZombieFactory(takes the number of zombies as size)
-ZombieFactory::ZombieFactory(int size):size(size),current(0),zombies(new Zombie*[size]) {
+ZombieFactory::ZombieFactory(int size):size(size),current(0),zombies(new Zombie*[size]),k(0) {
 }
 
 //Takes a zombie pointer and stores it in the next available space in zombies pointer array
@@ -22,12 +22,27 @@ void ZombieFactory::drawZombies(sf::RenderWindow& window) {
 
 bool ZombieFactory::allDead() {
 	int j = 0;
-	for (int i = 0; i < current; i++) {
+	if (current == size) {
+		for (int i = 0; i < current; i++) {
+			if (!zombies[i]->getExists())
+				j++;
+		}
+		if (j == current)
+			return true;
+	}
+	return false;
+}
+bool ZombieFactory::waveDead() {
+	int j = 0;
+	for (int i = k; i < current; i++) {
 		if (!zombies[i]->getExists())
 			j++;
 	}
-	if (j == current)
+	if (j + k == current) {
+		k += j;
 		return true;
+	}
+		
 	return false;
 }
 
@@ -123,7 +138,7 @@ int ZombieFactory::getCurrentZombies() {
 }
 bool ZombieFactory::deductLife(){
 	for (int i = 0; i < current; i++) {
-		if (zombies[i]->getSprite()->getPosition().x <= 207) {
+		if (zombies[i]->getSprite()->getPosition().x <= 207 && zombies[i]->getExists()) {
 			zombies[i]->toggleExists();
 			return true;
 		}

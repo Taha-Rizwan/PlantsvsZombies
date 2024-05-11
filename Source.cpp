@@ -349,11 +349,20 @@ int main()
 				}
 			}
 			else {
-				
+
 				Time deltaTime = clock.restart();
-				levels[currentLevel]->displayLevel(window,event);
-				if (levels[currentLevel]->levelOver() && currentLevel<3)
+				levels[currentLevel]->displayLevel(window, event);
+				if (currentLevel > 1 && levels[currentLevel - 1] != nullptr)
+				{
+					delete levels[currentLevel - 1];
+					levels[currentLevel - 1] = nullptr;
+				}
+
+				if (levels[currentLevel]->levelOver() && currentLevel < 3)
+				{
 					currentLevel++;
+				}
+					
 			
 				//Create a background
 				//createBack(window);

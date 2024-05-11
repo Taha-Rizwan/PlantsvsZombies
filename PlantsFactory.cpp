@@ -260,3 +260,12 @@ void PlantFactory::displayPlants(sf::RenderWindow& window,sf::Event& event) {
 	}
 
 }
+
+PlantFactory::~PlantFactory() {
+	for (int i = 0; i < current; i++) {
+		delete plants[i];
+	}
+	plants = nullptr;
+	shooters = nullptr;
+	sunflowers = nullptr;
+}

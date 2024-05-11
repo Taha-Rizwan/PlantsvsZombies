@@ -40,6 +40,7 @@ public:
 	void refreshOptions(int i);
 	void produceSun();
 	Position getExplosion();
+	~PlantFactory();
 };
 
 #endif

@@ -30,6 +30,7 @@ public:
 	void updateEconomy(int amount);
 	void spawnSun();
 	void startRound(int* numOfZombies, int zombieOptions);
+	bool endLevel();
 	bool endRound();
 	void gameplay(sf::RenderWindow& window, sf::Event& event);
 	void displayEconomy(sf::RenderWindow& window);

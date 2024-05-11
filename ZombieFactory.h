@@ -11,7 +11,7 @@
 
 class ZombieFactory {
 	Zombie** zombies;
-	int size, current;
+	int size, current,k;
 public:
 
 	//Constructor for ZombieFactory(takes the number of zombies as size)
@@ -24,7 +24,7 @@ public:
 	void drawZombies(sf::RenderWindow& window);
 
 	bool allDead();
-
+	bool waveDead();
 	//Moves all the zombie
 	void moveZombies();
 

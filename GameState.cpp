@@ -68,12 +68,14 @@ void GameState::startRound(int* numOfZombies, int zombieOptions) {
 int GameState::getLives() {
 	return lives;
 }
-bool GameState::endRound() {
+bool GameState::endLevel() {
 	if (lives == 0)
 		return true;
 	return zombieFactory.allDead();
 }
-
+bool GameState::endRound() {
+	return zombieFactory.waveDead();
+}
 void GameState::displayEconomy(sf::RenderWindow& window) {
 	ecoText.setString(std::to_string(economy));
 	window.draw(ecoBar);
