@@ -16,6 +16,8 @@ int LawnMower::getDamage()const{
 void LawnMower::moveMower(){
 	if(move)
 	pos.set(20);
+	if (pos.pos[0] >= 945)
+		exists = false;
 }
 
 void LawnMower::setMove() {

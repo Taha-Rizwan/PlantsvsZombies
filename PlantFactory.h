@@ -8,6 +8,7 @@
 #include "CherryBomb.h"
 #include"Sunflower.h"
 #include "FumeShroom.h"
+
 #include"Vector.h"
 class PlantFactory {
 protected:
@@ -33,7 +34,7 @@ public:
 	Plant** getPlants();
 	int getCurrentPlants()const;
 	int getCurrentBullets();
-	void displayOptions(sf::RenderWindow& window,sf::Event& event);
+	void displayOptions(sf::RenderWindow& window,sf::Event& event, int plantOptions);
 	void displayPlants(sf::RenderWindow& window,sf::Event& event);
 	void refreshOptions(int i);
 	void produceSun();

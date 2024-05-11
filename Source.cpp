@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include"headers.h"
 #include <ctime>
+#include "Level.h"
 
 //#include"../SFML/Images/"
 using namespace sf;
@@ -104,31 +105,9 @@ void moveText(sf::Text& text, sf::RenderWindow& window){
 }
 
 //Drawing the background
-void createBack(RenderWindow& window) {
-	//Drawing the background
-	Image map_image;
-	map_image.loadFromFile("./SFML/Images/day.png");
-	Texture map;
-	map.loadFromImage(map_image);
-	Sprite s_map;
-	s_map.setTexture(map);
-	s_map.setPosition(0, 0);
-	window.draw(s_map);
-}
 
 //Drawing the map
-void createMap(RenderWindow& window) {
-	//Drawing a map
-	Image map_image;//объект изображения для карты
-	map_image.loadFromFile("./SFML/Images/grid.png");//load the file for the map
-	Texture map;
-	map.loadFromImage(map_image);
-	Sprite s_map;
-	s_map.setTexture(map);
-	s_map.setPosition(300, 160);
 
-	window.draw(s_map);
-}
 
 
 
@@ -171,6 +150,13 @@ int main()
 	hardText.setString("HARD");
 	hardText.setPosition(670, 200);
 	
+	string* rewards = new string[1];
+	rewards[0] = "WallNut Unlocked";
+	string* challenges = new string[2];
+	challenges[0] = "Defeat All The Zombies";
+	challenges[1] = "Only Peashooter and Sunflower Allowed";
+
+	Level level1(1,10,3,2,1,2,rewards,challenges,"Day");
 
 	///////////////////////////////////////
 
@@ -238,15 +224,14 @@ int main()
 	//Zombie zombie(985,65,100,"./SFML/images/zombie.png", "Zombie", 46, 50, 10, 10, 0, false, 20, 7);
 	
 	
-	static bool startGame = false;
+	static bool startGame = true;
 	static bool showMenu = false;//bool for showing menu
 	static bool showModes = false;//bool for showing modes in menu
 
 	Clock clock;
 	Time timePerFrame = seconds(1.f / 60.f); // 60 FPS
 
-	GameState gameState;
-	
+
 
 	while (window.isOpen())
 	{
@@ -262,7 +247,7 @@ int main()
 				if (menuTexts.startText.getGlobalBounds().contains(mouse)&&!showModes) {
 					showMenu = false;
 					showModes = false;
-					gameState.startRound();
+					
 				}
 				else if (menuTexts.modeText.getGlobalBounds().contains(mouse)&&!showModes) {
 					showModes = true;
@@ -363,11 +348,11 @@ int main()
 			else {
 				
 				Time deltaTime = clock.restart();
-
+				level1.displayLevel(window,event);
 				//Create a background
-				createBack(window);
+				//createBack(window);
 				//createMap(window);
-				gameState.gameplay(window, event);
+				//gameState.gameplay(window, event);
 
 		//If you don't draw stuff here after createBack and createMap IT WON'T DRAW(ok potner)
 		//zombie.draw(window);

@@ -6,7 +6,7 @@ class FlyingZombie: public Zombie{
 
 public:
 
-	FlyingZombie(int x, int y);
+	FlyingZombie(int x, int y,int waitTime);
 	void move();
 	~FlyingZombie() {}
 };

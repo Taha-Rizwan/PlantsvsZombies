@@ -13,12 +13,14 @@ protected:
 	//Clock for movement
 	sf::Clock moveClock;
 	sf::Clock freezeClock;
+	sf::Clock waitClock;
 	bool freeze;
 public:
 	int startY;
 	Zombie(int x, int y, int tolerance, std::string texturePath, std::string name, double textureX, double textureY, float speed, int damage, int wait, bool attack, int score, int sprites);
 	int getSpeed()const;
 	int getDamage()const;
+	bool getWait();
 	void toggleFreeze();
 	virtual void move()=0;
 	void checkFrozen();

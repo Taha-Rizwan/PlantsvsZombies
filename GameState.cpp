@@ -1,7 +1,7 @@
 #include"GameState.h"
 
 //GameState Constructor
-GameState::GameState() :rows(5), columns(9),lives(5),score(0),economy(100), zombieFactory(10),plantFactory(&economy),currentBullets(0),mowers(new LawnMower*[5]) {
+GameState::GameState(int plantOptions, int zombies) :plantOptions(plantOptions),rows(5), columns(9),lives(3),score(0),economy(100), zombieFactory(zombies),plantFactory(&economy),currentBullets(0),mowers(new LawnMower*[5]) {
 	
 	for (int i = 0; i < 5; i++) {
 		mowers[i] = new LawnMower(200, 105 + 95 * i);
@@ -18,6 +18,14 @@ GameState::GameState() :rows(5), columns(9),lives(5),score(0),economy(100), zomb
 	ecoText.setCharacterSize(55);
 	ecoText.setFillColor(sf::Color::Black);
 	ecoText.setString(std::to_string(economy));
+	heartTexture.loadFromFile("./SFML/images/heart.png");
+	heart = new sf::Sprite[3];
+	for (int i = 0; i < 3; i++) {
+		heart[i].setTexture(heartTexture);
+		heart[i].setTextureRect(sf::IntRect(0,0,512,512));
+		heart[i].setScale(0.1, 0.1);
+		heart[i].setPosition(1175 + i * 75, 550);
+	}
 }
 
 //Getter for economy
@@ -36,13 +44,38 @@ void GameState::spawnSun() {
 
 }
 
-void GameState::startRound() {
-	zombieFactory.addZombie(new SimpleZombie(945, 75));
-	zombieFactory.addZombie(new SimpleZombie(1025, 275));
-	zombieFactory.addZombie(new SimpleZombie(1200, 75));
-	zombieFactory.addZombie(new FootballZombie(945, 250));
-	zombieFactory.addZombie(new FlyingZombie(920, 350));
-	zombieFactory.addZombie(new DancingZombie(1000, 100));
+void GameState::startRound(int* numOfZombies, int zombieOptions) {
+
+	for (int i = 0; i < zombieOptions; i++) {
+		if (i == 0) {
+			for (int j = 0; j < numOfZombies[i]; j++) {
+				zombieFactory.addZombie(new SimpleZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 5 + j * 2));
+			}
+		}
+		else if(i==1)
+			for (int j = 0; j < numOfZombies[i]; j++) {
+				zombieFactory.addZombie(new FootballZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 8 + j * 2));
+			}
+		else if (i == 2)
+			for (int j = 0; j < numOfZombies[i]; j++) {
+				zombieFactory.addZombie(new DancingZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 10 + j * 2));
+			}
+		else if (i == 3)
+			for (int j = 0; j < numOfZombies[i]; j++) {
+				zombieFactory.addZombie(new FlyingZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 12 + j * 2));
+			}
+	}
+
+	
+	
+}
+int GameState::getLives() {
+	return lives;
+}
+bool GameState::endRound() {
+	if (lives == 0)
+		return true;
+	return zombieFactory.allDead();
 }
 
 void GameState::displayEconomy(sf::RenderWindow& window) {
@@ -65,18 +98,24 @@ void GameState::gameplay(sf::RenderWindow& window, sf::Event& event) {
 		boom = true;
 	}
 	zombieFactory.detectExplosion(plantFactory.getExplosion(), window, &boom);
-	plantFactory.displayOptions(window, event);
+	plantFactory.displayOptions(window, event,plantOptions);
 	plantFactory.displayPlants(window,event);
 	
 	displayEconomy(window);
+	displayLives(window);
 	sun.draw(window);
 	sun.move();
 	sun.appear();
+	if (zombieFactory.deductLife())
+		lives--;
 	if (sun.collectSun(event, window))
 		economy += 50;
 }
+void GameState::displayLives(sf::RenderWindow& window) {
+	for (int i = 0; i < lives; i++) {
+		window.draw(heart[i]);
+	}
+}
 
 //Destructors
-GameState::~GameState() {
-
-}
+GameState::~GameState() {}

@@ -2,14 +2,14 @@
 #include<iostream>
 using namespace std;
 
-FootballZombie::FootballZombie(int x,int y): Zombie(x,y,40,"./SFML/Images/footballZombie.png","FootballZombie",39.375,42.5,60,1,0,false,20,8){
+FootballZombie::FootballZombie(int x,int y,int waitTime): Zombie(x,y,40,"./SFML/Images/footballZombie.png","FootballZombie",39.375,42.5,60,1,waitTime,false,20,8){
 	sprite.setScale(2.5,2.5);
 	startY = 1;
 }
 
 
 void FootballZombie::move() {
-	if (!eat) {
+	if (!eat && !getWait()) {
 		static int x = 0;
 		static float elapsedTime = 0.0f; 
 

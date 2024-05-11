@@ -23,12 +23,16 @@ public:
 	//Draws all of the Zombies stored
 	void drawZombies(sf::RenderWindow& window);
 
+	bool allDead();
+
 	//Moves all the zombie
 	void moveZombies();
 
-	
+	Zombie** getZombies();
+	int getCurrentZombies();
 	void detectCollision(Bullet** bullets, Plant** plants, LawnMower** mowers, int numBullets, int numPlants, int numMowers);
 	void detectExplosion(Position pos, sf::RenderWindow& window, bool* boom);
+	bool deductLife();
 	//Destructor(destroys all of the zombies)
 	~ZombieFactory();
 

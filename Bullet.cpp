@@ -15,7 +15,7 @@ bool Bullet::getExists() {
 
 void Bullet::move() {
 		pos.set(bulletSpeed);
-		if (pos.pos[0] > 1075) {
+		if (pos.pos[0] > 945) {
 			exists = false;
 		}
 
