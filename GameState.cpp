@@ -66,6 +66,28 @@ void GameState::startRound(int* numOfZombies, int zombieOptions) {
 			}
 	}
 
+void GameState::startRound(int* numOfZombies, int zombieOptions) {
+
+	for (int i = 0; i < zombieOptions; i++) {
+		if (i == 0) {
+			for (int j = 0; j < numOfZombies[i]; j++) {
+				zombieFactory.addZombie(new SimpleZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 5 + j * 2));
+			}
+		}
+		else if(i==1)
+			for (int j = 0; j < numOfZombies[i]; j++) {
+				zombieFactory.addZombie(new FootballZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 8 + j * 2));
+			}
+		else if (i == 2)
+			for (int j = 0; j < numOfZombies[i]; j++) {
+				zombieFactory.addZombie(new DancingZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 10 + j * 2));
+			}
+		else if (i == 3)
+			for (int j = 0; j < numOfZombies[i]; j++) {
+				zombieFactory.addZombie(new FlyingZombie(1000 + (rand() % 100), 75 + (100 * (rand() % 4)), 12 + j * 2));
+			}
+	}
+
 	
 	
 }

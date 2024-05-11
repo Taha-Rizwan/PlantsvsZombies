@@ -1,4 +1,4 @@
- #include "Level.h"
+#include "Level.h"
 #include "iostream"
 Level::Level(int level, int numOfZombies, int plantOptions, int zombieOptions, int numOfRewards, int numOfChallenges, std::string* rewards, std::string* challenges, std::string name):level(level),numOfZombies(numOfZombies),waves(waves),plantOptions(plantOptions),zombieOptions(zombieOptions),numOfRewards(numOfRewards),numOfChallenges(numOfChallenges),rewards(rewards), challenges(challenges),name(name),roundStart(false),nextLevel(false),gameState(plantOptions,20) {
 	waves = 3;
@@ -77,9 +77,9 @@ void Level::displayRewards(sf::RenderWindow& window, sf::Event event) {
 	else {
 		result.setFillColor(sf::Color::Green);
 		result.setString("YOU WON");
-		for (int i = 0; i < numOfRewards; i++) {
-			window.draw(rewardsText[i]);
-		}
+	for (int i = 0; i < numOfRewards; i++) {
+		window.draw(rewardsText[i]);
+	}
 	}
 	window.draw(result);
 	
