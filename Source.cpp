@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include"headers.h"
 #include <ctime>
-#include "Level.h"
 
 //#include"../SFML/Images/"
 using namespace sf;
@@ -156,7 +155,7 @@ int main()
 	challenges[0] = "Defeat All The Zombies";
 	challenges[1] = "Only Peashooter and Sunflower Allowed";
 
-	Level level1(1,10,3,2,1,2,rewards,challenges,"Day");
+	Level1 level1(1,20,3,4,1,2,rewards,challenges,"Day");
 
 	///////////////////////////////////////
 

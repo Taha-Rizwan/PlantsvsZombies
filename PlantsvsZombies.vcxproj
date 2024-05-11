@@ -27,6 +27,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="LawnMower.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Peashooter.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="PlantsFactory.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="headers.h" />
     <ClInclude Include="LawnMower.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="Level1.h" />
     <ClInclude Include="Peashooter.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantFactory.h" />

@@ -21,4 +21,6 @@
 #include"Sun.h"
 #include"Menu.h"
 #include "GameState.h"
+#include"Level.h"
+#include"Level1.h"
 #endif

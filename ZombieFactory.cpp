@@ -22,7 +22,7 @@ void ZombieFactory::drawZombies(sf::RenderWindow& window) {
 
 bool ZombieFactory::allDead() {
 	int j = 0;
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < current; i++) {
 		if (!zombies[i]->getExists())
 			j++;
 	}
