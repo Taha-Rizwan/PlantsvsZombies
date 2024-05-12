@@ -1,6 +1,6 @@
 #include"Sunflower.h"
 
-Sunflower::Sunflower(int x, int y):waitTime(15),produceSun(true),Plant(x,y, 20,"./SFML/Images/sunflower.png","Sunflower", 71, 71,5,50,18,"./SFML/Images/sunflowerCard.png") {
+Sunflower::Sunflower(int x, int y):waitTime(15),produceSun(true),Plant(x,y, 100,"./SFML/Images/sunflower.png","Sunflower", 71, 71,5,50,18,"./SFML/Images/sunflowerCard.png") {
 	sun = nullptr;
 }
 

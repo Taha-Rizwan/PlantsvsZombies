@@ -1,6 +1,6 @@
 #include"SimpleZombie.h"
 
-SimpleZombie::SimpleZombie(int x, int y,int wait) : Zombie(x, y, 30, "./SFML/images/zombie.png", "SimpleZombie", 46, 50, 10, 1, wait, false, 20, 7) {}
+SimpleZombie::SimpleZombie(int x, int y,int wait) : Zombie(x, y, 15, "./SFML/images/zombie.png", "SimpleZombie", 46, 50, 10, 1, wait, false, 20, 7) {}
 
 
 void SimpleZombie::move() {

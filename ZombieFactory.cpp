@@ -140,7 +140,6 @@ void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower**
 					}
 				}
 			}
-
 		}
 		//Plant Collision
 		for (int j = 0; j < numPlants; j++) {

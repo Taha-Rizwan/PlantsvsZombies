@@ -2,7 +2,7 @@
 #include<iostream>
 using namespace std;
 
-FootballZombie::FootballZombie(int x,int y,int waitTime): Zombie(x,y,40,"./SFML/Images/footballZombie.png","FootballZombie",104,80,60,1,waitTime,false,20,5){
+FootballZombie::FootballZombie(int x,int y,int waitTime): Zombie(x,y,30,"./SFML/Images/footballZombie.png","FootballZombie",104,80,20,0,waitTime,false,20,5),plantAhead(false){
 	sprite.setScale(1.5,1.5);
 	startY = 0;
 }
@@ -21,7 +21,7 @@ void FootballZombie::move() {
 				pos.set(-speed, 0);
 
 			}
-			else if (x == 1 || x == 5) {
+			else if ((x == 1 || x == 5)) {
 				if (pos.pos[1]-(speed*1.5) <= 10) {
 					//cout << "Football zombie stopped from upper boundary\n";
 					pos.set(0,speed * 1.5);
