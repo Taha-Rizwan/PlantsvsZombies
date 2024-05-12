@@ -1,3 +1,8 @@
+/*
+	Muhammad Taha Rizwan 23I-0664
+	Muhammad Aqib 23I-0670
+	Section - G
+*/
 #pragma once
 #ifndef Zombie_h
 #include "Plant.h"1
@@ -27,15 +32,18 @@ public:
 	void reviveZombie(int x ,int y);
 	//Draws all of the Zombies stored
 	void drawZombies(sf::RenderWindow& window);
-
+	//Check if ALL zombies are dead for current level
 	bool allDead();
+	//Check if all zombies are dead for current WAVE
 	bool waveDead();
 	//Moves all the zombie
 	void moveZombies(bool state);
 
 	Zombie** getZombies();
 	int getCurrentZombies();
+	//Detects Collision for ALL MOWERS BULLET PLANTS
 	void detectCollision(Bullet** bullets, Plant** plants, LawnMower** mowers, int numBullets, int numPlants, int numMowers);
+	//Detects if there was an explosion and than explodes nearby zombies
 	void detectExplosion(Position pos, sf::RenderWindow& window, bool* boom);
 	bool deductLife();
 	//Destructor(destroys all of the zombies)

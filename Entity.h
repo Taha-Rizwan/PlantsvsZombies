@@ -1,3 +1,8 @@
+/*
+	Muhammad Taha Rizwan 23I-0664
+	Muhammad Aqib 23I-0670
+	Section - G
+*/
 #pragma once
 #include "Position.h"
 #include <SFML/Graphics.hpp>
@@ -17,11 +22,18 @@ protected:
 	int x;
 	float dt;
 public:
+	//Entity Class from which All Zombies and Plant inherit from
 	Entity(int x, int y, double tolerance, std::string texturePath, std::string name,double textureX,double textureY,int sprites);
+	//Draw Function for Entity
 	virtual void draw(sf::RenderWindow& window,int y=0);
+	//Hit function to consume damage
 	virtual bool hit(double damage);
+	//Check Existence
 	bool getExists()const;
+	//Get Name of Entity
 	std::string getName()const;
+	//Toggle Existence of Entity
 	void toggleExists();
+	//Function to get sprite for collision
 	sf::Sprite* getSprite();
 };
