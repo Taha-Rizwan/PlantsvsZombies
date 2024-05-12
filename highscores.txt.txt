@@ -1,4 +1,0 @@
-ADSA,4
-Assd,3
-das,2
-da,1

@@ -11,11 +11,14 @@ public:
 	//Menu class which has all the menu texts
 	sf::Text startText;
 	sf::Text modeText;
+	sf::Text highText;
+	sf::Text highScores[4];
 	sf::Text exitText;
 	sf::Text easyText;
 	sf::Text hardText;
 	sf::Text backText;
 	sf::Text menuBackText;
+	sf::Text highBackText;
 	sf::Text pauseText;
 	sf::Text mainMenuText;
 	sf::Text level1Text;

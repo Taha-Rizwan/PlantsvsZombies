@@ -72,7 +72,7 @@ void handleInput(sf::Event& event,sf::Text& playerName) {
 void createInputScreen(sf::RenderWindow& window,sf::Event& event,sf::Font& font,sf::Text& playerName) {
 
 	sf::RectangleShape inputBox(sf::Vector2f(300, 40));
-	inputBox.setPosition(400,280);
+	inputBox.setPosition(550,280);
 	inputBox.setFillColor(sf::Color::White);
 	inputBox.setOutlineThickness(2);
 	inputBox.setOutlineColor(sf::Color::Black);
@@ -83,7 +83,7 @@ void createInputScreen(sf::RenderWindow& window,sf::Event& event,sf::Font& font,
 	inputPrompt.setCharacterSize(24);
 	inputPrompt.setFillColor(sf::Color::Black);
 	inputPrompt.setString("Player Name:");
-	inputPrompt.setPosition(440, 240); 
+	inputPrompt.setPosition(550, 240); 
 	window.draw(inputPrompt);
 
 
@@ -141,13 +141,18 @@ Menu createMenu(sf::RenderWindow& window,sf::Font& font) {
 	menuTexts.modeText.setPosition(670, 200);
 	menuTexts.exitText = menuTexts.startText;
 	menuTexts.exitText.setString("EXIT");
-	menuTexts.exitText.setPosition(670, 300);
+	menuTexts.exitText.setPosition(670, 400);
 	menuTexts.pauseText = menuTexts.startText;
 	menuTexts.pauseText.setString("GAME PAUSED");
 	menuTexts.pauseText.setPosition(640, 250);
 	menuTexts.mainMenuText = menuTexts.startText;
 	menuTexts.mainMenuText.setString("BACK TO MAIN MENU");
 	menuTexts.mainMenuText.setPosition(670, 200);
+
+	menuTexts.highText = menuTexts.startText;
+	menuTexts.highText.setString("High Scores");
+	menuTexts.highText.setPosition(670, 300);
+	
 	return menuTexts;
 }
 
@@ -164,67 +169,78 @@ void moveText(sf::Text& text, sf::RenderWindow& window){
 }
 
 //Event Handling
-void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool& showMenu,bool& showModes,bool&showLevels,bool& pause,bool& input,Menu menuTexts, int& currentLevel) {
+void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool& showMenu,bool& showModes,bool&showLevels,bool &showHigh,bool& pause,bool& input,Menu menuTexts, int& currentLevel) {
 	if (event.type == Event::Closed)
 		window.close();
 	//If text is clicked by mouse
 	if (event.type == Event::MouseButtonPressed && startGame) {
 		sf::Vector2f mouse = window.mapPixelToCoords(Mouse::getPosition(window));
-		if (menuTexts.startText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes && !showLevels)) {
+		if (menuTexts.startText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes && !showLevels && !showHigh)) {
 			showLevels = true;
 			showModes = false;
 		}
-		else if (menuTexts.modeText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && !showLevels)) {
+		else if (menuTexts.modeText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && !showLevels && !showHigh)) {
 			showModes = true;
 		}
-		else if (menuTexts.exitText.getGlobalBounds().contains(mouse) && (showMenu && !pause && !showModes && !showLevels)) {
+		else if (menuTexts.highText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && !showLevels && !showHigh)) {
+			showHigh = true;
+			showModes = false;
+		}
+		else if (menuTexts.exitText.getGlobalBounds().contains(mouse) && (showMenu && !pause && !showModes && !showLevels && !showHigh)) {
 			window.close();
 		}
-		else if (menuTexts.backText.getGlobalBounds().contains(mouse) && !showLevels) {
+		else if (menuTexts.backText.getGlobalBounds().contains(mouse) && !showLevels && !showHigh) {
 			showMenu = true;
 			showModes = false;
 		}
-		else if (menuTexts.easyText.getGlobalBounds().contains(mouse) && !showLevels) {
+		else if (menuTexts.easyText.getGlobalBounds().contains(mouse) && !showLevels && !showHigh) {
 
 		}
-		else if (menuTexts.hardText.getGlobalBounds().contains(mouse) && !showLevels) {
+		else if (menuTexts.hardText.getGlobalBounds().contains(mouse) && !showLevels && !showHigh) {
 			//moves the hard text
 			moveText(menuTexts.hardText, window);
 		}
-		else if (menuTexts.pauseText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
+		else if (menuTexts.pauseText.getGlobalBounds().contains(mouse)&& pause && !showLevels && !showHigh) {
 			pause = false;
 		}
-		else if (menuTexts.mainMenuText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
+		else if (menuTexts.mainMenuText.getGlobalBounds().contains(mouse)&& pause && !showLevels && !showHigh) {
 			pause = false;
 			showMenu = true;
 		}
-		else if (menuTexts.level1Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+		else if (menuTexts.level1Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels && !showHigh)) {
 			showModes = false;
 			showLevels = false;
 			showMenu = false;
 			currentLevel = 0;
 		}
-		else if (menuTexts.level2Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+		else if (menuTexts.level2Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels && !showHigh)) {
 			showModes = false;
 			showLevels = false;
 			showMenu = false;
 			currentLevel = 1;
 		}
-		else if (menuTexts.level3Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+		else if (menuTexts.level3Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels && !showHigh)) {
 			showModes = false;
 			showLevels = false;
 			showMenu = false;
 			currentLevel = 2;
 		}
-		else if (menuTexts.level4Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+		else if (menuTexts.level4Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels && !showHigh)) {
 			showModes = false;
 			showLevels = false;
 			showMenu = false;
 			currentLevel = 3;
 		}
-		else if (menuTexts.menuBackText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+		else if (menuTexts.menuBackText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels && !showHigh)) {
 			showModes = false;
 			showLevels = false;
+			showMenu = true;
+			currentLevel = 0;
+		}
+		else if (menuTexts.highBackText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && !showLevels )) {
+			showModes = false;
+			showLevels = false;
+			showHigh = false;
 			showMenu = true;
 			currentLevel = 0;
 		}
@@ -235,7 +251,6 @@ void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool&
 			menuTexts.startText.setFillColor(sf::Color::Green);
 			menuTexts.modeText.setFillColor(sf::Color::White);
 			menuTexts.exitText.setFillColor(sf::Color::White);
-			cout << "Start\n";
 
 		}
 		else if (menuTexts.modeText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes && !input)) {
@@ -281,7 +296,10 @@ void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool&
 void readFile(HighScore* highscores) {
 	ifstream file("./highscores.txt");
 	if (file.is_open()) {
+		
 		for (int i = 0; i < 4; i++) {
+			if (file.eof())
+				break;
 			file >> highscores[i].playerName >> highscores[i].score;
 		}
 		file.close();
@@ -296,7 +314,9 @@ void writeFile(HighScore* highscores) {
 	ofstream file("./highscores.txt");
 	if (file.is_open()) {
 		for (int i = 0; i < 4; i++) {
-			file << highscores[i].playerName << highscores[i].score;
+			if (highscores[i].score == 0)
+				break;
+			file << highscores[i].playerName + "\n" << highscores[i].score;
 		}
 		file.close();
 	}
@@ -337,9 +357,6 @@ int main()
 	Font font;
 	font.loadFromFile("./SFML/Fonts/serio.ttf");
 	Menu menuTexts = createMenu(window,font);
-	menuTexts.startText.setPosition(670, 100);			
-	menuTexts.modeText.setPosition(670, 200);
-	menuTexts.exitText.setPosition(670, 300);
 	//Modes menu screen texts
 	menuTexts.backText=(menuTexts.startText);
 	menuTexts.backText.setString("BACK");
@@ -366,6 +383,16 @@ int main()
 	menuTexts.menuBackText = (menuTexts.startText);
 	menuTexts.menuBackText.setString("BACK");
 	menuTexts.menuBackText.setPosition(570, 500);
+	menuTexts.highBackText = (menuTexts.startText);
+	menuTexts.highBackText.setString("BACK");
+	menuTexts.highBackText.setPosition(570, 500);
+	for (int i = 0; i < 4; i++) {
+		if (highscores[i].playerName.empty())
+			break;
+		menuTexts.highScores[i] = menuTexts.startText;
+		menuTexts.highScores[i].setString(highscores[i].playerName +": "+to_string(highscores[i].score));
+		menuTexts.highScores[i].setPosition(550, 100 * (i + 1));
+	}
 	///////////////////////////////////////
 
 	//Game field (5*9)
@@ -405,11 +432,11 @@ int main()
 	static bool showModes = false;//bool for showing modes in menu
 	static bool pause = false;
 	static bool showLevels = false;
-	
+	static bool showHigh = false;
 
 	sf::Text playerName;
 	playerName.setFont(font);
-	playerName.setPosition(400, 280);
+	playerName.setPosition(550, 280);
 	playerName.setCharacterSize(24);
 	playerName.setFillColor(sf::Color::Black);
 	playerName.setString("");
@@ -421,7 +448,7 @@ int main()
 		Event event;
 		while (window.pollEvent(event))
 		{
-handleEvents(window, event, startGame, showMenu, showModes,showLevels, pause,input,menuTexts,currentLevel);
+handleEvents(window, event, startGame, showMenu, showModes,showLevels,showHigh, pause,input,menuTexts,currentLevel);
 			if (event.type == sf::Event::TextEntered) {
 				if (event.text.unicode < 128) {
 					if (event.type == Event::KeyPressed && event.key.code == Keyboard::BackSpace) {
@@ -481,10 +508,27 @@ handleEvents(window, event, startGame, showMenu, showModes,showLevels, pause,inp
 					window.draw(menuTexts.level4Text);
 					window.draw(menuTexts.menuBackText);
 				}
+				else if (showHigh) {
+					for (int i = 0; i < 4; i++) {
+					
+						
+							if (i >= 1 && highscores[i].score == highscores[i - 1].score && highscores[i].playerName == highscores[i - 1].playerName) {
+
+							}
+							else { 
+								window.draw(menuTexts.highScores[i]); 
+							}
+						
+						
+					}
+					window.draw(menuTexts.highBackText);
+				}
 				else {
 					window.draw(menuTexts.startText);
 					window.draw(menuTexts.modeText);
 					window.draw(menuTexts.exitText);
+					window.draw(menuTexts.highText);
+
 				}
 			}
 			else if(!pause) {
@@ -527,10 +571,13 @@ handleEvents(window, event, startGame, showMenu, showModes,showLevels, pause,inp
 		window.display();
 	}
 	for (int i = 0; i < 4; i++) {
+		if (currentScore == 0)
+			break;
 		if (currentScore > highscores[i].score) {
 			string name = playerName.getString();
 			highscores[i].playerName = name;
 			highscores[i].score = currentScore;
+			break;
 		}
 	}
 	writeFile(highscores);
