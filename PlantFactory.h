@@ -28,8 +28,8 @@ protected:
 	sf::Texture shovelTexture;
 	sf::Sprite shovelSprite;
 	bool shovelSelected;
-	sf::SoundBuffer plantBuffer;
-	sf::Sound plantSound;
+	sf::SoundBuffer plantBuffer,shovelBuffer;
+	sf::Sound plantSound,shovelSound;
 public:
 	PlantFactory(int* economy,int size=45, bool limited=false);
 	bool isClicked(sf::RectangleShape& rectangle, sf::Vector2f& mousePos);

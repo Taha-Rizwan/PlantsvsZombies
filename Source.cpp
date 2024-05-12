@@ -289,7 +289,7 @@ int main()
 
 	//If a bullet is shot it gets saved to the bullets array, and boom boom
 	
-	static bool startGame = false;
+	static bool startGame = true;
 	static bool showMenu = false;//bool for showing menu
 	static bool showModes = false;//bool for showing modes in menu
 	static bool pause = false;
