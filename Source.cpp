@@ -572,6 +572,9 @@ handleEvents(window, event, startGame, showMenu, showModes,showLevels,showHigh, 
 			}
 		window.setSize(Vector2u(1100,680)); //was(1100,680)//
 		window.display();
+
+
+
 	}
 	for (int i = 0; i < 4; i++) {
 		if (currentScore == 0)
