@@ -251,12 +251,7 @@ int main()
 	menuTexts.hardText=(menuTexts.startText);
 	menuTexts.hardText.setString("HARD");
 	menuTexts.hardText.setPosition(670, 200);
-	string* rewards, * challenges;
-	rewards = new std::string[1];
-	rewards[0] = "Unlocked Wallnut!";
-	challenges = new std::string[2];
-	challenges[0] = "Limited Plant Selection";
-	challenges[1] = "Slow Zombie Waves";
+
 
 	///////////////////////////////////////
 
