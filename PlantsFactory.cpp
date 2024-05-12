@@ -302,7 +302,7 @@ void PlantFactory::displayShovel(sf::RenderWindow& window) {
 	}
 }
 
-void PlantFactory::displayPlants(sf::RenderWindow& window,sf::Event& event) {
+void PlantFactory::displayPlants(sf::RenderWindow& window, sf::Event& event, bool state) {
 	displayShovel(window);
 	for (int i = 0; i < current; i++) {
 		plants[i]->draw(window);
