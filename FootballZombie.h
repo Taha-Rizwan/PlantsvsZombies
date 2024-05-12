@@ -6,7 +6,6 @@
 #pragma once
 #include"Zombie.h"
 class FootballZombie: public Zombie {
-	bool plantAhead;
 public:
 	FootballZombie(int x, int y,int waitTime);
 	//Movement FUnction for FOotball Zombie

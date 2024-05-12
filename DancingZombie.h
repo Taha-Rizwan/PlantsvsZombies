@@ -7,7 +7,6 @@
 #include"Zombie.h"
 
 class DancingZombie : public Zombie {
-	bool plantAhead;
 public:
 	//Dancing Zombie
 	DancingZombie(int x, int y, int waitTime);

@@ -21,6 +21,7 @@ protected:
 	sf::Clock freezeClock;
 	sf::Clock waitClock;
 	bool freeze;
+	bool plantAhead;
 public:
 	int startY;
 	//Parent Zombie class from which every other zombie inherit from
@@ -34,6 +35,8 @@ public:
 	//Toggle Freeze
 	void toggleFreeze();
 	virtual void move(bool state) = 0;
+	bool getPlantAhead()const;
+	void setPlantAhead(bool x);
 	//Check if frozen, if so, half the speed, and than set it to normal after a certain time
 	void checkFrozen();
 	bool getFreeze();

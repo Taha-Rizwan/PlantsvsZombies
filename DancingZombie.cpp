@@ -9,8 +9,21 @@ DancingZombie::DancingZombie(int x, int y, int waitTime) : Zombie(x, y, 20, "./S
 void DancingZombie::move(bool state) {
 	if (!getWait()&&!state) {
 		float time = moveClock.restart().asSeconds();
-		Entity::pos.set(-speed * time);
-	
+		if (!plantAhead) {
+			Entity::pos.set(-speed * time);
+		}
+		else {
+			if (pos.pos[1] + (speed * time) >= 500) {
+				Entity::pos.set(-speed * time, -speed * time);
+			}
+			else if (pos.pos[1] - (speed * time) <= 50) {
+				Entity::pos.set(-speed * time, speed * time);
+			}
+			else {
+				Entity::pos.set(-speed * time, speed * time);
+			}
+				plantAhead = false;
+		}
 	}
 }
 
