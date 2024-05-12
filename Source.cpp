@@ -418,13 +418,7 @@ int main()
 	int currentLevel = 1;
 
 
-	sf::Text playerName;
-	playerName.setString("");
-	playerName.setFont(font);
-	playerName.setCharacterSize(24);
-	playerName.setFillColor(sf::Color::Black);
-	playerName.setPosition(400, 280);
-	int currentScore = 0;
+
 
 	Music mainMenu;
 	mainMenu.openFromFile("./SFML/Music/mainMenu.mp3");
