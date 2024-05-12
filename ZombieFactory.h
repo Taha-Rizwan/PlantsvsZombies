@@ -12,8 +12,11 @@
 class ZombieFactory {
 	Zombie** zombies;
 	int size, current,k;
-	sf::SoundBuffer mowerBuffer;
-	sf::Sound mowerSound;
+	sf::SoundBuffer mowerBuffer,reviveBuffer;
+	sf::Sound mowerSound,reviveSound;
+	sf::Clock resClock;
+	sf::Texture haloTexture;
+	sf::Sprite halo;
 public:
 
 	//Constructor for ZombieFactory(takes the number of zombies as size)
@@ -21,7 +24,7 @@ public:
 	
 	//Takes a zombie pointer and stores it in the next available space in zombies pointer array
 	void addZombie(Zombie* newZombie);
-
+	void reviveZombie(int x ,int y);
 	//Draws all of the Zombies stored
 	void drawZombies(sf::RenderWindow& window);
 

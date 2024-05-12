@@ -1,6 +1,6 @@
 #include "Wallnut.h"
 
-Wallnut::Wallnut(int x, int y) : Plant(x, y, 140, "./SFML/images/wallnut.png", "Repeater", 27, 31, 10, 50, 5,"./SFML/images/wallnutCard.png"), rolling(true) {
+Wallnut::Wallnut(int x, int y) : Plant(x, y, 140, "./SFML/images/wallnut.png", "Wallnut", 27, 31, 10, 50, 5,"./SFML/images/wallnutCard.png"), rolling(true) {
 	sprite.setScale(2, 2);
 }
 //Rolling movement

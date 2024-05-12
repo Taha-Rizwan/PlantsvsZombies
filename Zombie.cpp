@@ -14,10 +14,12 @@ int Zombie::getDamage()const {
 	return damage;
 }
 
-void Zombie::spawn(int x, int y) {
+void Zombie::spawn(int x, int y,int tolerance) {
 	pos.pos[0] = x;
 	pos.pos[1] = y;
 	Entity::clock.restart();
+	if (tolerance != 0)
+		tolerance = tolerance;
 	toggleExists();
 }
 void Zombie::toggleFreeze() {
@@ -43,8 +45,15 @@ bool Zombie::getWait() {
 	return true;
 }
 
+std::string Zombie::getName() {
+	return name;
+}
+
 bool Zombie::getFreeze() {
 	return freeze;
+}
+Position Zombie::getPos() {
+	return pos;
 }
 
 //Zombie eats plant

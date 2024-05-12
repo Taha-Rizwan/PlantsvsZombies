@@ -4,6 +4,12 @@
 ZombieFactory::ZombieFactory(int size):size(size),current(0),zombies(new Zombie*[size]),k(0) {
 	mowerBuffer.loadFromFile("./SFML/Music/mower.mp3");
 	mowerSound.setBuffer(mowerBuffer);
+	reviveBuffer.loadFromFile("./SFML/Music/res.mp3");
+	reviveSound.setBuffer(reviveBuffer);
+	haloTexture.loadFromFile("./SFML/Images/halo.png");
+	halo.setTexture(haloTexture);
+	halo.setTextureRect(sf::IntRect(0, 0, 2000, 2000));
+	halo.setScale(0.05, 0.05);
 }
 
 //Takes a zombie pointer and stores it in the next available space in zombies pointer array
@@ -11,15 +17,37 @@ void ZombieFactory::addZombie(Zombie* newZombie) {
 	if (newZombie != nullptr) {
 		if (current < size) {
 			zombies[current++] = newZombie;
-		}
+		} 
+		if (newZombie->getName() == "DancingZombie")
+			resClock.restart();
 	}
 }
+void ZombieFactory::reviveZombie(int x, int y) {
+	bool found = false;
+	int k = 0;
+	for (int i = 0; i < current; i++) {
+		if (!zombies[i]->getExists()) {
+			found = true;
+			k = i;
+			break;
+		}
+	}
 
+	if (found) {
+		reviveSound.play();
+		zombies[k]->spawn((x - 100), y,100);
+		halo.setPosition((x - 100), (y - 50));
+		resClock.restart();
+	}
+
+}
 //Draws all of the Zombies stored
 void ZombieFactory::drawZombies(sf::RenderWindow& window) {
 	for (int i = 0;i < current;i++) {
 		zombies[i]->draw(window,zombies[i]->startY);
 	}
+	if (reviveSound.getStatus() == sf::SoundSource::Status::Playing)
+		window.draw(halo);
 }
 
 bool ZombieFactory::allDead() {
@@ -110,9 +138,14 @@ void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower**
 		}
 		//Plant Collision
 		for (int j = 0; j < numPlants; j++) {
-			if (plants[j]->getExists()) {
+			if (plants[j]->getExists() && zombies[i]->getExists()) {
+				
 				if (plants[j]->getSprite()->getGlobalBounds().intersects(zombies[i]->getSprite()->getGlobalBounds())){
-					if (zombies[i]->getDamage() != 0) {
+					if (plants[j]->getName() == "Wallnut" && plants[j]->getTolarence() < 30) {
+						zombies[i]->toggleExists();
+						plants[j]->toggleExists();
+					}
+					else if (zombies[i]->getDamage() != 0 && zombies[i]->getExists()) {
 						zombies[i]->eatPlant(plants[j]);
 					}
 				}
