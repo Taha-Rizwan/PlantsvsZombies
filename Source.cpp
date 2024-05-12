@@ -118,39 +118,69 @@ void moveText(sf::Text& text, sf::RenderWindow& window){
 }
 
 //Event Handling
-void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool& showMenu,bool& showModes,bool& pause,Menu menuTexts) {
+void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool& showMenu,bool& showModes,bool&showLevels,bool& pause,Menu menuTexts, int& currentLevel) {
 	if (event.type == Event::Closed)
 		window.close();
 	//If text is clicked by mouse
 	if (event.type == Event::MouseButtonPressed && startGame) {
 		sf::Vector2f mouse = window.mapPixelToCoords(Mouse::getPosition(window));
-		if (menuTexts.startText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes)) {
-			showMenu = false;
+		if (menuTexts.startText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes && !showLevels)) {
+			showLevels = true;
 			showModes = false;
 		}
-		else if (menuTexts.modeText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause)) {
+		else if (menuTexts.modeText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && !showLevels)) {
 			showModes = true;
 		}
-		else if (menuTexts.exitText.getGlobalBounds().contains(mouse) && (showMenu && !pause && !showModes)) {
+		else if (menuTexts.exitText.getGlobalBounds().contains(mouse) && (showMenu && !pause && !showModes && !showLevels)) {
 			window.close();
 		}
-		else if (menuTexts.backText.getGlobalBounds().contains(mouse)) {
+		else if (menuTexts.backText.getGlobalBounds().contains(mouse) && !showLevels) {
 			showMenu = true;
 			showModes = false;
 		}
-		else if (menuTexts.easyText.getGlobalBounds().contains(mouse)) {
+		else if (menuTexts.easyText.getGlobalBounds().contains(mouse) && !showLevels) {
 
 		}
-		else if (menuTexts.hardText.getGlobalBounds().contains(mouse)) {
+		else if (menuTexts.hardText.getGlobalBounds().contains(mouse) && !showLevels) {
 			//moves the hard text
 			moveText(menuTexts.hardText, window);
 		}
-		else if (menuTexts.resumeText.getGlobalBounds().contains(mouse)&& pause) {
+		else if (menuTexts.resumeText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
 			pause = false;
 		}
-		else if (menuTexts.mainMenuText.getGlobalBounds().contains(mouse)&& pause) {
+		else if (menuTexts.mainMenuText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
 			pause = false;
 			showMenu = true;
+		}
+		else if (menuTexts.level1Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+			showModes = false;
+			showLevels = false;
+			showMenu = false;
+			currentLevel = 0;
+		}
+		else if (menuTexts.level2Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+			showModes = false;
+			showLevels = false;
+			showMenu = false;
+			currentLevel = 1;
+		}
+		else if (menuTexts.level3Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+			showModes = false;
+			showLevels = false;
+			showMenu = false;
+			currentLevel = 2;
+		}
+		else if (menuTexts.level4Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+			showModes = false;
+			showLevels = false;
+			showMenu = false;
+			currentLevel = 3;
+		}
+		else if (menuTexts.menuBackText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+			showModes = false;
+			showLevels = false;
+			showMenu = true;
+			currentLevel = 0;
 		}
 	}
 	if (event.type == Event::MouseMoved && startGame) {
@@ -251,8 +281,22 @@ int main()
 	menuTexts.hardText=(menuTexts.startText);
 	menuTexts.hardText.setString("HARD");
 	menuTexts.hardText.setPosition(670, 200);
-
-
+	//Levels Menu Screen
+	menuTexts.level1Text = (menuTexts.startText);
+	menuTexts.level1Text.setString("Beginner's Garden");
+	menuTexts.level1Text.setPosition(570, 100);
+	menuTexts.level2Text = (menuTexts.startText);
+	menuTexts.level2Text.setString("Zombie OutSkirts");
+	menuTexts.level2Text.setPosition(570, 200);
+	menuTexts.level3Text = (menuTexts.startText);
+	menuTexts.level3Text.setString("Sunflower Fields");
+	menuTexts.level3Text.setPosition(570, 300);
+	menuTexts.level4Text = (menuTexts.startText);
+	menuTexts.level4Text.setString("Foggy Forest");
+	menuTexts.level4Text.setPosition(570, 400);
+	menuTexts.menuBackText = (menuTexts.startText);
+	menuTexts.menuBackText.setString("BACK");
+	menuTexts.menuBackText.setPosition(570, 500);
 	///////////////////////////////////////
 
 	//Game field (5*9)
@@ -289,7 +333,7 @@ int main()
 	static bool showMenu = false;//bool for showing menu
 	static bool showModes = false;//bool for showing modes in menu
 	static bool pause = false;
-
+	static bool showLevels = false;
 	
 
 
@@ -300,7 +344,7 @@ int main()
 		while (window.pollEvent(event))
 		{
 
-			handleEvents(window, event, startGame, showMenu, showModes, pause, menuTexts);
+			handleEvents(window, event, startGame, showMenu, showModes,showLevels, pause, menuTexts,currentLevel);
 			sf::Vector2f mouse = window.mapPixelToCoords(Mouse::getPosition(window));
 			
 		}
@@ -335,6 +379,13 @@ int main()
 					window.draw(menuTexts.easyText);
 					window.draw(menuTexts.hardText);
 					window.draw(menuTexts.backText);
+				}
+				else if (showLevels) {
+					window.draw(menuTexts.level1Text);
+					window.draw(menuTexts.level2Text);
+					window.draw(menuTexts.level3Text);
+					window.draw(menuTexts.level4Text);
+					window.draw(menuTexts.menuBackText);
 				}
 				else {
 					window.draw(menuTexts.startText);
