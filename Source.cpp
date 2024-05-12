@@ -8,9 +8,6 @@
 using namespace sf;
 using namespace std;
 
-int x = 0;
-int y = 1;
-
 
 void createStart(sf::RenderWindow& window,sf::Font& font,float iconX) {
 	//Start Screen Image
