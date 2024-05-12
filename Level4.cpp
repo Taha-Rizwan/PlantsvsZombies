@@ -9,6 +9,8 @@ Level4::Level4() : Level(4, 30, 6, 4, "Foggy Forest","Snow Pea Unlocked for futu
 		fog[i].setPosition(650 + i*100, 0);
 		fog[i].setScale(0.5, 0.5);
 	}
+	levelMusic.openFromFile("./SFML/Music/4.mp3");
+	levelMusic.setLoop(true);
 }
 
 void Level4::createBack(sf::RenderWindow& window) {
@@ -44,6 +46,7 @@ void Level4::displayChallenges(sf::RenderWindow& window, sf::Event event) {
 			numZombies[0] = 5;
 			numZombies[1] = 2;
 			gameState.startRound(numZombies, numOfZombies);
+			levelMusic.play();
 		}
 	}
 
@@ -88,7 +91,12 @@ void Level4::displayLevel(sf::RenderWindow& window, sf::Event event) {
 		displayWave(window);
 	}
 	else if (roundStart && gameState.endLevel())
+	{
+		if (levelMusic.getStatus() == sf::SoundSource::Status::Playing)
+			levelMusic.stop();
 		displayRewards(window, event);
+
+	}
 
 	displayFog(window);
 }

@@ -4,6 +4,8 @@ CherryBomb::CherryBomb(int x, int y) : Plant(x, y, 500, "./SFML/images/CherryBom
 	sprite.setScale(0.5, 0.5);
 	sprite.setColor(sf::Color(255, 255, 255, 128));
 	explodeTime = 4;
+	explosionBuffer.loadFromFile("./SFML/Music/cherry.mp3");
+	explosionSound.setBuffer(explosionBuffer);
 }
 
 
@@ -22,6 +24,7 @@ void CherryBomb::draw(sf::RenderWindow& window, int y) {
 		else if (clock.getElapsedTime().asSeconds() < explodeTime / 2.0) {
 			sprite.setScale(1.1, 1.1);
 			sprite.setColor(sf::Color(255, 0, 0, 255));
+			explosionSound.play();
 		}
 		else if(clock.getElapsedTime().asSeconds() < explodeTime / 1.5){
 			texture.loadFromFile("./SFML/images/Boom.png");
@@ -29,6 +32,8 @@ void CherryBomb::draw(sf::RenderWindow& window, int y) {
 			sprite.setTextureRect(sf::IntRect(0, 0, 213, 160));
 			sprite.setColor(sf::Color(255, 255, 255, 255));
 			sprite.setScale(1, 1);
+		
+			
 			
 		}
 		else {

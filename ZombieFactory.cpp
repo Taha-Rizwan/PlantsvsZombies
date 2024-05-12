@@ -2,6 +2,8 @@
 #include <iostream>
 //Constructor for ZombieFactory(takes the number of zombies as size)
 ZombieFactory::ZombieFactory(int size):size(size),current(0),zombies(new Zombie*[size]),k(0) {
+	mowerBuffer.loadFromFile("./SFML/Music/mower.mp3");
+	mowerSound.setBuffer(mowerBuffer);
 }
 
 //Takes a zombie pointer and stores it in the next available space in zombies pointer array
@@ -120,6 +122,8 @@ void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower**
 		for (int j = 0;j < numMowers;j++) {
 			if (mowers[j]->getExists()){
 				if (mowers[j]->getSprite()->getGlobalBounds().intersects(zombies[i]->getSprite()->getGlobalBounds())){
+					if (mowerSound.getStatus() != sf::SoundSource::Status::Playing)
+						mowerSound.play();
 					mowers[j]->setMove();
 					zombies[i]->hit(mowers[j]->getDamage());
 				}

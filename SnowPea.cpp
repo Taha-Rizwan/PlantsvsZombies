@@ -8,6 +8,7 @@ Bullet* SnowPea::shoot() {
 
 	if (Shooter::sClock.getElapsedTime().asSeconds() >= reloadTime && exists) {
 		Shooter::sClock.restart();
+		shootSound.play();
 		bullet = new SnowBullet(Shooter::pos->pos[0], Shooter::pos->pos[1],3);
 
 	}

@@ -12,6 +12,8 @@
 class ZombieFactory {
 	Zombie** zombies;
 	int size, current,k;
+	sf::SoundBuffer mowerBuffer;
+	sf::Sound mowerSound;
 public:
 
 	//Constructor for ZombieFactory(takes the number of zombies as size)

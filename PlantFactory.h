@@ -8,7 +8,6 @@
 #include "CherryBomb.h"
 #include"Sunflower.h"
 #include "FumeShroom.h"
-
 #include"Vector.h"
 class PlantFactory {
 protected:
@@ -26,6 +25,8 @@ protected:
 	Position explosion;
 	int* economy;
 	bool limited;
+	sf::SoundBuffer plantBuffer;
+	sf::Sound plantSound;
 public:
 	PlantFactory(int* economy,int size=45, bool limited=false);
 	bool isClicked(sf::RectangleShape& rectangle, sf::Vector2f& mousePos);

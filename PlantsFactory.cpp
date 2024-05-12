@@ -44,6 +44,9 @@ PlantFactory::PlantFactory(int * economy,int size, bool limited):size(45),curren
 	shooterOption[3] = fume;
 	for (int i = 0; i < currentOptions; i++)
 		options[i]->getCardSprite()->setPosition(i * 150, 0);
+
+	plantBuffer.loadFromFile("./SFML/Music/plant.mp3");
+	plantSound.setBuffer(plantBuffer);
 }
 
 
@@ -196,6 +199,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event,int
 				}
 				*economy -= options[option]->getCost();
 				options[option]->spawn(grid[row][col]->pos.pos[0], grid[row][col]->pos.pos[1]);
+				plantSound.play();
 				if(option!=3)
 					refreshOptions(option);
 				found = false;

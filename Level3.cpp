@@ -1,7 +1,8 @@
 #include "Level3.h"
 #include "iostream"
 Level3::Level3() : Level(3, 25, 5, 4, "Sunflower Fields","Repeater Unlocked","Limited PLacement for plants","Focus on Sunflower", true) {
-
+	levelMusic.openFromFile("./SFML/Music/3.mp3");
+	levelMusic.setLoop(true);
 }
 
 void Level3::createBack(sf::RenderWindow& window) {
@@ -71,5 +72,10 @@ void Level3::displayLevel(sf::RenderWindow& window, sf::Event event) {
 		displayWave(window);
 	}
 	else if (roundStart && gameState.endLevel())
+	{
+		if (levelMusic.getStatus() == sf::SoundSource::Status::Playing)
+			levelMusic.stop();
 		displayRewards(window, event);
+
+	}
 }

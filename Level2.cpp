@@ -1,7 +1,8 @@
 #include "Level2.h"
 #include "iostream"
 Level2::Level2() : Level(2, 20, 4, 4, "Zombie Outskirts","Cherry Bomb Unlocked","Faster Zombie Waves","Limited Resources") {
-
+	levelMusic.openFromFile("./SFML/Music/2.mp3");
+	levelMusic.setLoop(true);
 }
 
 void Level2::createBack(sf::RenderWindow& window) {
@@ -71,6 +72,10 @@ void Level2::displayLevel(sf::RenderWindow& window, sf::Event event) {
 
 	}
 	else if (roundStart && gameState.endLevel())
+	{
+		if (levelMusic.getStatus() == sf::SoundSource::Status::Playing)
+			levelMusic.stop();
 		displayRewards(window, event);
 
+	}
 }
