@@ -1,7 +1,8 @@
 #include "Level1.h"
 #include "iostream"
 Level1::Level1() : Level(1, 10, 3, 1, "Beginner's Garden","Wallnut Unlocked","Limited Plant Selection","Slow Zombie Waves") {
-
+	levelMusic.openFromFile("./SFML/Music/1.mp3");
+	levelMusic.setLoop(true);
 }
 
 void Level1::createBack(sf::RenderWindow& window) {
@@ -37,6 +38,7 @@ void Level1::displayChallenges(sf::RenderWindow& window, sf::Event event) {
 			numZombies[0] = 2;
 			
 			gameState.startRound(numZombies, 1);
+			levelMusic.play();
 		}
 	}
 
@@ -65,8 +67,12 @@ void Level1::displayLevel(sf::RenderWindow& window, sf::Event event) {
 		}
 		displayWave(window);
 	}
-	else if (roundStart && gameState.endLevel())
+	else if (roundStart && gameState.endLevel()) {
+		if (levelMusic.getStatus() == sf::SoundSource::Status::Playing)
+			levelMusic.stop();
 		displayRewards(window, event);
+		
+	}
 
 
 	

@@ -2,6 +2,7 @@
 #pragma once
 #ifndef GameState_H
 #include "GameState.h"
+#include "SFML/Audio.hpp"
 
 class Level {
 protected:
@@ -15,6 +16,7 @@ protected:
 	sf::Texture buttonTexture,nextButtonTexture,newWaveText;
 	sf::Sprite button,nextButton,newWave;
 	sf::Clock waveClock;
+	sf::Music levelMusic;
 	GameState gameState;
 public:
 	Level(int level, int numOfZombies, int plantOptions, int zombieOptions, std::string name, std::string rewards, std::string challenges1, std::string challenges2, bool limited = false);
