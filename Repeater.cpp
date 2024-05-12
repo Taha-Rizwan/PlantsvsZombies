@@ -8,6 +8,7 @@ Bullet* Repeater::shoot() {
 	Bullet* bullet = nullptr;
 	if (exists) {
 		bullet = Shooter::shoot();
+		shootSound.play();
 		if (bullet != nullptr) {
 			shot = true;
 			clock.restart();

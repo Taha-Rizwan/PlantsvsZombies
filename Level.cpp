@@ -40,8 +40,12 @@ Level::Level(int level, int numOfZombies, int plantOptions, int zombieOptions, s
 	newWave.setTexture(newWaveText);
 	newWave.setTextureRect(sf::IntRect(0, 0, 763,327));
 	newWave.setColor(sf::Color(255, 255, 255, 192));
-	newWave.setPosition(150, 75);
+	newWave.setPosition(150, 75); 
 	newWave.setScale(1.5, 1.5);
+	winBuffer.loadFromFile("./SFML/Music/win.mp3");
+	winSound.setBuffer(winBuffer);
+	loseBuffer.loadFromFile("./SFML/Music/lose.mp3");
+	loseSound.setBuffer(loseBuffer);
 }
 
 
@@ -62,20 +66,23 @@ void Level::displayRewards(sf::RenderWindow& window, sf::Event event) {
 	if (gameState.getLives() == 0) {
 		result.setFillColor(sf::Color::Red);
 		result.setString("YOU LOST");
+		if (loseSound.getStatus() != sf::SoundSource::Status::Playing)
+			loseSound.play();
 	}
 	else {
 		result.setFillColor(sf::Color::Green);
 		result.setString("YOU WON");
-
-			window.draw(*rewardsText);
-			window.draw(nextButton);
-			if (event.type == sf::Event::MouseButtonPressed) {
-				sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-				if (nextButton.getGlobalBounds().contains(mouse)) {
-					nextLevel = true;
-					
-				}
+		if (winSound.getStatus() != sf::SoundSource::Status::Playing)
+			winSound.play();
+		window.draw(*rewardsText);
+		window.draw(nextButton);
+		if (event.type == sf::Event::MouseButtonPressed) {
+			sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+			if (nextButton.getGlobalBounds().contains(mouse)) {
+				nextLevel = true;
+				
 			}
+		}
 	}
 	window.draw(result);
 

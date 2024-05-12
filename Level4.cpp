@@ -46,6 +46,7 @@ void Level4::displayChallenges(sf::RenderWindow& window, sf::Event event) {
 			numZombies[0] = 5;
 			numZombies[1] = 2;
 			gameState.startRound(numZombies, numOfZombies);
+			levelMusic.play();
 		}
 	}
 

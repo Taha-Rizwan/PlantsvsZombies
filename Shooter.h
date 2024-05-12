@@ -2,7 +2,7 @@
 #ifndef Bullet_h
 #include"Bullet.h"
 #include "SFML/System.hpp"
-
+#include "SFML/Audio.hpp"
 
 class Shooter {
 protected:
@@ -12,6 +12,8 @@ protected:
 	sf::Clock sClock;
 	Position* pos;
 	bool canShot;
+	sf::SoundBuffer shootSoundBuffer;
+	sf::Sound shootSound;
 public:
 	Shooter(Position* pos, double reloadTime, int bulletSpeed, std::string bulletSpritePath, double textureX,double textureY);
 
