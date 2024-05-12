@@ -1,6 +1,6 @@
 #include"DancingZombie.h"
 
-DancingZombie::DancingZombie(int x, int y, int waitTime) : Zombie(x, y, 200, "./SFML/images/dancingZombieGif.png", "DancingZombie", 250,415, 15,0, waitTime, false, 20,8) {
+DancingZombie::DancingZombie(int x, int y, int waitTime) : Zombie(x, y, 20, "./SFML/images/dancingZombieGif.png", "DancingZombie", 250,415, 30,0, waitTime, false, 20,8) {
 	sprite.setScale(0.3, 0.3);
 	startY = 0;
 }
