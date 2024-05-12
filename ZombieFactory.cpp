@@ -159,6 +159,9 @@ void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower**
 					else if (zombies[i]->getDamage() != 0 && zombies[i]->getExists()) {
 						zombies[i]->eatPlant(plants[j]);
 					}
+					else if (zombies[i]->getDamage()==0) {
+						zombies[i]->setPlantAhead(true);
+					}
 				}
 			}
 		}
