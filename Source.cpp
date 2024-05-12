@@ -191,7 +191,7 @@ void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool&
 			//moves the hard text
 			moveText(menuTexts.hardText, window);
 		}
-		else if (menuTexts.resumeText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
+		else if (menuTexts.pauseText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
 			pause = false;
 		}
 		else if (menuTexts.mainMenuText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
@@ -271,6 +271,7 @@ void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool&
 			pause =!pause;
 		else if (event.key.code == Keyboard::Enter/* && input */ ) {
 			input = false;
+			showMenu = true;
 		}
 	}
 
@@ -416,7 +417,14 @@ int main()
 	static bool showLevels = false;
 	
 
+	sf::Text playerName;
+	playerName.setFont(font);
+	playerName.setPosition(400, 280);
+	playerName.setCharacterSize(24);
+	playerName.setFillColor(sf::Color::Black);
+	playerName.setString("");
 
+	int currentScore = 0;
 
 	while (window.isOpen())
 	{
