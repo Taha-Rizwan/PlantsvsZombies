@@ -9,7 +9,7 @@
 #include"Level.h"
 class Level4 :public Level {
 	sf::Texture fogTexture;
-	sf::Sprite *fog;
+	sf::Sprite fog[3];
 	sf::Clock fogClock;
 public:
 	//Level 4 foggy fields with fog

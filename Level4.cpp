@@ -1,8 +1,7 @@
 #include "Level4.h"
-#include "iostream"
 Level4::Level4() : Level(4, 30, 6, 4, "Foggy Forest","Snow Pea Unlocked for future use","Reduced Visiblity","Zombies emerge unexpectedly") {
 	fogTexture.loadFromFile("./SFML/images/fog.png");
-	fog = new sf::Sprite[3];
+
 	for (int i = 0; i < 3; i++) {
 		fog[i].setTexture(fogTexture);
 		fog[i].setTextureRect(sf::IntRect(0, 0, 507, 1280));
