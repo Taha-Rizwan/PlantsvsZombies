@@ -61,6 +61,7 @@
     <ClInclude Include="FumeShroom.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="headers.h" />
+    <ClInclude Include="HighScore.h" />
     <ClInclude Include="LawnMower.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level1.h" />

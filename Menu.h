@@ -8,6 +8,6 @@ public:
 	sf::Text easyText;
 	sf::Text hardText;
 	sf::Text backText;
-	sf::Text resumeText;
+	sf::Text pauseText;
 	sf::Text mainMenuText;
 };

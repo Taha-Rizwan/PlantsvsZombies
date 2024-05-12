@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include<fstream>
 #include"headers.h"
 #include <ctime>
 
@@ -52,11 +53,57 @@ void createStart(sf::RenderWindow& window,sf::Font& font,float iconX) {
 	window.draw(loading);
 }
 
-void createPause(sf::RenderWindow& window) {
-	sf::RectangleShape pauseScreen(sf::Vector2f(1200,600));
-	pauseScreen.setPosition(0, 0);
-	pauseScreen.setFillColor(sf::Color(0,0,0,150));
-	window.draw(pauseScreen);
+void handleInput(sf::Event& event,sf::Text& playerName) {
+	if (event.type == sf::Event::TextEntered) {
+		if (event.text.unicode < 128) {
+			if (event.type==Event::KeyPressed && event.key.code==Keyboard::BackSpace) {
+				std::string input = playerName.getString();
+				input.pop_back();
+				playerName.setString(input);
+			}
+			else if (event.text.unicode != 13) { 
+				playerName.setString(playerName.getString() + static_cast<char>(event.text.unicode));
+			}
+		}
+	}
+}
+
+//Takes input(player's name)
+void createInputScreen(sf::RenderWindow& window,sf::Event& event,sf::Font& font,sf::Text& playerName) {
+
+	sf::RectangleShape inputBox(sf::Vector2f(300, 40));
+	inputBox.setPosition(400,280);
+	inputBox.setFillColor(sf::Color::White);
+	inputBox.setOutlineThickness(2);
+	inputBox.setOutlineColor(sf::Color::Black);
+
+
+	sf::Text inputPrompt;
+	inputPrompt.setFont(font);
+	inputPrompt.setCharacterSize(24);
+	inputPrompt.setFillColor(sf::Color::Black);
+	inputPrompt.setString("Player Name:");
+	inputPrompt.setPosition(440, 240); 
+	window.draw(inputPrompt);
+
+
+	sf::RectangleShape cursor(sf::Vector2f(2, playerName.getCharacterSize()));
+	cursor.setFillColor(sf::Color::Black);
+	bool showCursor = true;
+
+	sf::Clock cursorClock;
+	if (cursorClock.getElapsedTime().asSeconds() > 0.5f) {
+		showCursor = !showCursor;
+		cursorClock.restart();
+	}
+	window.draw(inputBox);
+	window.draw(inputPrompt);
+	window.draw(playerName);
+	if (showCursor && playerName.getString().getSize() < 20) {
+		cursor.setPosition(playerName.getPosition().x + playerName.getGlobalBounds().width + 2,
+			playerName.getPosition().y);
+		window.draw(cursor);
+	}
 }
 
 
@@ -83,7 +130,6 @@ bool moveIcon(Sprite& sprite, sf::Clock& mClock) {
 
 //Function that creates menuTexts and returns them
 Menu createMenu(sf::RenderWindow& window,sf::Font& font) {
-	
 	Menu menuTexts;
 	menuTexts.startText.setFont(font);
 	menuTexts.startText.setString("START");
@@ -96,9 +142,9 @@ Menu createMenu(sf::RenderWindow& window,sf::Font& font) {
 	menuTexts.exitText = menuTexts.startText;
 	menuTexts.exitText.setString("EXIT");
 	menuTexts.exitText.setPosition(670, 300);
-	menuTexts.resumeText = menuTexts.startText;
-	menuTexts.resumeText.setString("RESUME");
-	menuTexts.resumeText.setPosition(670, 100);
+	menuTexts.pauseText = menuTexts.startText;
+	menuTexts.pauseText.setString("GAME PAUSED");
+	menuTexts.pauseText.setPosition(640, 250);
 	menuTexts.mainMenuText = menuTexts.startText;
 	menuTexts.mainMenuText.setString("BACK TO MAIN MENU");
 	menuTexts.mainMenuText.setPosition(670, 200);
@@ -118,97 +164,109 @@ void moveText(sf::Text& text, sf::RenderWindow& window){
 }
 
 //Event Handling
-void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool& showMenu,bool& showModes,bool& pause,Menu menuTexts) {
+void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool& showMenu,bool& showModes,bool& pause,bool& input,Menu menuTexts) {
 	if (event.type == Event::Closed)
 		window.close();
 	//If text is clicked by mouse
 	if (event.type == Event::MouseButtonPressed && startGame) {
 		sf::Vector2f mouse = window.mapPixelToCoords(Mouse::getPosition(window));
-		if (menuTexts.startText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes)) {
+		if (menuTexts.startText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes && !input)) {
 			showMenu = false;
 			showModes = false;
 		}
-		else if (menuTexts.modeText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause)) {
+		else if (menuTexts.modeText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && !input)) {
 			showModes = true;
 		}
-		else if (menuTexts.exitText.getGlobalBounds().contains(mouse) && (showMenu && !pause && !showModes)) {
+		else if (menuTexts.exitText.getGlobalBounds().contains(mouse) && (showMenu && !pause && !showModes &&!input)) {
 			window.close();
 		}
-		else if (menuTexts.backText.getGlobalBounds().contains(mouse)) {
+		else if (menuTexts.backText.getGlobalBounds().contains(mouse)&& !input) {
 			showMenu = true;
 			showModes = false;
 		}
-		else if (menuTexts.easyText.getGlobalBounds().contains(mouse)) {
+		else if (menuTexts.easyText.getGlobalBounds().contains(mouse)&& !input) {
 
 		}
-		else if (menuTexts.hardText.getGlobalBounds().contains(mouse)) {
+		else if (menuTexts.hardText.getGlobalBounds().contains(mouse) && !input) {
 			//moves the hard text
 			moveText(menuTexts.hardText, window);
 		}
-		else if (menuTexts.resumeText.getGlobalBounds().contains(mouse)&& pause) {
-			pause = false;
-		}
-		else if (menuTexts.mainMenuText.getGlobalBounds().contains(mouse)&& pause) {
-			pause = false;
-			showMenu = true;
-		}
+
 	}
 	if (event.type == Event::MouseMoved && startGame) {
 		sf::Vector2f mouse = window.mapPixelToCoords(Mouse::getPosition(window));
-		if (menuTexts.startText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes)) {
+		if (menuTexts.startText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes && !input)) {
 			menuTexts.startText.setFillColor(sf::Color::Green);
 			menuTexts.modeText.setFillColor(sf::Color::White);
 			menuTexts.exitText.setFillColor(sf::Color::White);
 			cout << "Start\n";
 
 		}
-		else if (menuTexts.modeText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes)) {
+		else if (menuTexts.modeText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes && !input)) {
 			menuTexts.modeText.setFillColor(sf::Color::Green);
 			menuTexts.startText.setFillColor(sf::Color::White);
 			menuTexts.exitText.setFillColor(sf::Color::White);
-			cout << "Mode\n";
 
 		}
-		else if (menuTexts.exitText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes)) {
+		else if (menuTexts.exitText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes && !input)) {
 			menuTexts.exitText.setFillColor(sf::Color::Green);
 			menuTexts.modeText.setFillColor(sf::Color::White);
 			menuTexts.startText.setFillColor(sf::Color::White);
-			cout << "Exit";
 		}
-		else if (menuTexts.easyText.getGlobalBounds().contains(mouse) && !pause && !showMenu) {
+		else if (menuTexts.easyText.getGlobalBounds().contains(mouse) && !pause && !showMenu && !input) {
 			menuTexts.easyText.setFillColor(sf::Color::Green);
 			menuTexts.hardText.setFillColor(sf::Color::White);
 			menuTexts.backText.setFillColor(sf::Color::White);
-			cout << "Easy\n";
 		}
-		else if (menuTexts.hardText.getGlobalBounds().contains(mouse) && !pause && showModes) {
+		else if (menuTexts.hardText.getGlobalBounds().contains(mouse) && !pause && showModes && !input) {
 			moveText(menuTexts.hardText, window);
 			menuTexts.easyText.setFillColor(sf::Color::White);
 			menuTexts.backText.setFillColor(sf::Color::White);
-			cout << "Hard\n";
 		}
-		else if (menuTexts.backText.getGlobalBounds().contains(mouse)&& !pause && showModes){
+		else if (menuTexts.backText.getGlobalBounds().contains(mouse)&& !pause && showModes && !input){
 			menuTexts.backText.setFillColor(sf::Color::Green);
 			menuTexts.easyText.setFillColor(sf::Color::White);
 			menuTexts.hardText.setFillColor(sf::Color::White);
-			cout << "Back\n";
 		}
-		else if (menuTexts.resumeText.getGlobalBounds().contains(mouse)) {
-			menuTexts.resumeText.setFillColor(sf::Color::Green);
-			menuTexts.mainMenuText.setFillColor(sf::Color::White);
-		}
-		else if (menuTexts.mainMenuText.getGlobalBounds().contains(mouse)) {
-			menuTexts.resumeText.setFillColor(sf::Color::White);
-			menuTexts.mainMenuText.setFillColor(sf::Color::Green);
+
+	}
+	if (event.type == Event::KeyPressed) {
+		if(event.key.code == Keyboard::Escape)
+			pause =!pause;
+		else if (event.key.code == Keyboard::Enter && input) {
+			input = false;
 		}
 	}
-	if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape) {
-		pause =!pause;
+
+}
+
+//Read from the high scores File
+void readFile(HighScore* highscores) {
+	ifstream file("./highscores.txt");
+	if (file.is_open()) {
+		for (int i = 0; i < 4; i++) {
+			file >> highscores[i].playerName >> highscores[i].score;
+		}
+		file.close();
+	}
+	else {
+		cout << "Error opening file\n";
 	}
 }
-//Drawing the background
 
-//Drawing the map
+//Write In File
+void writeFile(HighScore* highscores) {
+	ofstream file("./highscores.txt");
+	if (file.is_open()) {
+		for (int i = 0; i < 4; i++) {
+			file << highscores[i].playerName << highscores[i].score;
+		}
+		file.close();
+	}
+	else {
+		cout << "Error opening file\n";
+	}
+}
 
 
 
@@ -216,6 +274,10 @@ void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool&
 
 int main()
 {
+	//Highscores
+	HighScore highscores[4];
+	readFile(highscores);
+
 	srand(time(0));
 	//Create a window, n*n
 	RenderWindow window(VideoMode(1400, 600), "Plants Vs Zombies"); //was (1400,600)
@@ -251,6 +313,17 @@ int main()
 	menuTexts.hardText=(menuTexts.startText);
 	menuTexts.hardText.setString("HARD");
 	menuTexts.hardText.setPosition(670, 200);
+
+	//Player Name
+	sf::Text playerName;
+	playerName.setFont(font);
+	playerName.setPosition(400, 280);
+	playerName.setCharacterSize(24);
+	playerName.setFillColor(sf::Color::Black);
+	playerName.setString("");
+
+	int currentScore = 0;
+
 	string* rewards, * challenges;
 	rewards = new std::string[1];
 	rewards[0] = "Unlocked Wallnut!";
@@ -290,7 +363,9 @@ int main()
 	//If a bullet is shot it gets saved to the bullets array, and boom boom
 	
 	static bool startGame = false;
+	static bool input = false;
 	static bool showMenu = false;//bool for showing menu
+	static bool showScores = false;
 	static bool showModes = false;//bool for showing modes in menu
 	static bool pause = false;
 
@@ -304,8 +379,19 @@ int main()
 		while (window.pollEvent(event))
 		{
 
-			handleEvents(window, event, startGame, showMenu, showModes, pause, menuTexts);
-			sf::Vector2f mouse = window.mapPixelToCoords(Mouse::getPosition(window));
+			handleEvents(window, event, startGame, showMenu, showModes, pause,input,menuTexts);
+			if (event.type == sf::Event::TextEntered) {
+				if (event.text.unicode < 128) {
+					if (event.type == Event::KeyPressed && event.key.code == Keyboard::BackSpace) {
+						std::string input = playerName.getString();
+						input.pop_back();
+						playerName.setString(input);
+					}
+					else if (event.text.unicode != 13) {
+						playerName.setString(playerName.getString() + static_cast<char>(event.text.unicode));
+					}
+				}
+			}
 			
 		}
 			//if mouse hovers over text
@@ -322,10 +408,16 @@ int main()
 				sIcon.setColor(sf::Color(255, 255, 255, 225));
 				if (moveIcon(sIcon, iconClock)) {
 					startGame = true;
-					showMenu = true;
+					input = true;
 				}
 				createStart(window,font, sIcon.getPosition().x + 35);
 				window.draw(sIcon);
+			}
+			else if (input) {
+				window.clear();
+				window.draw(menu);
+				createInputScreen(window, event,font, playerName);
+				//showMenu=true;
 			}
 			//Shows the menu
 			else if (showMenu) {
@@ -337,6 +429,9 @@ int main()
 					window.draw(menuTexts.hardText);
 					window.draw(menuTexts.backText);
 				}
+				else if (showScores) {
+					
+				}
 				else {
 					window.draw(menuTexts.startText);
 					window.draw(menuTexts.modeText);
@@ -344,7 +439,7 @@ int main()
 				}
 			}
 			else if(!pause) {
-				levels[currentLevel]->displayLevel(window, event,pause);
+				levels[currentLevel]->displayLevel(window, event,pause,currentScore);
 				if (currentLevel > 1 && levels[currentLevel - 1] != nullptr)
 				{
 					delete levels[currentLevel - 1];
@@ -355,17 +450,37 @@ int main()
 				{
 					currentLevel++;
 				}
+				sf::RectangleShape scoreBar(sf::Vector2f(200, 75));
+				scoreBar.setFillColor(sf::Color(0,0,0,150));
+				scoreBar.setPosition(950,3);
+				scoreBar.setOutlineColor(sf::Color::White);
+				scoreBar.setOutlineThickness(1);
+
+				std::string scoreString = "Score: " + std::to_string(currentScore);
+				sf::Text score = playerName;
+				score.setCharacterSize(34);
+				score.setFillColor(sf::Color::White);
+				score.setString(scoreString);
+				score.setPosition(960, 20);
+				window.draw(scoreBar);
+				window.draw(score);
 			}
 			else if(pause){
 				clock.restart();
 				window.clear();
 				window.draw(menu);
-				window.draw(menuTexts.resumeText);
-				window.draw(menuTexts.mainMenuText);
+				window.draw(menuTexts.pauseText);
 			}
 		window.setSize(Vector2u(1100,680)); //was(1100,680)//
 		window.display();
 	}
-
+	for (int i = 0; i < 4; i++) {
+		if (currentScore > highscores[i].score) {
+			string name = playerName.getString();
+			highscores[i].playerName = name;
+			highscores[i].score = currentScore;
+		}
+	}
+	writeFile(highscores);
 	return 0;
 }

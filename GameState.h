@@ -32,7 +32,7 @@ public:
 	void startRound(int* numOfZombies, int zombieOptions);
 	bool endLevel();
 	bool endRound();
-	void gameplay(sf::RenderWindow& window, sf::Event& event,bool state);
+	void gameplay(sf::RenderWindow& window, sf::Event& event,bool state,int& score);
 	void displayEconomy(sf::RenderWindow& window);
 	void update(float dt);
 	void displayLives(sf::RenderWindow& window);

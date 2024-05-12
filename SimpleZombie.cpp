@@ -5,9 +5,8 @@ SimpleZombie::SimpleZombie(int x, int y,int wait) : Zombie(x, y, 15, "./SFML/ima
 
 void SimpleZombie::move(bool state) {
 	if (!eat&& !getWait() && !state) {
-	float time = moveClock.restart().asSeconds();
-		std::cout << "Time: " << time << std::endl;
-			pos.set(-speed *0.1);
+		float time = moveClock.restart().asSeconds();
+		pos.set(-speed *0.1);
 	}
 }
 

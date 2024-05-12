@@ -20,6 +20,7 @@ public:
 	Entity(int x, int y, double tolerance, std::string texturePath, std::string name,double textureX,double textureY,int sprites);
 	virtual void draw(sf::RenderWindow& window,int y=0);
 	virtual bool hit(double damage);
+	double getTolerance()const;
 	bool getExists()const;
 	std::string getName()const;
 	void toggleExists();

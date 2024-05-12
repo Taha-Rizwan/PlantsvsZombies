@@ -86,7 +86,7 @@ void ZombieFactory::moveZombies(bool state) {
 		}
 }
 
-void ZombieFactory::detectExplosion(Position pos, sf::RenderWindow& window, bool* boom) {
+void ZombieFactory::detectExplosion(Position pos, sf::RenderWindow& window, bool* boom,int& score) {
 
 	static sf::Clock clock;
 	if (!*boom)
@@ -100,7 +100,9 @@ void ZombieFactory::detectExplosion(Position pos, sf::RenderWindow& window, bool
 		if (clock.getElapsedTime().asSeconds() >= 2) {
 			for (int i = 0; i < current; i++) {
 				if (zombies[i]->getSprite()->getGlobalBounds().intersects(rect.getGlobalBounds()) && zombies[i]->getExists()) {
+					std::cout << "Zombie died\n";
 					zombies[i]->toggleExists();
+					score +=(zombies[i]->getScore());
 				}
 			}
 			clock.restart();
@@ -109,7 +111,7 @@ void ZombieFactory::detectExplosion(Position pos, sf::RenderWindow& window, bool
 	}
 }
 
-void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower** mowers, int numBullets,int numPlants,int numMowers) {
+void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower** mowers, int numBullets,int numPlants,int numMowers,int& score) {
 	
 	for (int i = 0; i < current; i++) {
 		//Bullet Collision
@@ -132,6 +134,10 @@ void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower**
 					{
 						zombies[i]->toggleFreeze();
 						std::cout << "Frozen" << std::endl;
+					}
+					if (zombies[i]->getTolerance() < 0) {
+						std::cout << "Zombie died\n";
+						score += zombies[i]->getScore();
 					}
 				}
 			}
@@ -159,6 +165,7 @@ void ZombieFactory::detectCollision(Bullet** bullets, Plant** plants,LawnMower**
 						mowerSound.play();
 					mowers[j]->setMove();
 					zombies[i]->hit(mowers[j]->getDamage());
+					score += (zombies[i]->getScore());
 				}
 			}
 		}

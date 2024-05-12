@@ -38,6 +38,10 @@ void Zombie::checkFrozen() {
 		
 }
 
+int Zombie::getScore()const {
+	return score;
+}
+
 bool Zombie::getWait() {
 	if (waitClock.getElapsedTime().asSeconds() >= wait)
 		return false;

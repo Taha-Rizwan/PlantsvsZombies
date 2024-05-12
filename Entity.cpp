@@ -23,6 +23,11 @@ std::string Entity::getName() const{
 	return name;
 }
 
+double Entity::getTolerance()const
+{
+	return tolerance;
+}
+
 //Draw Function for entity
 void Entity::draw(sf::RenderWindow& window,int y){
 	if (exists) {

@@ -82,7 +82,7 @@ void GameState::displayEconomy(sf::RenderWindow& window) {
 	window.draw(ecoText);
 }
 
-void GameState::gameplay(sf::RenderWindow& window, sf::Event& event,bool state) {
+void GameState::gameplay(sf::RenderWindow& window, sf::Event& event,bool state,int& score) {
 	static bool boom = false;
 
 	for (int i = 0; i < 5; i++) {
@@ -91,11 +91,11 @@ void GameState::gameplay(sf::RenderWindow& window, sf::Event& event,bool state) 
 	}
 	zombieFactory.drawZombies(window);
 	zombieFactory.moveZombies(state);
-	zombieFactory.detectCollision(plantFactory.getBullets(), plantFactory.getPlants(), mowers, plantFactory.getCurrentBullets(), plantFactory.getCurrentPlants(), 5);
+	zombieFactory.detectCollision(plantFactory.getBullets(), plantFactory.getPlants(), mowers, plantFactory.getCurrentBullets(), plantFactory.getCurrentPlants(), 5,score);
 	if (plantFactory.isExplode()) {
 		boom = true;
 	}
-	zombieFactory.detectExplosion(plantFactory.getExplosion(), window, &boom);
+	zombieFactory.detectExplosion(plantFactory.getExplosion(), window, &boom,score);
 	plantFactory.displayOptions(window, event,plantOptions);
 	plantFactory.displayPlants(window,event,state);
 	

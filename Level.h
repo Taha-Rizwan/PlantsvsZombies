@@ -26,7 +26,7 @@ public:
 	void displayWave(sf::RenderWindow& window);
 	virtual void displayChallenges(sf::RenderWindow& window, sf::Event event) = 0;
 	virtual void displayRewards(sf::RenderWindow& window, sf::Event event);
-	virtual void displayLevel(sf::RenderWindow& window, sf::Event event,bool state) = 0;
+	virtual void displayLevel(sf::RenderWindow& window, sf::Event event,bool state,int& score) = 0;
 	void update(float dt);
 	bool levelOver();
 	virtual ~Level() {}

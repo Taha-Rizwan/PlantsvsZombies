@@ -28,6 +28,10 @@
     <ClCompile Include="ShroomBullet.cpp" />
     <ClCompile Include="FumeShroom.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Level1.cpp" />
+    <ClCompile Include="Level2.cpp" />
+    <ClCompile Include="Level3.cpp" />
+    <ClCompile Include="Level4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -58,6 +62,11 @@
     <ClInclude Include="ShroomBullet.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="Level1.h" />
+    <ClInclude Include="Level2.h" />
+    <ClInclude Include="Level3.h" />
+    <ClInclude Include="Level4.h" />
+    <ClInclude Include="HighScore.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Menu.h" />

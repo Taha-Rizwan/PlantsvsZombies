@@ -35,8 +35,8 @@ public:
 
 	Zombie** getZombies();
 	int getCurrentZombies();
-	void detectCollision(Bullet** bullets, Plant** plants, LawnMower** mowers, int numBullets, int numPlants, int numMowers);
-	void detectExplosion(Position pos, sf::RenderWindow& window, bool* boom);
+	void detectCollision(Bullet** bullets, Plant** plants, LawnMower** mowers, int numBullets, int numPlants, int numMowers,int& score);
+	void detectExplosion(Position pos, sf::RenderWindow& window, bool* boom,int& score);
 	bool deductLife();
 	//Destructor(destroys all of the zombies)
 	~ZombieFactory();
