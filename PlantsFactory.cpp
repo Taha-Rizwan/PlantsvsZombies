@@ -47,7 +47,8 @@ PlantFactory::PlantFactory(int * economy,int size, bool limited):size(45),curren
 
 	plantBuffer.loadFromFile("./SFML/Music/plant.mp3");
 	plantSound.setBuffer(plantBuffer);
-
+	shovelBuffer.loadFromFile("./SFML/Music/shovel.ogg");
+	shovelSound.setBuffer(shovelBuffer);
 	shovelSelected = false;
 	shovelTexture.loadFromFile("./SFML/Images/shovel.png");
 	shovelSprite.setTexture(shovelTexture);
@@ -217,6 +218,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event, in
 				grid[row][col]->plant->toggleExists();
 				found = false;
 				wasOn = false;
+				shovelSound.play();
 			}
 		}
 		else if (event.type == sf::Event::MouseButtonReleased&&selected) {

@@ -17,7 +17,10 @@ int Zombie::getDamage()const {
 void Zombie::spawn(int x, int y,int tolerance) {
 	pos.pos[0] = x;
 	pos.pos[1] = y;
+	eat = false;
 	Entity::clock.restart();
+	startY = 0;
+	wait = 0;
 	if (tolerance != 0)
 		tolerance = tolerance;
 	toggleExists();

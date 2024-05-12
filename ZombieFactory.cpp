@@ -83,6 +83,11 @@ void ZombieFactory::moveZombies(bool state) {
 			if (zombies[i]->getFreeze()) {
 				zombies[i]->checkFrozen();
 			}
+			if (zombies[i]->getName() == "DancingZombie" && zombies[i]->getExists()) {
+				if (resClock.getElapsedTime().asSeconds() >= 10) {
+					reviveZombie(zombies[i]->getPos().pos[0], zombies[i]->getPos().pos[1]);
+				}
+			}
 		}
 }
 

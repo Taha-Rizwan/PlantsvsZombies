@@ -1,3 +1,9 @@
+/*
+	Muhammad Taha Rizwan 23I-0664
+	Muhammad Aqib 23I-0670
+	Section - G
+*/
+
 #pragma once
 #ifndef Bullet_h
 #include"Bullet.h"
@@ -15,8 +21,9 @@ protected:
 	sf::SoundBuffer shootSoundBuffer;
 	sf::Sound shootSound;
 public:
+	//Shooter class from which shooting plants inherit from
 	Shooter(Position* pos, double reloadTime, int bulletSpeed, std::string bulletSpritePath, double textureX,double textureY);
-
+	//Shoot bullet function for shooters
 	virtual Bullet* shoot();
 
 };

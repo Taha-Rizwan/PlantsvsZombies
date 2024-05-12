@@ -164,34 +164,70 @@ void moveText(sf::Text& text, sf::RenderWindow& window){
 }
 
 //Event Handling
-void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool& showMenu,bool& showModes,bool& pause,bool& input,Menu menuTexts) {
+void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool& showMenu,bool& showModes,bool&showLevels,bool& pause,Menu menuTexts, int& currentLevel) {
 	if (event.type == Event::Closed)
 		window.close();
 	//If text is clicked by mouse
 	if (event.type == Event::MouseButtonPressed && startGame) {
 		sf::Vector2f mouse = window.mapPixelToCoords(Mouse::getPosition(window));
-		if (menuTexts.startText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes && !input)) {
-			showMenu = false;
+		if (menuTexts.startText.getGlobalBounds().contains(mouse) && (!pause && showMenu && !showModes && !showLevels)) {
+			showLevels = true;
 			showModes = false;
 		}
-		else if (menuTexts.modeText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && !input)) {
+		else if (menuTexts.modeText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && !showLevels)) {
 			showModes = true;
 		}
-		else if (menuTexts.exitText.getGlobalBounds().contains(mouse) && (showMenu && !pause && !showModes &&!input)) {
+		else if (menuTexts.exitText.getGlobalBounds().contains(mouse) && (showMenu && !pause && !showModes && !showLevels)) {
 			window.close();
 		}
-		else if (menuTexts.backText.getGlobalBounds().contains(mouse)&& !input) {
+		else if (menuTexts.backText.getGlobalBounds().contains(mouse) && !showLevels) {
 			showMenu = true;
 			showModes = false;
 		}
-		else if (menuTexts.easyText.getGlobalBounds().contains(mouse)&& !input) {
+		else if (menuTexts.easyText.getGlobalBounds().contains(mouse) && !showLevels) {
 
 		}
-		else if (menuTexts.hardText.getGlobalBounds().contains(mouse) && !input) {
+		else if (menuTexts.hardText.getGlobalBounds().contains(mouse) && !showLevels) {
 			//moves the hard text
 			moveText(menuTexts.hardText, window);
 		}
-
+		else if (menuTexts.resumeText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
+			pause = false;
+		}
+		else if (menuTexts.mainMenuText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
+			pause = false;
+			showMenu = true;
+		}
+		else if (menuTexts.level1Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+			showModes = false;
+			showLevels = false;
+			showMenu = false;
+			currentLevel = 0;
+		}
+		else if (menuTexts.level2Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+			showModes = false;
+			showLevels = false;
+			showMenu = false;
+			currentLevel = 1;
+		}
+		else if (menuTexts.level3Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+			showModes = false;
+			showLevels = false;
+			showMenu = false;
+			currentLevel = 2;
+		}
+		else if (menuTexts.level4Text.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+			showModes = false;
+			showLevels = false;
+			showMenu = false;
+			currentLevel = 3;
+		}
+		else if (menuTexts.menuBackText.getGlobalBounds().contains(mouse) && (showMenu && !showModes && !pause && showLevels)) {
+			showModes = false;
+			showLevels = false;
+			showMenu = true;
+			currentLevel = 0;
+		}
 	}
 	if (event.type == Event::MouseMoved && startGame) {
 		sf::Vector2f mouse = window.mapPixelToCoords(Mouse::getPosition(window));
@@ -313,24 +349,22 @@ int main()
 	menuTexts.hardText=(menuTexts.startText);
 	menuTexts.hardText.setString("HARD");
 	menuTexts.hardText.setPosition(670, 200);
-
-	//Player Name
-	sf::Text playerName;
-	playerName.setFont(font);
-	playerName.setPosition(400, 280);
-	playerName.setCharacterSize(24);
-	playerName.setFillColor(sf::Color::Black);
-	playerName.setString("");
-
-	int currentScore = 0;
-
-	string* rewards, * challenges;
-	rewards = new std::string[1];
-	rewards[0] = "Unlocked Wallnut!";
-	challenges = new std::string[2];
-	challenges[0] = "Limited Plant Selection";
-	challenges[1] = "Slow Zombie Waves";
-
+	//Levels Menu Screen
+	menuTexts.level1Text = (menuTexts.startText);
+	menuTexts.level1Text.setString("Beginner's Garden");
+	menuTexts.level1Text.setPosition(570, 100);
+	menuTexts.level2Text = (menuTexts.startText);
+	menuTexts.level2Text.setString("Zombie OutSkirts");
+	menuTexts.level2Text.setPosition(570, 200);
+	menuTexts.level3Text = (menuTexts.startText);
+	menuTexts.level3Text.setString("Sunflower Fields");
+	menuTexts.level3Text.setPosition(570, 300);
+	menuTexts.level4Text = (menuTexts.startText);
+	menuTexts.level4Text.setString("Foggy Forest");
+	menuTexts.level4Text.setPosition(570, 400);
+	menuTexts.menuBackText = (menuTexts.startText);
+	menuTexts.menuBackText.setString("BACK");
+	menuTexts.menuBackText.setPosition(570, 500);
 	///////////////////////////////////////
 
 	//Game field (5*9)
@@ -354,7 +388,8 @@ int main()
 	levels[2] = new Level3();
 	levels[3] = new Level4();
 	int currentLevel = 0;
-	
+	Music mainMenu;
+	mainMenu.openFromFile("./SFML/Music/mainMenu.mp3");
 	//Y-axis starting point is 75, +100 to the slot below
 	//X-axis starting point is 265, +80 to the slot on the right
 	
@@ -368,7 +403,7 @@ int main()
 	static bool showScores = false;
 	static bool showModes = false;//bool for showing modes in menu
 	static bool pause = false;
-
+	static bool showLevels = false;
 	
 
 
@@ -379,25 +414,16 @@ int main()
 		while (window.pollEvent(event))
 		{
 
-			handleEvents(window, event, startGame, showMenu, showModes, pause,input,menuTexts);
-			if (event.type == sf::Event::TextEntered) {
-				if (event.text.unicode < 128) {
-					if (event.type == Event::KeyPressed && event.key.code == Keyboard::BackSpace) {
-						std::string input = playerName.getString();
-						input.pop_back();
-						playerName.setString(input);
-					}
-					else if (event.text.unicode != 13) {
-						playerName.setString(playerName.getString() + static_cast<char>(event.text.unicode));
-					}
-				}
-			}
+			handleEvents(window, event, startGame, showMenu, showModes,showLevels, pause, menuTexts,currentLevel);
+			sf::Vector2f mouse = window.mapPixelToCoords(Mouse::getPosition(window));
 			
 		}
 			//if mouse hovers over text
 			window.clear();
 			if (!startGame) {
 				//Shows the start screen
+				if (mainMenu.getStatus() == SoundSource::Status::Stopped)
+				mainMenu.play();
 				window.clear();
 				Texture icon;
 				icon.loadFromFile("./SFML/Images/icon2.png");
@@ -423,14 +449,19 @@ int main()
 			else if (showMenu) {
 				window.clear();
 				window.draw(menu);
+			
 				if (showModes){
 					//Shows modes
 					window.draw(menuTexts.easyText);
 					window.draw(menuTexts.hardText);
 					window.draw(menuTexts.backText);
 				}
-				else if (showScores) {
-					
+				else if (showLevels) {
+					window.draw(menuTexts.level1Text);
+					window.draw(menuTexts.level2Text);
+					window.draw(menuTexts.level3Text);
+					window.draw(menuTexts.level4Text);
+					window.draw(menuTexts.menuBackText);
 				}
 				else {
 					window.draw(menuTexts.startText);
@@ -439,7 +470,9 @@ int main()
 				}
 			}
 			else if(!pause) {
-				levels[currentLevel]->displayLevel(window, event,pause,currentScore);
+				if (mainMenu.getStatus() == SoundSource::Status::Playing)
+					mainMenu.stop();
+				levels[currentLevel]->displayLevel(window, event,pause);
 				if (currentLevel > 1 && levels[currentLevel - 1] != nullptr)
 				{
 					delete levels[currentLevel - 1];
@@ -466,6 +499,7 @@ int main()
 				window.draw(score);
 			}
 			else if(pause){
+				mainMenu.play();
 				clock.restart();
 				window.clear();
 				window.draw(menu);
