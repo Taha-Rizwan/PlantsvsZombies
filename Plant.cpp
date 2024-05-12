@@ -12,6 +12,10 @@ sf::Sprite* Plant::getCardSprite() {
 	return &cardSprite;
 }
 
+int Plant::getTolarence() {
+	return Entity::tolerance;
+}
+
 void Plant::spawn(int x, int y) {
 	pos.pos[0] = x;
 	pos.pos[1] = y;
