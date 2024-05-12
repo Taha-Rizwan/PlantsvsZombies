@@ -281,7 +281,8 @@ int main()
 	levels[2] = new Level3();
 	levels[3] = new Level4();
 	int currentLevel = 0;
-	
+	Music mainMenu;
+	mainMenu.openFromFile("./SFML/Music/mainMenu.mp3");
 	//Y-axis starting point is 75, +100 to the slot below
 	//X-axis starting point is 265, +80 to the slot on the right
 	
@@ -289,7 +290,7 @@ int main()
 
 	//If a bullet is shot it gets saved to the bullets array, and boom boom
 	
-	static bool startGame = true;
+	static bool startGame = false;
 	static bool showMenu = false;//bool for showing menu
 	static bool showModes = false;//bool for showing modes in menu
 	static bool pause = false;
@@ -312,6 +313,8 @@ int main()
 			window.clear();
 			if (!startGame) {
 				//Shows the start screen
+				if (mainMenu.getStatus() == SoundSource::Status::Stopped)
+				mainMenu.play();
 				window.clear();
 				Texture icon;
 				icon.loadFromFile("./SFML/Images/icon2.png");
@@ -331,6 +334,7 @@ int main()
 			else if (showMenu) {
 				window.clear();
 				window.draw(menu);
+			
 				if (showModes){
 					//Shows modes
 					window.draw(menuTexts.easyText);
@@ -344,6 +348,8 @@ int main()
 				}
 			}
 			else if(!pause) {
+				if (mainMenu.getStatus() == SoundSource::Status::Playing)
+					mainMenu.stop();
 				levels[currentLevel]->displayLevel(window, event,pause);
 				if (currentLevel > 1 && levels[currentLevel - 1] != nullptr)
 				{
@@ -357,6 +363,7 @@ int main()
 				}
 			}
 			else if(pause){
+				mainMenu.play();
 				clock.restart();
 				window.clear();
 				window.draw(menu);
