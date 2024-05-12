@@ -15,7 +15,8 @@ public:
 	sf::Text easyText;
 	sf::Text hardText;
 	sf::Text backText;
-	sf::Text resumeText;
+	sf::Text menuBackText;
+	sf::Text pauseText;
 	sf::Text mainMenuText;
 	sf::Text level1Text;
 	sf::Text level2Text;

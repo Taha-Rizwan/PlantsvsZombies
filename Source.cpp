@@ -164,7 +164,7 @@ void moveText(sf::Text& text, sf::RenderWindow& window){
 }
 
 //Event Handling
-void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool& showMenu,bool& showModes,bool&showLevels,bool& pause,Menu menuTexts, int& currentLevel) {
+void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool& showMenu,bool& showModes,bool&showLevels,bool& pause,bool& input,Menu menuTexts, int& currentLevel) {
 	if (event.type == Event::Closed)
 		window.close();
 	//If text is clicked by mouse
@@ -191,7 +191,7 @@ void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool&
 			//moves the hard text
 			moveText(menuTexts.hardText, window);
 		}
-		else if (menuTexts.resumeText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
+		else if (menuTexts.pauseText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
 			pause = false;
 		}
 		else if (menuTexts.mainMenuText.getGlobalBounds().contains(mouse)&& pause && !showLevels) {
@@ -271,6 +271,7 @@ void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool&
 			pause =!pause;
 		else if (event.key.code == Keyboard::Enter && input) {
 			input = false;
+			showMenu = true;
 		}
 	}
 
@@ -406,16 +407,33 @@ int main()
 	static bool showLevels = false;
 	
 
+	sf::Text playerName;
+	playerName.setFont(font);
+	playerName.setPosition(400, 280);
+	playerName.setCharacterSize(24);
+	playerName.setFillColor(sf::Color::Black);
+	playerName.setString("");
 
+	int currentScore = 0;
 
 	while (window.isOpen())
 	{
 		Event event;
 		while (window.pollEvent(event))
 		{
-
-			handleEvents(window, event, startGame, showMenu, showModes,showLevels, pause, menuTexts,currentLevel);
-			sf::Vector2f mouse = window.mapPixelToCoords(Mouse::getPosition(window));
+handleEvents(window, event, startGame, showMenu, showModes,showLevels, pause,input,menuTexts,currentLevel);
+			if (event.type == sf::Event::TextEntered) {
+				if (event.text.unicode < 128) {
+					if (event.type == Event::KeyPressed && event.key.code == Keyboard::BackSpace) {
+						std::string input = playerName.getString();
+						input.pop_back();
+						playerName.setString(input);
+					}
+					else if (event.text.unicode != 13) {
+						playerName.setString(playerName.getString() + static_cast<char>(event.text.unicode));
+					}
+				}
+			}
 			
 		}
 			//if mouse hovers over text
@@ -472,7 +490,7 @@ int main()
 			else if(!pause) {
 				if (mainMenu.getStatus() == SoundSource::Status::Playing)
 					mainMenu.stop();
-				levels[currentLevel]->displayLevel(window, event,pause);
+				levels[currentLevel]->displayLevel(window, event,pause,currentScore);
 				if (currentLevel > 1 && levels[currentLevel - 1] != nullptr)
 				{
 					delete levels[currentLevel - 1];
