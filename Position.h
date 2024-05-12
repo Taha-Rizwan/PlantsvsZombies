@@ -1,8 +1,8 @@
 #pragma once
 class Position {
 public:
-	float pos[2];
+	int pos[2];
 	
-	Position(float x, float y);
-	void set(float x, float y=0);
+	Position(int x, int y);
+	void set(int x, int y=0);
 };

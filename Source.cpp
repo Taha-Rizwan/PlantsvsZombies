@@ -196,7 +196,7 @@ void handleEvents(sf::RenderWindow& window,sf::Event event,bool& startGame,bool&
 		else if (menuTexts.easyText.getGlobalBounds().contains(mouse) && !showLevels && !showHigh) {
 
 		}
-		else if (menuTexts.hardText.getGlobalBounds().contains(mouse) && !showLevels && !showHigh) {
+		else if (menuTexts.hardText.getGlobalBounds().contains(mouse) ) {
 			//moves the hard text
 			moveText(menuTexts.hardText, window);
 		}
@@ -415,7 +415,7 @@ int main()
 	levels[1] = new Level2();
 	levels[2] = new Level3();
 	levels[3] = new Level4();
-	int currentLevel = 1;
+	int currentLevel = 0;
 
 
 

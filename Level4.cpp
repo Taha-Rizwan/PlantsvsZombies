@@ -1,5 +1,6 @@
 #include "Level4.h"
 Level4::Level4() : Level(4, 30, 6, 4, "Foggy Forest","Snow Pea Unlocked for future use","Reduced Visiblity","Zombies emerge unexpectedly") {
+	
 	fogTexture.loadFromFile("./SFML/images/fog.png");
 
 	for (int i = 0; i < 3; i++) {
@@ -8,6 +9,7 @@ Level4::Level4() : Level(4, 30, 6, 4, "Foggy Forest","Snow Pea Unlocked for futu
 		fog[i].setPosition(650 + i*100, 0);
 		fog[i].setScale(0.5, 0.5);
 	}
+	
 	levelMusic.openFromFile("./SFML/Music/4.mp3");
 	levelMusic.setLoop(true);
 }
@@ -44,7 +46,7 @@ void Level4::displayChallenges(sf::RenderWindow& window, sf::Event event) {
 			int* numZombies = new int[2];
 			numZombies[0] = 5;
 			numZombies[1] = 2;
-			gameState.startRound(numZombies, numOfZombies);
+			gameState.startRound(numZombies, 2);
 			levelMusic.play();
 		}
 	}

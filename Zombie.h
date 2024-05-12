@@ -26,7 +26,7 @@ public:
 	int startY;
 	//Parent Zombie class from which every other zombie inherit from
 	Zombie(int x, int y, int tolerance, std::string texturePath, std::string name, double textureX, double textureY, float speed, int damage, int wait, bool attack, int score, int sprites);
-	int getSpeed()const;
+	float getSpeed()const;
 	int getScore()const;
 	int getDamage()const;
 	std::string getName();

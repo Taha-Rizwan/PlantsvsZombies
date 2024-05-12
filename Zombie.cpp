@@ -7,7 +7,7 @@ Zombie::Zombie(int x, int y, int tolerance, std::string texturePath, std::string
 }
 
 //returns speed of the zombie
-int Zombie::getSpeed()const {
+float Zombie::getSpeed()const {
 	return speed;
 }
 
