@@ -20,12 +20,14 @@ public:
 	Zombie(int x, int y, int tolerance, std::string texturePath, std::string name, double textureX, double textureY, float speed, int damage, int wait, bool attack, int score, int sprites);
 	int getSpeed()const;
 	int getDamage()const;
+	std::string getName();
+	Position getPos();
 	bool getWait();
 	void toggleFreeze();
 	virtual void move()=0;
 	void checkFrozen();
 	bool getFreeze();
-	void spawn(int x, int y);
+	void spawn(int x, int y,int tolarence=0);
 	virtual void eatPlant(Plant* plant);
 	virtual ~Zombie() {}
 };
