@@ -47,6 +47,14 @@ PlantFactory::PlantFactory(int * economy,int size, bool limited):size(45),curren
 
 	plantBuffer.loadFromFile("./SFML/Music/plant.mp3");
 	plantSound.setBuffer(plantBuffer);
+
+	shovelSelected = false;
+	shovelTexture.loadFromFile("./SFML/Images/shovel.png");
+	shovelSprite.setTexture(shovelTexture);
+	shovelSprite.setTextureRect(sf::IntRect(0,0,133,152));
+	shovelSprite.setPosition(950,475);
+	shovelSprite.setScale(0.6, 0.6);
+
 }
 
 
@@ -103,7 +111,7 @@ void PlantFactory::refreshOptions(int i) {
 
 
 
-void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event,int plantOptions) {
+void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event, int plantOptions) {
 
 	static bool found;
 	static int row;
@@ -111,31 +119,39 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event,int
 	static bool selected = false;
 	static int option = 0;
 	static int rows = 9;
-	sf::Sprite *card;
+	sf::Sprite* card;
 	sf::Vector2f mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+	if (event.type == sf::Event::MouseButtonPressed && isClicked(shovelSprite, mouse)) {
+		initPos = mouse;
+		shovelSprite.setPosition(mouse);
+		shovelSelected = true;
+	}
 	//Drawing each plant card
-	for ( int i = 0; i < plantOptions; i++) {
-		card = options[i]->getCardSprite();
-		window.draw(*card);
-		if (!options[i]->getAvailable() || *economy<options[i]->getCost()) {
-			card->setColor(sf::Color(255, 255, 255, 128));
-		}
-		else {
-			card->setColor(sf::Color(255, 255, 255, 255));
-		}
-		if (event.type == sf::Event::MouseButtonPressed && options[i]->getAvailable() && *economy >= options[i]->getCost()) {
-			if (isClicked(*card, mouse)) {
-				initPos = mouse;
-				card->setPosition(mouse);
+	if (!shovelSelected)
+	{
+		for (int i = 0; i < plantOptions; i++) {
+			card = options[i]->getCardSprite();
+			window.draw(*card);
+			if (!options[i]->getAvailable() || *economy < options[i]->getCost()) {
 				card->setColor(sf::Color(255, 255, 255, 128));
-				selected = true;
-				option = i;
 			}
+			else {
+				card->setColor(sf::Color(255, 255, 255, 255));
+			}
+			if (event.type == sf::Event::MouseButtonPressed && options[i]->getAvailable() && *economy >= options[i]->getCost()) {
+				if (isClicked(*card, mouse)) {
+					initPos = mouse;
+					card->setPosition(mouse);
+					card->setColor(sf::Color(255, 255, 255, 128));
+					selected = true;
+					option = i;
+				}
+
+			}
+
+
 		}
-		 
-
-	}		
-
+	}
 	if (limited)
 		rows = 3;
 		//Drag and Drop implementation if a plant card is selected
@@ -165,7 +181,45 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event,int
 
 			}
 		}
-		else if (event.type == sf::Event::MouseButtonReleased) {
+		else if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left) && shovelSelected){
+			sf::Vector2f delta = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+			shovelSprite.setPosition(delta);
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < rows; j++) {
+					if (grid[i][j]->rectangle.getGlobalBounds().contains(delta) && grid[i][j]->filled) {
+						grid[i][j]->rectangle.setFillColor(sf::Color(0, 255, 0, 128));
+						row = i;
+						col = j;
+						found = true;
+						mouse = delta;
+					}
+					else {
+						grid[i][j]->normalState();
+					}
+					grid[i][j]->draw(window);
+					grid[i][j]->checkFilled();
+				}
+			}
+		}
+		else if (event.type == sf::Event::MouseButtonReleased && shovelSelected) {
+			shovelSelected = false;
+			bool wasOn = false;
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 9; j++) {
+					if (isClicked(grid[i][j]->rectangle, mouse)) {
+						wasOn = true;
+						break;
+					}
+				}
+			}
+			if (found && wasOn) {
+				grid[row][col]->toggleFilled();
+				grid[row][col]->plant->toggleExists();
+				found = false;
+				wasOn = false;
+			}
+		}
+		else if (event.type == sf::Event::MouseButtonReleased&&selected) {
 			selected = false;
 			card = options[option]->getCardSprite();
 			card->setScale(0.3, 0.25);
@@ -205,8 +259,6 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event,int
 				found = false;
 			}
 		}
-	
-	
 
 }
 
@@ -236,8 +288,22 @@ bool PlantFactory::isExplode() {
 	return false;
 }
 
-void PlantFactory::displayPlants(sf::RenderWindow& window,sf::Event& event) {
 
+void PlantFactory::displayShovel(sf::RenderWindow& window) {
+	if (!shovelSelected) {
+		shovelSprite.setTextureRect(sf::IntRect(0, 0, 133, 152));
+		shovelSprite.setPosition(950, 475);
+		shovelSprite.setScale(0.6, 0.6);
+		window.draw(shovelSprite);
+	}
+	else {
+		shovelSprite.setTextureRect(sf::IntRect(133, 0, 77,153));
+		window.draw(shovelSprite);
+	}
+}
+
+void PlantFactory::displayPlants(sf::RenderWindow& window,sf::Event& event) {
+	displayShovel(window);
 	for (int i = 0; i < current; i++) {
 		plants[i]->draw(window);
 	}

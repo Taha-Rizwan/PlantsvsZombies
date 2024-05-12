@@ -175,7 +175,7 @@ int main()
 	levels[1] = new Level2();
 	levels[2] = new Level3();
 	levels[3] = new Level4();
-	int currentLevel = 3;
+	int currentLevel = 0;
 	
 	//Y-axis starting point is 75, +100 to the slot below
 	//X-axis starting point is 265, +80 to the slot on the right

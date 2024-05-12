@@ -25,6 +25,9 @@ protected:
 	Position explosion;
 	int* economy;
 	bool limited;
+	sf::Texture shovelTexture;
+	sf::Sprite shovelSprite;
+	bool shovelSelected;
 	sf::SoundBuffer plantBuffer;
 	sf::Sound plantSound;
 public:
@@ -40,6 +43,7 @@ public:
 	void displayPlants(sf::RenderWindow& window,sf::Event& event);
 	void refreshOptions(int i);
 	void produceSun();
+	void displayShovel(sf::RenderWindow& window);
 	Position getExplosion();
 	~PlantFactory();
 };
