@@ -6,7 +6,7 @@ class LawnMower: public Entity {
 	bool move;
 public:
 	LawnMower(int x, int y);
-	void moveMower();
+	void moveMower(bool state);
 	void draw(sf::RenderWindow& window);
 	sf::Sprite* getSprite(){
 		return &sprite;

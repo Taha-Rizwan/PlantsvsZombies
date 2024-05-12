@@ -1,13 +1,13 @@
 #include"SimpleZombie.h"
-
+#include<iostream>
 SimpleZombie::SimpleZombie(int x, int y,int wait) : Zombie(x, y, 15, "./SFML/images/zombie.png", "SimpleZombie", 46, 50, 10, 1, wait, false, 20, 7) {}
 
 
-void SimpleZombie::move() {
-	if (!eat&& !getWait()) {
-		float time = moveClock.restart().asSeconds();
-		
-			pos.set(-speed * time * 2);
+void SimpleZombie::move(bool state) {
+	if (!eat&& !getWait() && !state) {
+	float time = moveClock.restart().asSeconds();
+		std::cout << "Time: " << time << std::endl;
+			pos.set(-speed *0.1);
 	}
 }
 

@@ -13,8 +13,8 @@ void LawnMower::draw(sf::RenderWindow& window) {
 int LawnMower::getDamage()const{
 	return damage;
 }
-void LawnMower::moveMower(){
-	if(move)
+void LawnMower::moveMower(bool state){
+	if(move && !state)
 	pos.set(20);
 	if (pos.pos[0] >= 945)
 		exists = false;

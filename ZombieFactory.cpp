@@ -77,18 +77,13 @@ bool ZombieFactory::waveDead() {
 }
 
 //Moves all the zombies
-void ZombieFactory::moveZombies() {
-	for (int i = 0;i < current;i++) {
-		zombies[i]->move();
-		if (zombies[i]->getFreeze()) {
-			zombies[i]->checkFrozen();
-		}
-		if (zombies[i]->getName() == "DancingZombie" && zombies[i]->getExists()) {
-			if (resClock.getElapsedTime().asSeconds() >= 10) {
-				reviveZombie(zombies[i]->getPos().pos[0], zombies[i]->getPos().pos[1]);
+void ZombieFactory::moveZombies(bool state) {
+		for (int i = 0; i < current; i++) {
+			zombies[i]->move(state);
+			if (zombies[i]->getFreeze()) {
+				zombies[i]->checkFrozen();
 			}
 		}
-	}
 }
 
 void ZombieFactory::detectExplosion(Position pos, sf::RenderWindow& window, bool* boom) {

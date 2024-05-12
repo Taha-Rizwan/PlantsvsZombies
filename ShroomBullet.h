@@ -7,8 +7,8 @@ class ShroomBullet : public Bullet {
 
 public:
 	ShroomBullet(int x, int y, int range = 4);
-	void move();
-	void draw(sf::RenderWindow& window);
+	void move(bool state);
+	void draw(sf::RenderWindow& window,bool state);
 };
 
 #endif

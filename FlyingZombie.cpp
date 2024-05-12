@@ -4,8 +4,8 @@ FlyingZombie::FlyingZombie(int x, int y,int waitTime) : Zombie(x, y, 200, "./SFM
 	sprite.setScale(1,1);
 }
 
-void FlyingZombie::move() {
-	if (!getWait()) {
+void FlyingZombie::move(bool state) {
+	if (!getWait()&&!state) {
 		float time;
 		time = moveClock.restart().asSeconds();
 		Entity::pos.set(-speed * time * 2);

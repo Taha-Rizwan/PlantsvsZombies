@@ -48,8 +48,6 @@ Level::Level(int level, int numOfZombies, int plantOptions, int zombieOptions, s
 	loseSound.setBuffer(loseBuffer);
 }
 
-
-
 bool Level::levelOver() {
 	return nextLevel;
 }
@@ -85,8 +83,4 @@ void Level::displayRewards(sf::RenderWindow& window, sf::Event event) {
 		}
 	}
 	window.draw(result);
-
-
-
-
 }

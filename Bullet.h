@@ -17,8 +17,8 @@ protected:
 public:
 	Bullet(int x, int y, float bulletSpeed, std::string spritePath, double textureX, double textureY);
 	bool getExists();
-	virtual void move();
-	virtual void draw(sf::RenderWindow& window);
+	virtual void move(bool state);
+	virtual void draw(sf::RenderWindow& window,bool state);
 	void toggleExists();
 	void setType(std::string t);
 	std::string getType();

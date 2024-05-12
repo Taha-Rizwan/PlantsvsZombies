@@ -43,12 +43,12 @@ void Level3::displayChallenges(sf::RenderWindow& window, sf::Event event) {
 	}
 
 }
-void Level3::displayLevel(sf::RenderWindow& window, sf::Event event) {
+void Level3::displayLevel(sf::RenderWindow& window, sf::Event event,bool state) {
 	createBack(window);
 	if (!roundStart)
 		displayChallenges(window, event);
 	if (roundStart && !gameState.endLevel()) {
-		gameState.gameplay(window, event);
+		gameState.gameplay(window, event,state);
 		if (gameState.endRound()) {
 			waves++;
 			if (waves == 1) {

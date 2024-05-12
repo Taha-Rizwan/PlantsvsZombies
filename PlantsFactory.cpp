@@ -308,14 +308,12 @@ void PlantFactory::displayPlants(sf::RenderWindow& window,sf::Event& event) {
 		plants[i]->draw(window);
 	}
 	for (int j = 0; j < currentShooters; j++) {
-	
-
 		bullets.add(shooters[j]->shoot());
 	}
 
 	for (int j = 0; j <	bullets.getCurrent(); j++) {
 		if (bullets.getPtr()[j]->getExists());
-			bullets.getPtr()[j]->draw(window);
+			bullets.getPtr()[j]->draw(window,state);
 	}
 
 	for (int j = 0; j < currentSunflowers; j++) {
@@ -332,6 +330,7 @@ void PlantFactory::displayPlants(sf::RenderWindow& window,sf::Event& event) {
 	}
 
 }
+
 
 PlantFactory::~PlantFactory() {
 	for (int i = 0; i < current; i++) {
