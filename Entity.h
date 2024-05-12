@@ -15,7 +15,7 @@ protected:
 	double textureY;
 	sf::Clock clock;
 	int x;
-
+	float dt;
 public:
 	Entity(int x, int y, double tolerance, std::string texturePath, std::string name,double textureX,double textureY,int sprites);
 	virtual void draw(sf::RenderWindow& window,int y=0);

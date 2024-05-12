@@ -4,7 +4,7 @@
 class SimpleZombie : public Zombie {
 public:
 	SimpleZombie(int x, int y,int wait);
-	void move();
+	void move(bool state);
 	void eatPlant(Plant* plant);
 	~SimpleZombie() {}
 

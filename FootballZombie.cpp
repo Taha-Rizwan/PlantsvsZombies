@@ -8,8 +8,8 @@ FootballZombie::FootballZombie(int x,int y,int waitTime): Zombie(x,y,30,"./SFML/
 }
 
 
-void FootballZombie::move() {
-	if (!eat && !getWait()) {
+void FootballZombie::move(bool state) {
+	if (!eat && !getWait()&&!state) {
 		static int x = 0;
 		static float elapsedTime = 0.0f; 
 

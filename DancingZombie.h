@@ -6,6 +6,6 @@ class DancingZombie : public Zombie {
 public:
 
 	DancingZombie(int x, int y, int waitTime);
-	void move();
+	void move(bool state);
 	~DancingZombie() {}
 };

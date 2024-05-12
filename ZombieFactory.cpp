@@ -49,13 +49,13 @@ bool ZombieFactory::waveDead() {
 }
 
 //Moves all the zombies
-void ZombieFactory::moveZombies() {
-	for (int i = 0;i < current;i++) {
-		zombies[i]->move();
-		if (zombies[i]->getFreeze()) {
-			zombies[i]->checkFrozen();
+void ZombieFactory::moveZombies(bool state) {
+		for (int i = 0; i < current; i++) {
+			zombies[i]->move(state);
+			if (zombies[i]->getFreeze()) {
+				zombies[i]->checkFrozen();
+			}
 		}
-	}
 }
 
 void ZombieFactory::detectExplosion(Position pos, sf::RenderWindow& window, bool* boom) {

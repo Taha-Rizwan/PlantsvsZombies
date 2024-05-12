@@ -22,7 +22,7 @@ public:
 	int getDamage()const;
 	bool getWait();
 	void toggleFreeze();
-	virtual void move()=0;
+	virtual void move(bool state) = 0;
 	void checkFrozen();
 	bool getFreeze();
 	void spawn(int x, int y);

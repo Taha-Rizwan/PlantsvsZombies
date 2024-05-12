@@ -28,7 +28,7 @@ public:
 	bool allDead();
 	bool waveDead();
 	//Moves all the zombie
-	void moveZombies();
+	void moveZombies(bool state);
 
 	Zombie** getZombies();
 	int getCurrentZombies();

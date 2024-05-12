@@ -5,14 +5,16 @@ ShroomBullet::ShroomBullet(int x, int y, int range): Bullet(x, y, 5, "./SFML/ima
 	bulletSprite.setScale(0.7, 0.7);
 }
 
-void ShroomBullet::move() {
-	pos.set(bulletSpeed);
-	if (pos.pos[0] > 1075 || clock.getElapsedTime().asSeconds()>3) {
-		exists = false;
+void ShroomBullet::move(bool state) {
+	if (!state) {
+		pos.set(bulletSpeed);
+		if (pos.pos[0] > 1075 || clock.getElapsedTime().asSeconds() > 3) {
+			exists = false;
+		}
 	}
 }
 
-void ShroomBullet::draw(sf::RenderWindow& window) {
+void ShroomBullet::draw(sf::RenderWindow& window,bool state) {
 	
 	static sf::Clock animateClock;
 
@@ -30,6 +32,6 @@ void ShroomBullet::draw(sf::RenderWindow& window) {
 		
 		bulletSprite.setPosition(pos.pos[0], pos.pos[1]);
 		window.draw(bulletSprite);
-		this->move();
+		this->move(state);
 	}
 }

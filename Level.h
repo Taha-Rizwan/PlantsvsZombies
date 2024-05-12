@@ -19,13 +19,15 @@ protected:
 	sf::SoundBuffer winBuffer, loseBuffer;
 	sf::Sound winSound, loseSound;
 	GameState gameState;
+	
 public:
 	Level(int level, int numOfZombies, int plantOptions, int zombieOptions, std::string name, std::string rewards, std::string challenges1, std::string challenges2, bool limited = false);
 	virtual void createBack(sf::RenderWindow& window) = 0;
 	void displayWave(sf::RenderWindow& window);
 	virtual void displayChallenges(sf::RenderWindow& window, sf::Event event) = 0;
 	virtual void displayRewards(sf::RenderWindow& window, sf::Event event);
-	virtual void displayLevel(sf::RenderWindow& window, sf::Event event) = 0;
+	virtual void displayLevel(sf::RenderWindow& window, sf::Event event,bool state) = 0;
+	void update(float dt);
 	bool levelOver();
 	virtual ~Level() {}
 };

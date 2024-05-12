@@ -5,8 +5,8 @@ DancingZombie::DancingZombie(int x, int y, int waitTime) : Zombie(x, y, 20, "./S
 	startY = 0;
 }
 
-void DancingZombie::move() {
-	if (!getWait()) {
+void DancingZombie::move(bool state) {
+	if (!getWait()&&!state) {
 		float time = moveClock.restart().asSeconds();
 		Entity::pos.set(-speed * time);
 	}

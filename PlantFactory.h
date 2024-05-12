@@ -37,10 +37,11 @@ public:
 	int getCurrentPlants()const;
 	int getCurrentBullets();
 	void displayOptions(sf::RenderWindow& window,sf::Event& event, int plantOptions);
-	void displayPlants(sf::RenderWindow& window,sf::Event& event);
+	void displayPlants(sf::RenderWindow& window,sf::Event& event,bool state);
 	void refreshOptions(int i);
 	void produceSun();
 	Position getExplosion();
+	void update(float dt);
 	~PlantFactory();
 };
 

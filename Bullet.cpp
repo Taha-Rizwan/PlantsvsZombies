@@ -13,19 +13,20 @@ bool Bullet::getExists() {
 	return exists;
 }
 
-void Bullet::move() {
+void Bullet::move(bool state) {
+	if (!state) {
 		pos.set(bulletSpeed);
 		if (pos.pos[0] > 945) {
 			exists = false;
 		}
-
+	}
 }
 
-void Bullet::draw(sf::RenderWindow& window){
+void Bullet::draw(sf::RenderWindow& window,bool state){
 	if (exists) {
 		bulletSprite.setPosition(pos.pos[0], pos.pos[1]);
 		window.draw(bulletSprite);
-		this->move();
+		this->move(state);
 	}
 }
 void Bullet::toggleExists() {

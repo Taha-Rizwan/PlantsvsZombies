@@ -4,7 +4,7 @@ class FootballZombie: public Zombie {
 	bool plantAhead;
 public:
 	FootballZombie(int x, int y,int waitTime);
-	void move();
+	void move(bool state);
 	void eatPlant(Plant* plant);
 	~FootballZombie() {}
 };
