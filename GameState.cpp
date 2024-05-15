@@ -45,7 +45,6 @@ void GameState::spawnSun() {
 }
 
 
-
 void GameState::startRound(int* numOfZombies, int zombieOptions) {
 
 	for (int i = 0; i < zombieOptions; i++) {

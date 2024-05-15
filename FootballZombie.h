@@ -10,7 +10,6 @@ public:
 	FootballZombie(int x, int y,int waitTime);
 	//Movement FUnction for FOotball Zombie
 	void move(bool state);
-	void eatPlant(Plant* plant);
 	~FootballZombie() {}
 };
 

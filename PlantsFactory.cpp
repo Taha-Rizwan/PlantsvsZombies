@@ -252,6 +252,7 @@ void PlantFactory::displayOptions(sf::RenderWindow& window, sf::Event& event, in
 				}
 				else if (option == 1) {
 					sunflowers[currentSunflowers++] = (Sunflower *)options[option];
+					sunflowers[currentSunflowers - 1]->restartClock();
 				}
 				*economy -= options[option]->getCost();
 				options[option]->spawn(grid[row][col]->pos.pos[0], grid[row][col]->pos.pos[1]);

@@ -42,5 +42,6 @@ public:
 	bool getFreeze();
 	void spawn(int x, int y,int tolarence=0);
 	virtual void eatPlant(Plant* plant);
+
 	virtual ~Zombie() {}
 };

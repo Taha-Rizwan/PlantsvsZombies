@@ -11,28 +11,21 @@ FootballZombie::FootballZombie(int x,int y,int waitTime): Zombie(x,y,30,"./SFML/
 void FootballZombie::move(bool state) {
 	if (!eat && !getWait() && !state) {
 
-		float time = moveClock.restart().asSeconds();
+		//float time = moveClock.restart().asSeconds();
 		if (!plantAhead) {
-			pos.set(-speed * time);
+			pos.set(-speed * 0.10);
 		}
 		else {
-			if (pos.pos[1] + (speed * time) >= 500) {
-				pos.set(0, -speed * time);
+			if (pos.pos[1] + (speed * 0.05) >= 470) {
+				pos.set(0, -speed * 0.05);
 			}
-			else if (pos.pos[1] - (speed * time) <= 10) {
-				pos.set(0, speed * time);
+			else if (pos.pos[1] - (speed * 0.05) <= 30) {
+				pos.set(0, speed * 0.05);
 			}
 			else {
-				pos.set(0, speed * time);
+				pos.set(0, speed * 0.05);
 			}
 			plantAhead = false;
 		}
 	}
-}
-
-
-void FootballZombie::eatPlant(Plant* plant) {
-	if(exists)
-		Zombie::eatPlant(plant);
-	
 }

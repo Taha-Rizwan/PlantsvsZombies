@@ -114,7 +114,7 @@ bool moveIcon(Sprite& sprite, sf::Clock& mClock) {
 	Time elapsed = mClock.getElapsedTime(); 
 
 	if (!moved) {
-		float speed = 60.0f; 
+		float speed = 80.0f; 
 
 		float distance = speed * elapsed.asSeconds();
 

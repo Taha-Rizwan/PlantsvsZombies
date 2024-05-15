@@ -19,5 +19,8 @@ public:
 	bool getProduceSun()const;
 	//Produces sun after a certain time
 	Sun* produce();
-
+	//Restart the clock
+	void restartClock() {
+		sClock.restart();
+	}
 };

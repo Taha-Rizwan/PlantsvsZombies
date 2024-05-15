@@ -75,13 +75,5 @@ Position Zombie::getPos() {
 
 //Zombie eats plant
 void Zombie::eatPlant(Plant* plant) {
-	if (exists && plant->getExists()){
-		eat = true;
-		//startY = 3;
-		plant->hit(damage);
-		if (!(plant->getExists())) {
-			eat = false;
-			startY = 0;
-		}
-	}
+	
 }
